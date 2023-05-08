@@ -1,0 +1,39 @@
+Summary for out.jar
+Decompiled with CFR 0.152
+
+
+dev.sora.relay.RakNetRelaySession
+----------------------------
+
+readPacketFromBuffer$lambda$1(dev.sora.relay.RakNetRelaySession io.netty.buffer.ByteBuf boolean )
+  Unable to fully structure code
+sendWrapped(com.nukkitx.protocol.bedrock.BedrockPacket boolean )
+  Loose catch block
+
+
+dev.sora.relay.cheat.command.impl.CommandModule
+----------------------------
+
+exec(java.lang.String[] )
+  Unable to fully structure code
+
+
+dev.sora.relay.cheat.config.AbstractConfigManager
+----------------------------
+
+loadConfigSectionModule(com.google.gson.JsonObject )
+  Unable to fully structure code
+
+
+dev.sora.relay.cheat.module.impl.fight.OPFightBot
+----------------------------
+
+onTick(dev.sora.relay.game.event.impl.EventTick )
+  Unable to fully structure code
+
+
+dev.sora.relay.cheat.module.impl.other.ResourcePackSpoof
+----------------------------
+
+<init>(java.io.File )
+  Unable to fully structure code
