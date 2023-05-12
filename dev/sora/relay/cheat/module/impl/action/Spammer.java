@@ -2,13 +2,10 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.random.Random
  */
 package dev.sora.relay.cheat.module.impl.action;
 
-import com.nukkitx.protocol.bedrock.BedrockPacket;
 import com.nukkitx.protocol.bedrock.data.command.CommandOriginData;
 import com.nukkitx.protocol.bedrock.data.command.CommandOriginType;
 import com.nukkitx.protocol.bedrock.packet.CommandRequestPacket;
@@ -38,10 +35,10 @@ extends CheatModule {
 
     public Spammer() {
         super("Spammer", false, false, 6, null);
-        String string = "Public";
-        String string2 = "Private";
-        String string3 = "Me";
-        this.chatValue = new ListValue("Chat", new String[]{string, string2, string3}, string);
+        String string2 = "Public";
+        String string3 = "Private";
+        String string4 = "Me";
+        this.chatValue = new ListValue("Chat", new String[]{string2, string3, string4}, string2);
         this.delayValue = new IntValue("Delay", 5000, 0, 10000);
         this.messageValue = new StringValue("Message", "I'm useing ProtoHaxRB,bilibili search for SRYuYing369!");
         this.spamTimer = new TimerUtil();
@@ -54,32 +51,32 @@ extends CheatModule {
     public final void onTick(EventTick object) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
         if (this.spamTimer.isDelayComplete(((Number)this.delayValue.get()).intValue())) {
-            Object object2 = (String)this.chatValue.get();
-            switch (((String)object2).hashCode()) {
+            String string2 = (String)this.chatValue.get();
+            switch (string2.hashCode()) {
                 case 1350155619: {
-                    if (!((String)object2).equals("Private")) break;
+                    if (!string2.equals("Private")) break;
                     for (PlayerListPacket.Entry entry : this.getSession().getTheWorld().getPlayerList().values()) {
-                        object2 = ((GameEvent)object).getSession().getNetSession();
+                        RakNetRelaySession rakNetRelaySession = ((GameEvent)object).getSession().getNetSession();
                         CommandRequestPacket commandRequestPacket = new CommandRequestPacket();
                         commandRequestPacket.setCommand("/w " + entry.getName() + ' ' + (String)this.messageValue.get());
                         commandRequestPacket.setCommandOriginData(new CommandOriginData(CommandOriginType.PLAYER, UUID.randomUUID(), "", -1L));
                         commandRequestPacket.setInternal(false);
-                        ((RakNetRelaySession)object2).outboundPacket(commandRequestPacket);
+                        rakNetRelaySession.outboundPacket(commandRequestPacket);
                     }
                     break;
                 }
                 case 2488: {
-                    if (!((String)object2).equals("Me")) break;
-                    object2 = ((GameEvent)object).getSession().getNetSession();
-                    object = new CommandRequestPacket();
-                    ((CommandRequestPacket)object).setCommand("/\\me " + (String)this.messageValue.get());
-                    ((CommandRequestPacket)object).setCommandOriginData(new CommandOriginData(CommandOriginType.PLAYER, UUID.randomUUID(), "", -1L));
-                    ((CommandRequestPacket)object).setInternal(false);
-                    ((RakNetRelaySession)object2).outboundPacket((BedrockPacket)object);
+                    if (!string2.equals("Me")) break;
+                    object = ((GameEvent)object).getSession().getNetSession();
+                    CommandRequestPacket commandRequestPacket = new CommandRequestPacket();
+                    commandRequestPacket.setCommand("/\\me " + (String)this.messageValue.get());
+                    commandRequestPacket.setCommandOriginData(new CommandOriginData(CommandOriginType.PLAYER, UUID.randomUUID(), "", -1L));
+                    commandRequestPacket.setInternal(false);
+                    ((RakNetRelaySession)object).outboundPacket(commandRequestPacket);
                     break;
                 }
                 case -1893556599: {
-                    if (((String)object2).equals("Public")) {
+                    if (string2.equals("Public")) {
                         ((GameEvent)object).getSession().getThePlayer().say('@' + (String)this.messageValue.get() + " >" + StringUtilsKt.getRandomString(Random.Default.nextInt(5) + 10) + '<');
                         break;
                     } else {

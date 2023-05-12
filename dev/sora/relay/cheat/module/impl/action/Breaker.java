@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.comparisons.ComparisonsKt
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -39,14 +37,14 @@ extends CheatModule {
 
     public Breaker() {
         super("Breaker", false, false, 6, null);
-        String string = "Bed";
-        String string2 = "Cake";
-        String string3 = "DragonEgg";
-        this.blockValue = new ListValue("Block", new String[]{string, string2, string3}, string);
-        string = "Destroy";
+        String string2 = "Bed";
+        String string3 = "Cake";
+        String string4 = "DragonEgg";
+        this.blockValue = new ListValue("Block", new String[]{string2, string3, string4}, string2);
+        string2 = "Destroy";
         string3 = "Dig";
-        string2 = "Click";
-        this.actionValue = new ListValue("Action", new String[]{string, string3, string2}, string);
+        string4 = "Click";
+        this.actionValue = new ListValue("Action", new String[]{string2, string3, string4}, string2);
         this.rangeValue = new FloatValue("Range", 5.0f, 4.0f, 7.0f);
         this.delayValue = new FloatValue("Delay", 100.0f, 0.0f, 1000.0f);
         this.timer = new TimerUtil();
@@ -65,10 +63,10 @@ extends CheatModule {
             for (int j = vector3i.getY() - n; j < n3 + n; ++j) {
                 int n4 = vector3i.getZ();
                 for (int k = vector3i.getZ() - n; k < n4 + n; ++k) {
-                    String string;
+                    String string2;
                     Vector3i vector3i2 = Vector3i.from(i, j, k);
                     Intrinsics.checkNotNullExpressionValue((Object)vector3i2, (String)"from(x,y,z)");
-                    if (!(vector3i2.distance(entityPlayerSP.getPosX(), entityPlayerSP.getPosY(), entityPlayerSP.getPosZ()) <= f) || !(Intrinsics.areEqual((Object)(string = this.getSession().getTheWorld().getBlockAt(vector3i2)), (Object)"minecraft:bed") && Intrinsics.areEqual(this.blockValue.get(), (Object)"Bed") || Intrinsics.areEqual((Object)string, (Object)"minecraft:cake") && Intrinsics.areEqual(this.blockValue.get(), (Object)"Cake")) && (!Intrinsics.areEqual((Object)string, (Object)"minecraft:dragon_egg") || !Intrinsics.areEqual(this.blockValue.get(), (Object)"DragonEgg"))) continue;
+                    if (!(vector3i2.distance(entityPlayerSP.getPosX(), entityPlayerSP.getPosY(), entityPlayerSP.getPosZ()) <= f) || !(Intrinsics.areEqual((Object)(string2 = this.getSession().getTheWorld().getBlockAt(vector3i2)), (Object)"minecraft:bed") && Intrinsics.areEqual(this.blockValue.get(), (Object)"Bed") || Intrinsics.areEqual((Object)string2, (Object)"minecraft:cake") && Intrinsics.areEqual(this.blockValue.get(), (Object)"Cake")) && (!Intrinsics.areEqual((Object)string2, (Object)"minecraft:dragon_egg") || !Intrinsics.areEqual(this.blockValue.get(), (Object)"DragonEgg"))) continue;
                     this.blocksList.add(vector3i2);
                 }
             }
@@ -78,11 +76,11 @@ extends CheatModule {
     @Listen
     public final void onTick(EventTick object) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
-        object = ((GameEvent)object).getSession().getThePlayer();
+        EntityPlayerSP entityPlayerSP = ((GameEvent)object).getSession().getThePlayer();
         if (this.timer.delay(((Number)this.delayValue.get()).floatValue(), true)) {
             this.getBlocks();
             if (((Collection)this.blocksList).isEmpty() ^ true) {
-                CollectionsKt.sortedWith((Iterable)this.blocksList, (Comparator)new Comparator((EntityPlayerSP)object){
+                CollectionsKt.sortedWith((Iterable)this.blocksList, (Comparator)new Comparator(entityPlayerSP){
                     final /* synthetic */ EntityPlayerSP $thePlayer$inlined;
                     {
                         this.$thePlayer$inlined = entityPlayerSP;
@@ -92,24 +90,24 @@ extends CheatModule {
                         return ComparisonsKt.compareValues((Comparable)Float.valueOf(((Vector3i)t).distance(this.$thePlayer$inlined.getPosX(), this.$thePlayer$inlined.getPosY(), this.$thePlayer$inlined.getPosZ())), (Comparable)Float.valueOf(((Vector3i)t2).distance(this.$thePlayer$inlined.getPosX(), this.$thePlayer$inlined.getPosY(), this.$thePlayer$inlined.getPosZ())));
                     }
                 });
-                EntityPlayerSP.swing$default((EntityPlayerSP)object, false, 1, null);
-                String string = (String)this.actionValue.get();
-                switch (string.hashCode()) {
+                EntityPlayerSP.swing$default(entityPlayerSP, false, 1, null);
+                object = (String)this.actionValue.get();
+                switch (((String)object).hashCode()) {
                     default: {
                         break;
                     }
                     case 65197416: {
-                        if (!string.equals("Click")) break;
-                        ((EntityPlayerSP)object).click(this.blocksList.get(0), 1);
+                        if (!((String)object).equals("Click")) break;
+                        entityPlayerSP.click(this.blocksList.get(0), 1);
                         break;
                     }
                     case 68706: {
-                        string.equals("Dig");
+                        ((String)object).equals("Dig");
                         break;
                     }
                     case -1072941094: {
-                        if (!string.equals("Destroy")) break;
-                        ((EntityPlayerSP)object).destroy(this.blocksList.get(0), 1);
+                        if (!((String)object).equals("Destroy")) break;
+                        entityPlayerSP.destroy(this.blocksList.get(0), 1);
                         this.chat("destroy");
                     }
                 }

@@ -2,10 +2,8 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.game.world.chunk;
 
@@ -53,24 +51,23 @@ public final class BlockStorage {
 
     public BlockStorage(ByteBuf byteBuf, RuntimeMapping runtimeMapping) {
         int n;
-        int n2;
         Intrinsics.checkNotNullParameter((Object)byteBuf, (String)"byteBuf");
         Intrinsics.checkNotNullParameter((Object)runtimeMapping, (String)"blockMapping");
         byte by = byteBuf.readByte();
         boolean bl = (by & 1) == 1;
         Object object = BitArrayVersion.get((by | 1) >> 1, true);
-        Object object2 = ((BitArrayVersion)((Object)object)).createPalette(4096);
+        Object object2 = object.createPalette(4096);
         Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"bitArrayVersion.createPalette(maxBlocksInSection)");
         this.bitArray = object2;
-        int n3 = ((BitArrayVersion)((Object)object)).getWordsForSize(4096);
-        for (n2 = 0; n2 < n3; ++n2) {
-            this.bitArray.getWords()[n2] = n = byteBuf.readIntLE();
+        int n2 = object.getWordsForSize(4096);
+        for (n = 0; n < n2; ++n) {
+            int n3;
+            this.bitArray.getWords()[n] = n3 = byteBuf.readIntLE();
         }
-        n = VarInts.readInt(byteBuf);
-        this.palette = new IntArrayList(n);
+        n2 = VarInts.readInt(byteBuf);
+        this.palette = new IntArrayList(n2);
         object = bl ? null : new NBTInputStream(new NetworkDataInputStream(new ByteBufInputStream(byteBuf)));
-        n2 = by;
-        for (n3 = 0; n3 < n; ++n3) {
+        for (n = 0; n < n2; ++n) {
             if (bl) {
                 this.palette.add(VarInts.readInt(byteBuf));
                 continue;
@@ -81,16 +78,16 @@ public final class BlockStorage {
             AbstractMap abstractMap = ((NbtMap)object2).toBuilder();
             Object object3 = "name";
             object2 = String.valueOf(abstractMap.get(object3));
-            String string = "minecraft:";
-            if (!StringsKt.startsWith$default((String)object2, (String)string, (boolean)false, (int)2, null)) {
-                object2 = string + (String)object2;
+            String string2 = "minecraft:";
+            if (!StringsKt.startsWith$default((String)object2, (String)string2, (boolean)false, (int)2, null)) {
+                object2 = string2 + (String)object2;
             }
             abstractMap.replace(object3, object2);
-            object2 = this.palette;
-            object3 = BlockMappingUtils.INSTANCE;
+            object3 = this.palette;
+            object2 = BlockMappingUtils.INSTANCE;
             abstractMap = abstractMap.build();
             Intrinsics.checkNotNullExpressionValue((Object)abstractMap, (String)"map.build()");
-            ((IntArrayList)object2).add(runtimeMapping.runtime(((BlockMappingUtils)object3).getBlockNameFromNbt((NbtMap)abstractMap)));
+            ((IntArrayList)object3).add(runtimeMapping.runtime(((BlockMappingUtils)object2).getBlockNameFromNbt((NbtMap)abstractMap)));
         }
     }
 

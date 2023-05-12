@@ -2,12 +2,10 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.fight;
 
-import com.nukkitx.protocol.bedrock.BedrockPacket;
 import com.nukkitx.protocol.bedrock.data.inventory.TransactionType;
 import com.nukkitx.protocol.bedrock.packet.InventoryTransactionPacket;
 import dev.sora.relay.cheat.module.CheatModule;
@@ -41,17 +39,17 @@ extends CheatModule {
     }
 
     @Listen
-    public final void onPacketOutbound(EventPacketOutbound set) {
+    public final void onPacketOutbound(EventPacketOutbound object) {
         Entity entity;
-        Intrinsics.checkNotNullParameter((Object)set, (String)"event");
-        BedrockPacket bedrockPacket = ((EventPacketOutbound)((Object)set)).getPacket();
-        if (bedrockPacket instanceof InventoryTransactionPacket && ((InventoryTransactionPacket)bedrockPacket).getTransactionType() == TransactionType.ITEM_USE_ON_ENTITY && ((InventoryTransactionPacket)bedrockPacket).getActionType() == 0 && (entity = this.getSession().getTheWorld().getEntityMap().get(((InventoryTransactionPacket)bedrockPacket).getRuntimeEntityId())) instanceof EntityPlayer) {
-            set = friendList;
-            if (set.contains(((InventoryTransactionPacket)bedrockPacket).getRuntimeEntityId())) {
-                set.remove(((InventoryTransactionPacket)bedrockPacket).getRuntimeEntityId());
+        Intrinsics.checkNotNullParameter((Object)object, (String)"event");
+        object = ((EventPacketOutbound)object).getPacket();
+        if (object instanceof InventoryTransactionPacket && ((InventoryTransactionPacket)object).getTransactionType() == TransactionType.ITEM_USE_ON_ENTITY && ((InventoryTransactionPacket)object).getActionType() == 0 && (entity = this.getSession().getTheWorld().getEntityMap().get(((InventoryTransactionPacket)object).getRuntimeEntityId())) instanceof EntityPlayer) {
+            Set<Long> set = friendList;
+            if (set.contains(((InventoryTransactionPacket)object).getRuntimeEntityId())) {
+                set.remove(((InventoryTransactionPacket)object).getRuntimeEntityId());
                 this.chat("Remove Friend:" + ((EntityPlayer)entity).getUsername());
             } else {
-                set.add(((InventoryTransactionPacket)bedrockPacket).getRuntimeEntityId());
+                set.add(((InventoryTransactionPacket)object).getRuntimeEntityId());
                 this.chat("Add Friend:" + ((EntityPlayer)entity).getUsername());
             }
         }

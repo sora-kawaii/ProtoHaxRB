@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module;
 
@@ -85,10 +83,10 @@ public final class ModuleManager {
         this.session.getEventManager().registerListener(cheatModule);
     }
 
-    public final CheatModule getModuleByName(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
+    public final CheatModule getModuleByName(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
         for (CheatModule cheatModule : this.modules) {
-            if (!StringsKt.equals((String)cheatModule.getName(), (String)string, (boolean)true)) continue;
+            if (!StringsKt.equals((String)cheatModule.getName(), (String)string2, (boolean)true)) continue;
             return cheatModule;
         }
         return null;

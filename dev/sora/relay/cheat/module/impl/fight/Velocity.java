@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.fight;
@@ -31,13 +30,13 @@ extends CheatModule {
 
     public Velocity() {
         super("Velocity", false, false, 6, null);
-        String string = "Cancel";
-        String string2 = "Simple";
-        String string3 = "Resistance";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2, string3}, string);
+        String string2 = "Cancel";
+        String string3 = "Simple";
+        String string4 = "Resistance";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3, string4}, string2);
         this.horizontalValue = new FloatValue("Horizontal", 0.0f, 0.0f, 1.0f);
         this.verticalValue = new FloatValue("Vertical", 0.0f, 0.0f, 1.0f);
-        this.resistanceValue = new FloatValue(string3, 1.0f, 0.0f, 1.0f);
+        this.resistanceValue = new FloatValue(string4, 1.0f, 0.0f, 1.0f);
     }
 
     @Override

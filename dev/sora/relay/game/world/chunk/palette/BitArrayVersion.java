@@ -56,8 +56,8 @@ extends Enum<BitArrayVersion> {
         throw new IllegalArgumentException("Invalid palette version: " + n);
     }
 
-    public static BitArrayVersion valueOf(String string) {
-        return Enum.valueOf(BitArrayVersion.class, string);
+    public static BitArrayVersion valueOf(String string2) {
+        return Enum.valueOf(BitArrayVersion.class, string2);
     }
 
     public static BitArrayVersion[] values() {

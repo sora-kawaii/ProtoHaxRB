@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.visual;
@@ -23,9 +22,9 @@ extends CheatModule {
 
     public NoChat() {
         super("NoChat", false, false, 6, null);
-        String string = "All Chat";
-        String string2 = "HYT Horn";
-        this.objectValue = new ListValue("Object", new String[]{string, string2}, string);
+        String string2 = "All Chat";
+        String string3 = "HYT Horn";
+        this.objectValue = new ListValue("Object", new String[]{string2, string3}, string2);
     }
 
     @Listen
@@ -33,10 +32,10 @@ extends CheatModule {
         Intrinsics.checkNotNullParameter((Object)eventPacketInbound, (String)"event");
         BedrockPacket bedrockPacket = eventPacketInbound.getPacket();
         if (bedrockPacket instanceof TextPacket) {
-            String string = (String)this.objectValue.get();
-            if (Intrinsics.areEqual((Object)string, (Object)"All Chat")) {
+            String string2 = (String)this.objectValue.get();
+            if (Intrinsics.areEqual((Object)string2, (Object)"All Chat")) {
                 eventPacketInbound.cancel();
-            } else if (Intrinsics.areEqual((Object)string, (Object)"HYT Horn") && (((TextPacket)bedrockPacket).getType() == TextPacket.Type.POPUP || ((TextPacket)bedrockPacket).getType() == TextPacket.Type.CHAT)) {
+            } else if (Intrinsics.areEqual((Object)string2, (Object)"HYT Horn") && (((TextPacket)bedrockPacket).getType() == TextPacket.Type.POPUP || ((TextPacket)bedrockPacket).getType() == TextPacket.Type.CHAT)) {
                 eventPacketInbound.cancel();
             }
         }

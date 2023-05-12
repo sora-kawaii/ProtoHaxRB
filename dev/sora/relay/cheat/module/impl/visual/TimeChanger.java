@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.visual;
@@ -31,10 +30,10 @@ extends CheatModule {
 
     public TimeChanger() {
         super("TimeChanger", false, false, 6, null);
-        String string = "Clear";
-        String string2 = "Rain";
-        String string3 = "Thunderstorm";
-        this.weatherValue = new ListValue("Weather", new String[]{string, string2, string3}, string);
+        String string2 = "Clear";
+        String string3 = "Rain";
+        String string4 = "Thunderstorm";
+        this.weatherValue = new ListValue("Weather", new String[]{string2, string3, string4}, string2);
         this.timeValue = new IntValue("Time", 6000, 0, 23992);
     }
 
@@ -47,12 +46,12 @@ extends CheatModule {
         switch (((String)object2).hashCode()) {
             case 65193517: {
                 if (((String)object2).equals("Clear")) {
-                    object2 = this.getSession().getNetSession();
-                    object = new LevelEventPacket();
-                    ((LevelEventPacket)object).setType(LevelEventType.STOP_RAINING);
-                    ((LevelEventPacket)object).setPosition(Vector3f.ZERO);
-                    ((LevelEventPacket)object).setData(65535);
-                    ((RakNetRelaySession)object2).inboundPacket((BedrockPacket)object);
+                    object = this.getSession().getNetSession();
+                    object2 = new LevelEventPacket();
+                    ((LevelEventPacket)object2).setType(LevelEventType.STOP_RAINING);
+                    ((LevelEventPacket)object2).setPosition(Vector3f.ZERO);
+                    ((LevelEventPacket)object2).setData(65535);
+                    ((RakNetRelaySession)object).inboundPacket((BedrockPacket)object2);
                     object = this.getSession().getNetSession();
                     object2 = new LevelEventPacket();
                     ((LevelEventPacket)object2).setType(LevelEventType.STOP_THUNDERSTORM);
@@ -67,12 +66,12 @@ extends CheatModule {
             }
             case 2539444: {
                 if (!((String)object2).equals("Rain")) break;
-                object = this.getSession().getNetSession();
-                object2 = new LevelEventPacket();
-                ((LevelEventPacket)object2).setType(LevelEventType.START_RAINING);
-                ((LevelEventPacket)object2).setPosition(Vector3f.ZERO);
-                ((LevelEventPacket)object2).setData(65535);
-                ((RakNetRelaySession)object).inboundPacket((BedrockPacket)object2);
+                object2 = this.getSession().getNetSession();
+                object = new LevelEventPacket();
+                ((LevelEventPacket)object).setType(LevelEventType.START_RAINING);
+                ((LevelEventPacket)object).setPosition(Vector3f.ZERO);
+                ((LevelEventPacket)object).setData(65535);
+                ((RakNetRelaySession)object2).inboundPacket((BedrockPacket)object);
                 object = this.getSession().getNetSession();
                 object2 = new LevelEventPacket();
                 ((LevelEventPacket)object2).setType(LevelEventType.STOP_THUNDERSTORM);
@@ -89,12 +88,12 @@ extends CheatModule {
                 ((LevelEventPacket)object).setPosition(Vector3f.ZERO);
                 ((LevelEventPacket)object).setData(65535);
                 ((RakNetRelaySession)object2).inboundPacket((BedrockPacket)object);
-                object = this.getSession().getNetSession();
-                object2 = new LevelEventPacket();
-                ((LevelEventPacket)object2).setType(LevelEventType.START_THUNDERSTORM);
-                ((LevelEventPacket)object2).setPosition(Vector3f.ZERO);
-                ((LevelEventPacket)object2).setData(65535);
-                ((RakNetRelaySession)object).inboundPacket((BedrockPacket)object2);
+                object2 = this.getSession().getNetSession();
+                object = new LevelEventPacket();
+                ((LevelEventPacket)object).setType(LevelEventType.START_THUNDERSTORM);
+                ((LevelEventPacket)object).setPosition(Vector3f.ZERO);
+                ((LevelEventPacket)object).setData(65535);
+                ((RakNetRelaySession)object2).inboundPacket((BedrockPacket)object);
             }
         }
         object2 = this.getSession().getNetSession();

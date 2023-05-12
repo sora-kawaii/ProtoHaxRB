@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.other;
@@ -33,10 +32,10 @@ extends CheatModule {
 
     public PacketLogger() {
         super("PacketLogger", false, false, 6, null);
-        String string = "Chat";
-        String string2 = "Console";
-        String string3 = "Logcat";
-        this.printValue = new ListValue("Print", new String[]{string, string2, string3}, string);
+        String string2 = "Chat";
+        String string3 = "Console";
+        String string4 = "Logcat";
+        this.printValue = new ListValue("Print", new String[]{string2, string3, string4}, string2);
         this.clientPacketValue = new BoolValue("ClientPacket", true);
         this.serverPacketValue = new BoolValue("ServerPacket", false);
         this.noSpamPacketValue = new BoolValue("No SpamPacket", false);
@@ -45,22 +44,22 @@ extends CheatModule {
     /*
      * Enabled aggressive block sorting
      */
-    private final void printPacket(String string) {
+    private final void printPacket(String string2) {
         switch ((String)this.printValue.get()) {
             default: {
                 return;
             }
             case "Chat": {
-                this.chat(string);
+                this.chat(string2);
                 return;
             }
             case "Console": {
-                System.out.println((Object)string);
+                System.out.println((Object)string2);
                 return;
             }
             case "Logcat": 
         }
-        LoggerKt.logInfo(string);
+        LoggerKt.logInfo(string2);
     }
 
     @Listen

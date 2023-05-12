@@ -2,13 +2,10 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move.flys;
 
-import com.nukkitx.protocol.bedrock.BedrockPacket;
 import com.nukkitx.protocol.bedrock.data.Ability;
 import com.nukkitx.protocol.bedrock.data.AbilityLayer;
 import com.nukkitx.protocol.bedrock.data.PlayerAuthInputData;
@@ -52,13 +49,13 @@ extends FlyMode {
         Ability ability2 = Ability.MINE;
         Ability ability3 = Ability.DOORS_AND_SWITCHES;
         Ability ability4 = Ability.OPEN_CONTAINERS;
-        Ability ability5 = Ability.ATTACK_PLAYERS;
-        object = Ability.ATTACK_MOBS;
+        object = Ability.ATTACK_PLAYERS;
+        Ability ability5 = Ability.ATTACK_MOBS;
         Ability ability6 = Ability.OPERATOR_COMMANDS;
         Ability ability7 = Ability.FLYING;
         Ability ability8 = Ability.FLY_SPEED;
         Ability ability9 = Ability.WALK_SPEED;
-        CollectionsKt.addAll((Collection)collection, (Object[])new Ability[]{ability, ability2, ability3, ability4, ability5, object, ability6, ability7, ability8, ability9});
+        CollectionsKt.addAll((Collection)collection, (Object[])new Ability[]{ability, ability2, ability3, ability4, object, ability5, ability6, ability7, ability8, ability9});
         abilityLayer.setWalkSpeed(0.1f);
         abilityLayer.setFlySpeed(0.15f);
         list.add(abilityLayer);
@@ -82,18 +79,18 @@ extends FlyMode {
         double d2;
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
         EntityPlayerSP entityPlayerSP = ((GameEvent)object).getSession().getThePlayer();
-        RakNetRelaySession rakNetRelaySession = ((GameEvent)object).getSession().getNetSession();
-        object = this.flyingAbilityPacket;
-        ((UpdateAbilitiesPacket)object).setUniqueEntityId(entityPlayerSP.getUniqueId());
-        rakNetRelaySession.inboundPacket((BedrockPacket)object);
+        object = ((GameEvent)object).getSession().getNetSession();
+        UpdateAbilitiesPacket updateAbilitiesPacket = this.flyingAbilityPacket;
+        updateAbilitiesPacket.setUniqueEntityId(entityPlayerSP.getUniqueId());
+        ((RakNetRelaySession)object).inboundPacket(updateAbilitiesPacket);
         double d3 = entityPlayerSP.getInputData().contains((Object)PlayerAuthInputData.WANT_UP) ? (double)((Number)new Fly().getVerticalSpeedValue().get()).floatValue() : (entityPlayerSP.getInputData().contains((Object)PlayerAuthInputData.WANT_DOWN) ? -((double)((Number)new Fly().getVerticalSpeedValue().get()).floatValue()) : 0.0391998291015625);
         if (entityPlayerSP.isHorizontallyMove()) {
             d2 = entityPlayerSP.getDirection();
-            d = -Math.sin(d2);
-            double d4 = ((Number)new Fly().getHorizontalSpeedValue().get()).doubleValue();
+            double d4 = -Math.sin(d2);
+            d = ((Number)new Fly().getHorizontalSpeedValue().get()).doubleValue();
             d2 = Math.cos(d2);
             double d5 = ((Number)new Fly().getHorizontalSpeedValue().get()).doubleValue();
-            d *= d4;
+            d = d4 * d;
             d2 *= d5;
         } else {
             d = 0.0;

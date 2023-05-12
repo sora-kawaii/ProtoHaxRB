@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -24,16 +23,16 @@ public abstract class FlyMode {
         this(null, 1, null);
     }
 
-    public FlyMode(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"mode");
-        this.mode = string;
+    public FlyMode(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"mode");
+        this.mode = string2;
     }
 
-    public /* synthetic */ FlyMode(String string, int n, DefaultConstructorMarker defaultConstructorMarker) {
+    public /* synthetic */ FlyMode(String string2, int n, DefaultConstructorMarker defaultConstructorMarker) {
         if ((n & 1) != 0) {
-            string = "";
+            string2 = "";
         }
-        this(string);
+        this(string2);
     }
 
     public String getMode() {

@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.other;
@@ -24,9 +23,9 @@ extends CheatModule {
 
     public GodMode() {
         super("GodMode", false, false, 6, null);
-        String string = "EaseCation";
-        String string2 = "HYT";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2}, string2);
+        String string2 = "EaseCation";
+        String string3 = "HYT";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3}, string3);
     }
 
     @Listen

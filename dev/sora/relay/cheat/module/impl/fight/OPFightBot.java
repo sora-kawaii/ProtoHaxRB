@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  *  kotlin.ranges.RangesKt
  */
@@ -37,10 +36,10 @@ extends CheatModule {
 
     public OPFightBot() {
         super("OPFightBot", false, false, 6, null);
-        String string = "Random";
-        String string2 = "Strafe";
-        String string3 = "Back";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2, string3}, string);
+        String string2 = "Random";
+        String string3 = "Strafe";
+        String string4 = "Back";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3, string4}, string2);
         this.rangeValue = new FloatValue("Range", 1.5f, 1.5f, 4.0f);
         this.horizontalSpeedValue = new FloatValue("HorizontalSpeed", 5.0f, 1.0f, 7.0f);
         this.verticalSpeedValue = new FloatValue("VerticalSpeed", 4.0f, 1.0f, 7.0f);
@@ -57,13 +56,13 @@ extends CheatModule {
             var2_2 = var1_1.getSession();
             var3_3 = var2_2.getTheWorld().getEntityMap().values();
             var1_1 = new ArrayList<E>();
-            var4_4 = var3_3.iterator();
-            while (var4_4.hasNext()) {
-                var3_3 = var4_4.next();
-                var5_5 = (Entity)var3_3;
+            var3_3 = var3_3.iterator();
+            while (var3_3.hasNext()) {
+                var4_4 = var3_3.next();
+                var5_5 = (Entity)var4_4;
                 var6_6 = var5_5 instanceof EntityPlayer != false && AntiBot.INSTANCE.isBot((EntityPlayer)var5_5, var2_2) == false && Teams.INSTANCE.isTeammate((EntityPlayer)var5_5, var2_2) == false && Friend.INSTANCE.isFriend((EntityPlayer)var5_5) == false;
                 if (!var6_6) continue;
-                var1_1.add(var3_3);
+                var1_1.add(var4_4);
             }
             var5_5 = ((Iterable)(var1_1 = (List)var1_1)).iterator();
             if (var5_5.hasNext()) break block10;
@@ -89,13 +88,13 @@ extends CheatModule {
 lbl30:
                             // 3 sources
 
-                            var1_1 = (Entity)var1_1;
-                            if (var1_1 == null) {
+                            var3_3 = (Entity)var1_1;
+                            if (var3_3 == null) {
                                 return;
                             }
-                            if (!(var1_1.distance(var2_2.getThePlayer()) < 5.0)) break block12;
-                            var3_3 = (String)this.modeValue.get();
-                            switch (var3_3.hashCode()) lbl-1000:
+                            if (!(var3_3.distance(var2_2.getThePlayer()) < 5.0)) break block12;
+                            var1_1 = (String)this.modeValue.get();
+                            switch (var1_1.hashCode()) lbl-1000:
                             // 4 sources
 
                             {
@@ -103,28 +102,28 @@ lbl30:
                                     break block13;
                                 }
                                 case 2062599: {
-                                    if (!var3_3.equals("Back")) ** GOTO lbl-1000
-                                    var7_7 = (double)var1_1.getRotationYaw() + 180.0;
+                                    if (!var1_1.equals("Back")) ** GOTO lbl-1000
+                                    var11_9 = (double)var3_3.getRotationYaw() + 180.0;
                                     break;
                                 }
                                 case -1808126673: {
-                                    if (!var3_3.equals("Strafe")) ** GOTO lbl-1000
-                                    var7_7 = var2_2.getTickExists() * ((Number)this.strafeSpeedValue.get()).longValue() % (long)360;
+                                    if (!var1_1.equals("Strafe")) ** GOTO lbl-1000
+                                    var11_9 = var2_2.getTickExists() * ((Number)this.strafeSpeedValue.get()).longValue() % (long)360;
                                     break;
                                 }
                                 case -1854418717: {
-                                    if (!var3_3.equals("Random")) ** GOTO lbl-1000
-                                    var7_7 = Math.random() * (double)360;
+                                    if (!var1_1.equals("Random")) ** GOTO lbl-1000
+                                    var11_9 = Math.random() * (double)360;
                                 }
                             }
-                            var7_7 = Math.toRadians(var7_7);
-                            EntityPlayerSP.teleportTo$default(var2_2.getThePlayer(), var1_1.getPosX() - Math.sin(var7_7) * ((Number)this.rangeValue.get()).doubleValue(), var1_1.getPosY() + 0.5, var1_1.getPosZ() + Math.cos(var7_7) * ((Number)this.rangeValue.get()).doubleValue(), false, 8, null);
+                            var11_9 = Math.toRadians(var11_9);
+                            EntityPlayerSP.teleportTo$default(var2_2.getThePlayer(), var3_3.getPosX() - Math.sin(var11_9) * ((Number)this.rangeValue.get()).doubleValue(), var3_3.getPosY() + 0.5, var3_3.getPosZ() + Math.cos(var11_9) * ((Number)this.rangeValue.get()).doubleValue(), false, 8, null);
                             break block14;
                         }
                         throw new IllegalStateException("no such mode available".toString());
                     }
-                    var7_7 = Math.atan2(var1_1.getPosZ() - var2_2.getThePlayer().getPosZ(), var1_1.getPosX() - var2_2.getThePlayer().getPosX()) - Math.toRadians(90.0);
-                    EntityPlayerSP.teleportTo$default(var2_2.getThePlayer(), var2_2.getThePlayer().getPosX() - Math.sin(var7_7) * ((Number)this.horizontalSpeedValue.get()).doubleValue(), RangesKt.coerceIn((double)var1_1.getPosY(), (double)(var2_2.getThePlayer().getPosY() - ((Number)this.verticalSpeedValue.get()).doubleValue()), (double)(var2_2.getThePlayer().getPosY() + ((Number)this.verticalSpeedValue.get()).doubleValue())), var2_2.getThePlayer().getPosZ() + Math.cos(var7_7) * ((Number)this.horizontalSpeedValue.get()).doubleValue(), false, 8, null);
+                    var11_9 = Math.atan2(var3_3.getPosZ() - var2_2.getThePlayer().getPosZ(), var3_3.getPosX() - var2_2.getThePlayer().getPosX()) - Math.toRadians(90.0);
+                    EntityPlayerSP.teleportTo$default(var2_2.getThePlayer(), var2_2.getThePlayer().getPosX() - Math.sin(var11_9) * ((Number)this.horizontalSpeedValue.get()).doubleValue(), RangesKt.coerceIn((double)var3_3.getPosY(), (double)(var2_2.getThePlayer().getPosY() - ((Number)this.verticalSpeedValue.get()).doubleValue()), (double)(var2_2.getThePlayer().getPosY() + ((Number)this.verticalSpeedValue.get()).doubleValue())), var2_2.getThePlayer().getPosZ() + Math.cos(var11_9) * ((Number)this.horizontalSpeedValue.get()).doubleValue(), false, 8, null);
                 }
                 return;
             }

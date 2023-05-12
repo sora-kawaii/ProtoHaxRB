@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.command;
@@ -24,8 +23,8 @@ extends BasicThing {
         int n = ((String[])object).length == 0 ? 1 : 0;
         if (n == 0) {
             Collection collection = new ArrayList(((String[])object).length);
-            for (String string : object) {
-                collection.add(string);
+            for (String string2 : object) {
+                collection.add(string2);
             }
             object = (List)collection;
             object = (Collection)object;

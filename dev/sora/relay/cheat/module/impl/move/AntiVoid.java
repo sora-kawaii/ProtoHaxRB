@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -32,11 +31,11 @@ extends CheatModule {
 
     public AntiVoid() {
         super("AntiVoid", false, false, 6, null);
-        String string = "Teleport";
-        String string2 = "LerpTP";
-        String string3 = "MotionFlag";
-        String string4 = "PacketFlag";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2, string3, string4}, string);
+        String string2 = "Teleport";
+        String string3 = "LerpTP";
+        String string4 = "MotionFlag";
+        String string5 = "PacketFlag";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3, string4, string5}, string2);
         this.pullbackTimeValue = new FloatValue("Pullback Time", 1000.0f, 50.0f, 3000.0f);
         this.pullbackTimeTimer = new TimerUtil();
         this.groundPos = Vector3f.ZERO;
@@ -100,17 +99,17 @@ extends CheatModule {
                 ((MovePlayerPacket)object2).setEntityType(0);
                 ((MovePlayerPacket)object2).setTick(((GameEvent)object).getSession().getTickExists());
                 ((RakNetRelaySession)object3).outboundPacket((BedrockPacket)object2);
-                object2 = ((GameEvent)object).getSession().getNetSession();
-                object3 = new MovePlayerPacket();
-                ((MovePlayerPacket)object3).setRuntimeEntityId(entityPlayerSP.getRuntimeId());
-                ((MovePlayerPacket)object3).setPosition(entityPlayerSP.getVec3Position().add(0.0, 1.0, 0.0));
-                ((MovePlayerPacket)object3).setRotation(entityPlayerSP.getVec3Rotation());
-                ((MovePlayerPacket)object3).setMode(MovePlayerPacket.Mode.NORMAL);
-                ((MovePlayerPacket)object3).setOnGround(false);
-                ((MovePlayerPacket)object3).setRidingRuntimeEntityId(0L);
-                ((MovePlayerPacket)object3).setEntityType(0);
-                ((MovePlayerPacket)object3).setTick(((GameEvent)object).getSession().getTickExists());
-                ((RakNetRelaySession)object2).outboundPacket((BedrockPacket)object3);
+                object3 = ((GameEvent)object).getSession().getNetSession();
+                object2 = new MovePlayerPacket();
+                ((MovePlayerPacket)object2).setRuntimeEntityId(entityPlayerSP.getRuntimeId());
+                ((MovePlayerPacket)object2).setPosition(entityPlayerSP.getVec3Position().add(0.0, 1.0, 0.0));
+                ((MovePlayerPacket)object2).setRotation(entityPlayerSP.getVec3Rotation());
+                ((MovePlayerPacket)object2).setMode(MovePlayerPacket.Mode.NORMAL);
+                ((MovePlayerPacket)object2).setOnGround(false);
+                ((MovePlayerPacket)object2).setRidingRuntimeEntityId(0L);
+                ((MovePlayerPacket)object2).setEntityType(0);
+                ((MovePlayerPacket)object2).setTick(((GameEvent)object).getSession().getTickExists());
+                ((RakNetRelaySession)object3).outboundPacket((BedrockPacket)object2);
             }
         }
         this.pullbackTimeTimer.reset();

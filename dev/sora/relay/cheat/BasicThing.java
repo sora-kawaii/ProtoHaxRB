@@ -2,13 +2,11 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat;
 
-import com.nukkitx.protocol.bedrock.BedrockPacket;
 import com.nukkitx.protocol.bedrock.packet.TextPacket;
 import dev.sora.relay.RakNetRelaySession;
 import dev.sora.relay.game.GameSession;
@@ -21,9 +19,9 @@ public abstract class BasicThing {
     public static final Companion Companion = new Companion(null);
     public GameSession session;
 
-    protected final void chat(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"msg");
-        Companion.chat(this.getSession(), string);
+    protected final void chat(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"msg");
+        Companion.chat(this.getSession(), string2);
     }
 
     public final GameSession getSession() {
@@ -49,26 +47,26 @@ public abstract class BasicThing {
             this();
         }
 
-        public final void chat(GameSession object, String string) {
+        public final void chat(GameSession object, String string2) {
             Intrinsics.checkNotNullParameter((Object)object, (String)"session");
-            Intrinsics.checkNotNullParameter((Object)string, (String)"msg");
+            Intrinsics.checkNotNullParameter((Object)string2, (String)"msg");
             if (!((GameSession)object).getNetSessionInitialized()) {
                 return;
             }
-            RakNetRelaySession rakNetRelaySession = ((GameSession)object).getNetSession();
-            object = new TextPacket();
-            ((TextPacket)object).setType(TextPacket.Type.RAW);
-            ((TextPacket)object).setNeedsTranslation(false);
-            ((TextPacket)object).setMessage("\u00a7\u6211[\u00a7bProtoHax\u00a7eRB\u00a7r] " + string);
-            string = "";
-            ((TextPacket)object).setXuid(string);
-            ((TextPacket)object).setSourceName(string);
-            rakNetRelaySession.inboundPacket((BedrockPacket)object);
+            object = ((GameSession)object).getNetSession();
+            TextPacket textPacket = new TextPacket();
+            textPacket.setType(TextPacket.Type.RAW);
+            textPacket.setNeedsTranslation(false);
+            textPacket.setMessage("\u00a7\u6211[\u00a7bProtoHax\u00a7eRB\u00a7r] " + string2);
+            string2 = "";
+            textPacket.setXuid(string2);
+            textPacket.setSourceName(string2);
+            ((RakNetRelaySession)object).inboundPacket(textPacket);
         }
 
-        public final void tipChat(GameSession object, String string) {
+        public final void tipChat(GameSession object, String string2) {
             Intrinsics.checkNotNullParameter((Object)object, (String)"session");
-            Intrinsics.checkNotNullParameter((Object)string, (String)"msg");
+            Intrinsics.checkNotNullParameter((Object)string2, (String)"msg");
             RakNetRelaySession rakNetRelaySession = ((GameSession)object).getNetSession();
             TextPacket textPacket = new TextPacket();
             textPacket.setType(TextPacket.Type.TIP);
@@ -76,7 +74,7 @@ public abstract class BasicThing {
             object = "";
             textPacket.setSourceName((String)object);
             textPacket.setXuid((String)object);
-            textPacket.setMessage(String.valueOf(string));
+            textPacket.setMessage(String.valueOf(string2));
             rakNetRelaySession.inboundPacket(textPacket);
         }
     }

@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.entity;
@@ -223,60 +222,60 @@ public abstract class Entity {
         this.move(vector3f.getX(), vector3f.getY(), vector3f.getZ());
     }
 
-    public void onServerPacket(BedrockPacket object) {
-        Intrinsics.checkNotNullParameter((Object)object, (String)"packet");
-        if (object instanceof MoveEntityAbsolutePacket && ((MoveEntityAbsolutePacket)object).getRuntimeEntityId() == this.getRuntimeId()) {
-            Vector3f vector3f = ((MoveEntityAbsolutePacket)object).getPosition();
+    public void onServerPacket(BedrockPacket object22) {
+        Intrinsics.checkNotNullParameter((Object)object22, (String)"packet");
+        if (object22 instanceof MoveEntityAbsolutePacket && ((MoveEntityAbsolutePacket)object22).getRuntimeEntityId() == this.getRuntimeId()) {
+            Vector3f vector3f = ((MoveEntityAbsolutePacket)object22).getPosition();
             Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)"packet.position");
             this.move(vector3f);
-            object = ((MoveEntityAbsolutePacket)object).getRotation();
-            Intrinsics.checkNotNullExpressionValue(object, (String)"packet.rotation");
-            this.rotate((Vector3f)object);
-        } else if (object instanceof MoveEntityDeltaPacket && ((MoveEntityDeltaPacket)object).getRuntimeEntityId() == this.getRuntimeId()) {
+            object22 = ((MoveEntityAbsolutePacket)object22).getRotation();
+            Intrinsics.checkNotNullExpressionValue(object22, (String)"packet.rotation");
+            this.rotate((Vector3f)object22);
+        } else if (object22 instanceof MoveEntityDeltaPacket && ((MoveEntityDeltaPacket)object22).getRuntimeEntityId() == this.getRuntimeId()) {
             double d = this.getPosX();
-            boolean bl = ((MoveEntityDeltaPacket)object).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_X);
+            boolean bl = ((MoveEntityDeltaPacket)object22).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_X);
             float f = 0.0f;
-            float f2 = bl ? ((MoveEntityDeltaPacket)object).getX() : 0.0f;
+            float f2 = bl ? ((MoveEntityDeltaPacket)object22).getX() : 0.0f;
             double d2 = f2;
             double d3 = this.getPosY();
-            f2 = ((MoveEntityDeltaPacket)object).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_Y) ? ((MoveEntityDeltaPacket)object).getY() : 0.0f;
+            f2 = ((MoveEntityDeltaPacket)object22).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_Y) ? ((MoveEntityDeltaPacket)object22).getY() : 0.0f;
             double d4 = f2;
             double d5 = this.getPosZ();
-            f2 = ((MoveEntityDeltaPacket)object).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_Z) ? ((MoveEntityDeltaPacket)object).getZ() : 0.0f;
+            f2 = ((MoveEntityDeltaPacket)object22).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_Z) ? ((MoveEntityDeltaPacket)object22).getZ() : 0.0f;
             this.move(d + d2, d3 + d4, d5 + (double)f2);
             float f3 = this.getRotationYaw();
-            f2 = ((MoveEntityDeltaPacket)object).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_YAW) ? ((MoveEntityDeltaPacket)object).getYaw() : 0.0f;
+            f2 = ((MoveEntityDeltaPacket)object22).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_YAW) ? ((MoveEntityDeltaPacket)object22).getYaw() : 0.0f;
             float f4 = this.getRotationPitch();
-            float f5 = ((MoveEntityDeltaPacket)object).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_PITCH) ? ((MoveEntityDeltaPacket)object).getPitch() : 0.0f;
+            float f5 = ((MoveEntityDeltaPacket)object22).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_PITCH) ? ((MoveEntityDeltaPacket)object22).getPitch() : 0.0f;
             float f6 = this.getRotationYawHead();
-            if (((MoveEntityDeltaPacket)object).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_HEAD_YAW)) {
-                f = ((MoveEntityDeltaPacket)object).getHeadYaw();
+            if (((MoveEntityDeltaPacket)object22).getFlags().contains((Object)MoveEntityDeltaPacket.Flag.HAS_HEAD_YAW)) {
+                f = ((MoveEntityDeltaPacket)object22).getHeadYaw();
             }
             this.rotate(f3 + f2, f4 + f5, f6 + f);
-        } else if (object instanceof SetEntityDataPacket && ((SetEntityDataPacket)object).getRuntimeEntityId() == this.getRuntimeId()) {
-            object = ((SetEntityDataPacket)object).getMetadata();
-            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.metadata");
-            for (Map.Entry attributeData : ((Map)object).entrySet()) {
-                EntityData entityData = (EntityData)((Object)attributeData.getKey());
-                Object entry = attributeData.getValue();
+        } else if (object22 instanceof SetEntityDataPacket && ((SetEntityDataPacket)object22).getRuntimeEntityId() == this.getRuntimeId()) {
+            object22 = ((SetEntityDataPacket)object22).getMetadata();
+            Intrinsics.checkNotNullExpressionValue((Object)object22, (String)"packet.metadata");
+            for (Map.Entry string2 : ((Map)object22).entrySet()) {
+                EntityData entityData = (EntityData)((Object)string2.getKey());
+                Object entry = string2.getValue();
                 ((Map)this.metadata).put(entityData, entry);
             }
-        } else if (object instanceof MobEquipmentPacket && ((MobEquipmentPacket)object).getRuntimeEntityId() == this.getRuntimeId()) {
-            this.heldItemSlot = ((MobEquipmentPacket)object).getHotbarSlot();
-            object = ((MobEquipmentPacket)object).getItem();
-            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.item");
-            this.heldItemData = object;
-        } else if (object instanceof UpdateAttributesPacket && ((UpdateAttributesPacket)object).getRuntimeEntityId() == this.getRuntimeId()) {
-            object = ((UpdateAttributesPacket)object).getAttributes();
-            Intrinsics.checkNotNullExpressionValue(object, (String)"packet.attributes");
-            for (AttributeData attributeData : (Iterable)object) {
+        } else if (object22 instanceof MobEquipmentPacket && ((MobEquipmentPacket)object22).getRuntimeEntityId() == this.getRuntimeId()) {
+            this.heldItemSlot = ((MobEquipmentPacket)object22).getHotbarSlot();
+            object22 = ((MobEquipmentPacket)object22).getItem();
+            Intrinsics.checkNotNullExpressionValue((Object)object22, (String)"packet.item");
+            this.heldItemData = object22;
+        } else if (object22 instanceof UpdateAttributesPacket && ((UpdateAttributesPacket)object22).getRuntimeEntityId() == this.getRuntimeId()) {
+            object22 = ((UpdateAttributesPacket)object22).getAttributes();
+            Intrinsics.checkNotNullExpressionValue(object22, (String)"packet.attributes");
+            for (Object object22 : (Iterable)object22) {
                 Map<String, AttributeData> map = this.attributes;
-                object = attributeData.getName();
-                Intrinsics.checkNotNullExpressionValue((Object)object, (String)"it.name");
-                Intrinsics.checkNotNullExpressionValue((Object)attributeData, (String)"it");
-                map.put((String)object, attributeData);
+                String string2 = ((AttributeData)object22).getName();
+                Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"it.name");
+                Intrinsics.checkNotNullExpressionValue((Object)object22, (String)"it");
+                map.put(string2, (AttributeData)object22);
             }
-        } else if (object instanceof EntityEventPacket && ((EntityEventPacket)object).getRuntimeEntityId() == this.getRuntimeId() && ((EntityEventPacket)object).getType() == EntityEventType.HURT) {
+        } else if (object22 instanceof EntityEventPacket && ((EntityEventPacket)object22).getRuntimeEntityId() == this.getRuntimeId() && ((EntityEventPacket)object22).getType() == EntityEventType.HURT) {
             this.hurtTime = 10;
         }
     }
@@ -341,9 +340,9 @@ public abstract class Entity {
         this.hurtTime = n;
     }
 
-    public final void setIdentifier(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"<set-?>");
-        this.identifier = string;
+    public final void setIdentifier(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"<set-?>");
+        this.identifier = string2;
     }
 
     public void setMotionX(double d) {

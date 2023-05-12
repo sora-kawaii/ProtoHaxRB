@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.visual;
@@ -54,15 +53,15 @@ extends CheatModule {
     public final void onTick(EventTick object) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
         if (((Boolean)this.nightVisionValue.get()).booleanValue() && ((GameEvent)object).getSession().getTickExists() % (long)20 == 0L) {
-            RakNetRelaySession rakNetRelaySession = this.getSession().getNetSession();
-            object = new MobEffectPacket();
-            ((MobEffectPacket)object).setRuntimeEntityId(this.getSession().getThePlayer().getRuntimeId());
-            ((MobEffectPacket)object).setEvent(MobEffectPacket.Event.ADD);
-            ((MobEffectPacket)object).setEffectId(16);
-            ((MobEffectPacket)object).setAmplifier(0);
-            ((MobEffectPacket)object).setParticles(false);
-            ((MobEffectPacket)object).setDuration(360000);
-            rakNetRelaySession.inboundPacket((BedrockPacket)object);
+            object = this.getSession().getNetSession();
+            MobEffectPacket mobEffectPacket = new MobEffectPacket();
+            mobEffectPacket.setRuntimeEntityId(this.getSession().getThePlayer().getRuntimeId());
+            mobEffectPacket.setEvent(MobEffectPacket.Event.ADD);
+            mobEffectPacket.setEffectId(16);
+            mobEffectPacket.setAmplifier(0);
+            mobEffectPacket.setParticles(false);
+            mobEffectPacket.setDuration(360000);
+            ((RakNetRelaySession)object).inboundPacket(mobEffectPacket);
             return;
         }
     }

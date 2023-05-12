@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.UShort
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.utils;
@@ -41,7 +39,7 @@ public final class NoteBlockUtils {
         StringBuilder stringBuilder = new StringBuilder(n);
         for (n = this.readInt((DataInputStream)object); n > 0; --n) {
             int n2;
-            int n3 = n2 = (int)(UShort.constructor-impl((short)((DataInputStream)object).readByte()) & 0xFFFF);
+            int n3 = n2 = (int)(UShort.constructor-impl(((DataInputStream)object).readByte()) & 0xFFFF);
             if (n2 == 13) {
                 n3 = n2 = 32;
             }

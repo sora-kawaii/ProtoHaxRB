@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl;
@@ -46,9 +45,9 @@ extends CheatModule {
         this.chat("TitleId " + DeviceKt.titleIdToDevice(this.getSession().getTitleId()));
         this.chat("Xuid " + this.getSession().getThePlayer().getXuid());
         this.chat("UserName " + this.getSession().getThePlayer().getUsername());
-        String string = this.getSession().getThePlayer().getMetadata().toString();
-        Intrinsics.checkNotNullExpressionValue((Object)string, (String)"session.thePlayer.metadata.toString()");
-        this.chat(string);
+        String string2 = this.getSession().getThePlayer().getMetadata().toString();
+        Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"session.thePlayer.metadata.toString()");
+        this.chat(string2);
     }
 
     @Listen
@@ -63,23 +62,23 @@ extends CheatModule {
         Object object2 = ((EventPacketOutbound)object).getPacket();
         if (object2 instanceof InventoryTransactionPacket) {
             if (((InventoryTransactionPacket)object2).getTransactionType() == TransactionType.ITEM_USE_ON_ENTITY && ((InventoryTransactionPacket)object2).getActionType() == 1) {
-                object = this.getSession().getTheWorld().getEntityMap().get(((InventoryTransactionPacket)object2).getRuntimeEntityId());
-                if (object != null) {
-                    this.chat("RuntimeEntityId " + ((Entity)object).getRuntimeId());
-                    String string = ((Entity)object).getMetadata().toString();
-                    Intrinsics.checkNotNullExpressionValue((Object)string, (String)"entity.metadata.toString()");
-                    this.chat(string);
-                    this.chat("Identifier " + ((Entity)object).getIdentifier());
+                Entity entity = this.getSession().getTheWorld().getEntityMap().get(((InventoryTransactionPacket)object2).getRuntimeEntityId());
+                if (entity != null) {
+                    this.chat("RuntimeEntityId " + entity.getRuntimeId());
+                    object = entity.getMetadata().toString();
+                    Intrinsics.checkNotNullExpressionValue((Object)object, (String)"entity.metadata.toString()");
+                    this.chat((String)object);
+                    this.chat("Identifier " + entity.getIdentifier());
                 }
             } else if (((InventoryTransactionPacket)object2).getTransactionType() == TransactionType.ITEM_USE && ((InventoryTransactionPacket)object2).getActionType() == 0) {
                 WorldClient worldClient = ((GameEvent)object).getSession().getTheWorld();
                 Vector3i vector3i = ((InventoryTransactionPacket)object2).getBlockPosition();
-                String string = "packet.blockPosition";
-                Intrinsics.checkNotNullExpressionValue((Object)vector3i, (String)string);
+                String string2 = "packet.blockPosition";
+                Intrinsics.checkNotNullExpressionValue((Object)vector3i, (String)string2);
                 this.chat(worldClient.getBlockAt(vector3i));
                 object = ((GameEvent)object).getSession().getTheWorld();
                 object2 = ((InventoryTransactionPacket)object2).getBlockPosition();
-                Intrinsics.checkNotNullExpressionValue((Object)object2, (String)string);
+                Intrinsics.checkNotNullExpressionValue((Object)object2, (String)string2);
                 this.chat(String.valueOf(((WorldwideBlockStorage)object).getBlockIdAt((Vector3i)object2)));
             }
         }

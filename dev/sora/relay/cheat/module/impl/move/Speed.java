@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -20,7 +19,6 @@ import dev.sora.relay.cheat.value.ListValue;
 import dev.sora.relay.game.event.GameEvent;
 import dev.sora.relay.game.event.Listen;
 import dev.sora.relay.game.event.impl.EventPacketOutbound;
-import java.util.List;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 
@@ -35,9 +33,9 @@ extends CheatModule {
 
     public Speed() {
         super("Speed", false, false, 6, null);
-        String string = "Vanilla";
-        String string2 = "Hop";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2}, string2);
+        String string2 = "Vanilla";
+        String string3 = "Hop";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3}, string3);
         this.vanillaSpeedValue = new FloatValue("Vanilla Speed", 0.3f, 0.1f, 5.0f);
         this.hopSpeedValue = new FloatValue("Hop Speed", 0.5f, 0.3f, 2.0f);
         this.lowHopHeightValue = new FloatValue("Hop Height", 0.2f, 0.1f, 1.0f);
@@ -55,13 +53,13 @@ extends CheatModule {
         double d = ((GameEvent)object).getSession().getThePlayer().getDirection();
         object = (String)this.modeValue.get();
         if (Intrinsics.areEqual((Object)object, (Object)"Vanilla")) {
-            object = this.getSession().getNetSession();
+            RakNetRelaySession rakNetRelaySession = this.getSession().getNetSession();
             UpdateAttributesPacket updateAttributesPacket = new UpdateAttributesPacket();
             updateAttributesPacket.setRuntimeEntityId(this.getSession().getThePlayer().getRuntimeId());
-            List<AttributeData> list = updateAttributesPacket.getAttributes();
+            object = updateAttributesPacket.getAttributes();
             float f = ((Number)this.vanillaSpeedValue.get()).floatValue();
-            list.add(new AttributeData("minecraft:movement", 0.0f, Float.MAX_VALUE, f, 0.1f));
-            ((RakNetRelaySession)object).inboundPacket(updateAttributesPacket);
+            object.add(new AttributeData("minecraft:movement", 0.0f, Float.MAX_VALUE, f, 0.1f));
+            rakNetRelaySession.inboundPacket(updateAttributesPacket);
         } else if (Intrinsics.areEqual((Object)object, (Object)"Hop")) {
             if (this.getSession().getThePlayer().getOnGround()) {
                 this.sped = false;

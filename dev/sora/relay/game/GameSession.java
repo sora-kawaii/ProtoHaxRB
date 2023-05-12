@@ -2,10 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.game;
 
@@ -170,26 +167,26 @@ implements RakNetRelaySessionListener.PacketListener {
         if (object instanceof LoginPacket) {
             Iterator<JsonElement> iterator = JsonParser.parseString(((LoginPacket)object).getChainData().toString()).getAsJsonObject().getAsJsonArray("chain").iterator();
             while (iterator.hasNext()) {
-                Object object2;
-                Object object3 = iterator.next().getAsString();
-                Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"chain.asString");
-                if (!((JsonObject)(object3 = JsonParser.parseString(new String(StringUtilsKt.base64Decode((String)StringsKt.split$default((CharSequence)((CharSequence)object3), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1)), Charsets.UTF_8)).getAsJsonObject())).has((String)(object2 = "extraData"))) continue;
-                object3 = ((JsonObject)object3).getAsJsonObject((String)object2);
-                object2 = this.thePlayer;
-                Object object4 = UUID.fromString(((JsonObject)object3).get("identity").getAsString());
-                Intrinsics.checkNotNullExpressionValue((Object)object4, (String)"fromString(xData.get(\"identity\").asString)");
-                ((EntityPlayer)object2).setUuid((UUID)object4);
-                object2 = this.thePlayer;
-                object4 = ((JsonObject)object3).get("XUID").getAsString();
-                Intrinsics.checkNotNullExpressionValue((Object)object4, (String)"xData.get(\"XUID\").asString");
-                ((EntityPlayerSP)object2).setXuid((String)object4);
+                Object object2 = iterator.next().getAsString();
+                Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"chain.asString");
+                Object object3 = JsonParser.parseString(new String(StringUtilsKt.base64Decode((String)StringsKt.split$default((CharSequence)((CharSequence)object2), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1)), Charsets.UTF_8)).getAsJsonObject();
+                if (!((JsonObject)object3).has((String)(object2 = "extraData"))) continue;
+                object2 = ((JsonObject)object3).getAsJsonObject((String)object2);
+                Object object4 = this.thePlayer;
+                object3 = UUID.fromString(((JsonObject)object2).get("identity").getAsString());
+                Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"fromString(xData.get(\"identity\").asString)");
+                ((EntityPlayer)object4).setUuid((UUID)object3);
                 object4 = this.thePlayer;
-                object2 = ((JsonObject)object3).get("displayName").getAsString();
-                Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"xData.get(\"displayName\").asString");
-                ((EntityPlayer)object4).setUsername((String)object2);
-                object3 = ((JsonObject)object3).get("titleId").getAsString();
-                Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"xData.get(\"titleId\").asString");
-                this.titleId = object3;
+                object3 = ((JsonObject)object2).get("XUID").getAsString();
+                Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"xData.get(\"XUID\").asString");
+                ((EntityPlayerSP)object4).setXuid((String)object3);
+                object3 = this.thePlayer;
+                object4 = ((JsonObject)object2).get("displayName").getAsString();
+                Intrinsics.checkNotNullExpressionValue((Object)object4, (String)"xData.get(\"displayName\").asString");
+                ((EntityPlayer)object3).setUsername((String)object4);
+                object2 = ((JsonObject)object2).get("titleId").getAsString();
+                Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"xData.get(\"titleId\").asString");
+                this.titleId = object2;
             }
         } else {
             this.thePlayer.onClientPacketSP((BedrockPacket)object);
@@ -257,9 +254,9 @@ implements RakNetRelaySessionListener.PacketListener {
         this.tickExists = l;
     }
 
-    public final void setTitleId(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"<set-?>");
-        this.titleId = string;
+    public final void setTitleId(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"<set-?>");
+        this.titleId = string2;
     }
 }
 

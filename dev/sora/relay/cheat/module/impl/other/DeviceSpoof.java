@@ -2,10 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.other;
 
@@ -45,10 +42,10 @@ extends CheatModule {
             Object object2;
             Object object3;
             block7: {
-                object = Base64.getDecoder();
-                object3 = ((LoginPacket)bedrockPacket).getSkinData().toString();
-                Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"packet.skinData.toString()");
-                object = ((Base64.Decoder)object).decode((String)StringsKt.split$default((CharSequence)((CharSequence)object3), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1));
+                object3 = Base64.getDecoder();
+                object = ((LoginPacket)bedrockPacket).getSkinData().toString();
+                Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.skinData.toString()");
+                object = ((Base64.Decoder)object3).decode((String)StringsKt.split$default((CharSequence)((CharSequence)object), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1));
                 Intrinsics.checkNotNullExpressionValue((Object)object, (String)"getDecoder().decode(pack\u2026toString().split(\".\")[1])");
                 object3 = JsonParser.parseString(new String((byte[])object, Charsets.UTF_8)).getAsJsonObject();
                 ((JsonObject)object3).addProperty("DeviceModel", "Nintendo Switch OLED");
@@ -73,13 +70,13 @@ extends CheatModule {
             object = n;
             ((JsonObject)object3).addProperty("CurrentInputMode", (Number)object);
             bedrockPacket = (LoginPacket)bedrockPacket;
-            object = new StringBuilder().append('.');
-            object2 = Base64.getEncoder();
+            object2 = new StringBuilder().append('.');
+            object = Base64.getEncoder();
             object3 = new Gson().toJson((JsonElement)object3);
             Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"Gson().toJson(body)");
             object3 = ((String)object3).getBytes(Charsets.UTF_8);
             Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"this as java.lang.String).getBytes(charset)");
-            ((LoginPacket)bedrockPacket).setSkinData(new AsciiString(((StringBuilder)object).append(((Base64.Encoder)object2).encodeToString((byte[])object3)).append('.').toString()));
+            ((LoginPacket)bedrockPacket).setSkinData(new AsciiString(((StringBuilder)object2).append(((Base64.Encoder)object).encodeToString((byte[])object3)).append('.').toString()));
         } else if (bedrockPacket instanceof PlayerAuthInputPacket) {
             ((PlayerAuthInputPacket)bedrockPacket).setInputMode(InputMode.TOUCH);
             if (((PlayerAuthInputPacket)bedrockPacket).getInputInteractionModel() == InputInteractionModel.CROSSHAIR) {

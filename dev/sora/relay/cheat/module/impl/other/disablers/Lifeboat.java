@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.other.disablers;
@@ -28,10 +27,10 @@ extends DisablerMode {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
         BedrockPacket bedrockPacket = ((EventPacketOutbound)object).getPacket();
         if (bedrockPacket instanceof MovePlayerPacket) {
-            RakNetRelaySession rakNetRelaySession = ((GameEvent)object).getSession().getNetSession();
-            object = (MovePlayerPacket)bedrockPacket;
-            ((MovePlayerPacket)object).setPosition(((MovePlayerPacket)object).getPosition().add(0.0f, 0.1f, 0.0f));
-            rakNetRelaySession.outboundPacket(bedrockPacket);
+            object = ((GameEvent)object).getSession().getNetSession();
+            MovePlayerPacket movePlayerPacket = (MovePlayerPacket)bedrockPacket;
+            movePlayerPacket.setPosition(movePlayerPacket.getPosition().add(0.0f, 0.1f, 0.0f));
+            ((RakNetRelaySession)object).outboundPacket(bedrockPacket);
         }
     }
 }

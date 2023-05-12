@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.utils;
@@ -27,17 +26,17 @@ public final class CipherPair {
         this.secretKey = secretKey;
         this.sentEncryptedPacketCount = new AtomicLong();
         byte[] byArray = new byte[16];
-        String string = "AES/CTR/NoPadding";
+        String string2 = "AES/CTR/NoPadding";
         System.arraycopy(secretKey.getEncoded(), 0, byArray, 0, 12);
         byArray[15] = (byte)2;
-        Cipher cipher = Cipher.getInstance(string);
+        Cipher cipher = Cipher.getInstance(string2);
         cipher.init(1, (Key)secretKey, new IvParameterSpec(byArray));
-        String string2 = "getInstance(transformati\u2026ameterSpec(iv))\n        }";
-        Intrinsics.checkNotNullExpressionValue((Object)cipher, (String)string2);
+        String string3 = "getInstance(transformati\u2026ameterSpec(iv))\n        }";
+        Intrinsics.checkNotNullExpressionValue((Object)cipher, (String)string3);
         this.encryptionCipher = cipher;
-        cipher = Cipher.getInstance(string);
+        cipher = Cipher.getInstance(string2);
         cipher.init(2, (Key)secretKey, new IvParameterSpec(byArray));
-        Intrinsics.checkNotNullExpressionValue((Object)cipher, (String)string2);
+        Intrinsics.checkNotNullExpressionValue((Object)cipher, (String)string3);
         this.decryptionCipher = cipher;
     }
 

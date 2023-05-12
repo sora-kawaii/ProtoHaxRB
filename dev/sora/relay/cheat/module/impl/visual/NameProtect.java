@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.visual;
 
@@ -26,10 +24,10 @@ extends CheatModule {
 
     public NameProtect() {
         super("NameProtect", false, false, 6, null);
-        String string = "ProtoHaxRB User";
-        String string2 = "\u82b1\u96e8\u5ead";
-        String string3 = "\u53f2\u8482\u592b";
-        this.nameValue = new ListValue("Name", new String[]{string, string2, string3}, string);
+        String string2 = "ProtoHaxRB User";
+        String string3 = "\u82b1\u96e8\u5ead";
+        String string4 = "\u53f2\u8482\u592b";
+        this.nameValue = new ListValue("Name", new String[]{string2, string3, string4}, string2);
     }
 
     @Listen

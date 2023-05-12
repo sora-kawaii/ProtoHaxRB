@@ -2,11 +2,9 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.collections.MapsKt
  *  kotlin.io.TextStreamsKt
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
  */
 package dev.sora.relay.utils;
 
@@ -32,60 +30,60 @@ public final class HttpUtils {
     private HttpUtils() {
     }
 
-    public static /* synthetic */ String get$default(HttpUtils httpUtils, String string, Map map, int n, Object object) {
+    public static /* synthetic */ String get$default(HttpUtils httpUtils, String string2, Map map, int n, Object object) {
         if ((n & 2) != 0) {
             map = MapsKt.emptyMap();
         }
-        return httpUtils.get(string, map);
+        return httpUtils.get(string2, map);
     }
 
-    public static /* synthetic */ HttpURLConnection make$default(HttpUtils httpUtils, String string, String string2, String string3, Map map, String string4, int n, Object object) {
+    public static /* synthetic */ HttpURLConnection make$default(HttpUtils httpUtils, String string2, String string3, String string4, Map map, String string5, int n, Object object) {
         if ((n & 4) != 0) {
-            string3 = "";
+            string4 = "";
         }
         if ((n & 8) != 0) {
             map = MapsKt.emptyMap();
         }
         if ((n & 0x10) != 0) {
-            string4 = DEFAULT_AGENT;
+            string5 = DEFAULT_AGENT;
         }
-        return httpUtils.make(string, string2, string3, map, string4);
+        return httpUtils.make(string2, string3, string4, map, string5);
     }
 
-    public static /* synthetic */ String post$default(HttpUtils httpUtils, String string, String string2, Map map, int n, Object object) {
+    public static /* synthetic */ String post$default(HttpUtils httpUtils, String string2, String string3, Map map, int n, Object object) {
         if ((n & 4) != 0) {
             map = MapsKt.emptyMap();
         }
-        return httpUtils.post(string, string2, map);
+        return httpUtils.post(string2, string3, map);
     }
 
-    public static /* synthetic */ String request$default(HttpUtils httpUtils, String string, String string2, String string3, Map map, String string4, int n, Object object) {
+    public static /* synthetic */ String request$default(HttpUtils httpUtils, String string2, String string3, String string4, Map map, String string5, int n, Object object) {
         if ((n & 4) != 0) {
-            string3 = "";
+            string4 = "";
         }
         if ((n & 8) != 0) {
             map = MapsKt.emptyMap();
         }
         if ((n & 0x10) != 0) {
-            string4 = DEFAULT_AGENT;
+            string5 = DEFAULT_AGENT;
         }
-        return httpUtils.request(string, string2, string3, map, string4);
+        return httpUtils.request(string2, string3, string4, map, string5);
     }
 
-    public final String get(String string, Map<String, String> map) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"url");
+    public final String get(String string2, Map<String, String> map) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"url");
         Intrinsics.checkNotNullParameter(map, (String)"header");
-        return HttpUtils.request$default(this, string, "GET", null, map, null, 20, null);
+        return HttpUtils.request$default(this, string2, "GET", null, map, null, 20, null);
     }
 
     /*
      * WARNING - void declaration
      */
-    public final HttpURLConnection make(String object, String object2, String string, Map<String, String> object32, String string2) {
+    public final HttpURLConnection make(String object, String object2, String string2, Map<String, String> object32, String string3) {
         void var5_7;
         Intrinsics.checkNotNullParameter((Object)object, (String)"url");
         Intrinsics.checkNotNullParameter((Object)object2, (String)"method");
-        Intrinsics.checkNotNullParameter((Object)string, (String)"data");
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"data");
         Intrinsics.checkNotNullParameter((Object)object32, (String)"header");
         Intrinsics.checkNotNullParameter((Object)var5_7, (String)"agent");
         object = new URL((String)object).openConnection();
@@ -101,32 +99,32 @@ public final class HttpUtils {
         boolean bl = true;
         ((HttpURLConnection)object).setInstanceFollowRedirects(true);
         ((URLConnection)object).setDoOutput(true);
-        if (((CharSequence)string).length() <= 0) {
+        if (((CharSequence)string2).length() <= 0) {
             bl = false;
         }
         if (bl) {
             object2 = new DataOutputStream(((URLConnection)object).getOutputStream());
-            ((DataOutputStream)object2).writeBytes(string);
+            ((DataOutputStream)object2).writeBytes(string2);
             ((DataOutputStream)object2).flush();
         }
         ((URLConnection)object).connect();
         return object;
     }
 
-    public final String post(String string, String string2, Map<String, String> map) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"url");
-        Intrinsics.checkNotNullParameter((Object)string2, (String)"data");
+    public final String post(String string2, String string3, Map<String, String> map) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"url");
+        Intrinsics.checkNotNullParameter((Object)string3, (String)"data");
         Intrinsics.checkNotNullParameter(map, (String)"header");
-        return HttpUtils.request$default(this, string, "POST", string2, map, null, 16, null);
+        return HttpUtils.request$default(this, string2, "POST", string3, map, null, 16, null);
     }
 
-    public final String request(String object, String string, String string2, Map<String, String> map, String string3) {
+    public final String request(String object, String string2, String string3, Map<String, String> map, String string4) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"url");
-        Intrinsics.checkNotNullParameter((Object)string, (String)"method");
-        Intrinsics.checkNotNullParameter((Object)string2, (String)"data");
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"method");
+        Intrinsics.checkNotNullParameter((Object)string3, (String)"data");
         Intrinsics.checkNotNullParameter(map, (String)"header");
-        Intrinsics.checkNotNullParameter((Object)string3, (String)"agent");
-        object = this.make((String)object, string, string2, map, string3).getInputStream();
+        Intrinsics.checkNotNullParameter((Object)string4, (String)"agent");
+        object = this.make((String)object, string2, string3, map, string4).getInputStream();
         Intrinsics.checkNotNullExpressionValue((Object)object, (String)"connection.inputStream");
         return TextStreamsKt.readText((Reader)new InputStreamReader((InputStream)object, Charsets.UTF_8));
     }

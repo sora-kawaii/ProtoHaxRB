@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Unit
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
  */

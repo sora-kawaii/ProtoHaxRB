@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -33,21 +32,21 @@ extends Value<Integer> {
         return nArray[0] & 0xFF | (nArray[1] & 0xFF) << 8 | (nArray[2] & 0xFF) << 16 | (nArray[3] & 0xFF) << 24;
     }
 
-    public IntValue(String string, int n, int n2, int n3) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
-        super(string, n);
+    public IntValue(String string2, int n, int n2, int n3) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
+        super(string2, n);
         this.minimum = n2;
         this.maximum = n3;
     }
 
-    public /* synthetic */ IntValue(String string, int n, int n2, int n3, int n4, DefaultConstructorMarker defaultConstructorMarker) {
+    public /* synthetic */ IntValue(String string2, int n, int n2, int n3, int n4, DefaultConstructorMarker defaultConstructorMarker) {
         if ((n4 & 4) != 0) {
             n2 = 0;
         }
         if ((n4 & 8) != 0) {
             n3 = IntValue.$(-614769829);
         }
-        this(string, n, n2, n3);
+        this(string2, n, n2, n3);
     }
 
     @Override

@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.collections.MapsKt
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
@@ -90,15 +89,15 @@ implements RakNetRelaySessionListener.PacketListener {
     public boolean onPacketOutbound(BedrockPacket bedrockPacket) {
         Intrinsics.checkNotNullParameter((Object)bedrockPacket, (String)"packet");
         boolean bl = bedrockPacket instanceof RequestNetworkSettingsPacket;
-        String string = ", mc=";
-        String string2 = ", protocol=";
-        String string3 = "selected codec (clientProtocol=";
+        String string2 = ", mc=";
+        String string3 = ", protocol=";
+        String string4 = "selected codec (clientProtocol=";
         if (bl) {
             this.session.setPacketCodec(RakNetRelaySessionListenerAutoCodec.Companion.pickProtocolCodec(((RequestNetworkSettingsPacket)bedrockPacket).getProtocolVersion()));
-            LoggerKt.logInfo(string3 + ((RequestNetworkSettingsPacket)bedrockPacket).getProtocolVersion() + string2 + this.session.getPacketCodec().getProtocolVersion() + string + this.session.getPacketCodec().getMinecraftVersion() + ')');
+            LoggerKt.logInfo(string4 + ((RequestNetworkSettingsPacket)bedrockPacket).getProtocolVersion() + string3 + this.session.getPacketCodec().getProtocolVersion() + string2 + this.session.getPacketCodec().getMinecraftVersion() + ')');
         } else if (bedrockPacket instanceof LoginPacket) {
             this.session.setPacketCodec(RakNetRelaySessionListenerAutoCodec.Companion.pickProtocolCodec(((LoginPacket)bedrockPacket).getProtocolVersion()));
-            LoggerKt.logInfo(string3 + ((LoginPacket)bedrockPacket).getProtocolVersion() + string2 + this.session.getPacketCodec().getProtocolVersion() + string + this.session.getPacketCodec().getMinecraftVersion() + ')');
+            LoggerKt.logInfo(string4 + ((LoginPacket)bedrockPacket).getProtocolVersion() + string3 + this.session.getPacketCodec().getProtocolVersion() + string2 + this.session.getPacketCodec().getMinecraftVersion() + ')');
         }
         return true;
     }

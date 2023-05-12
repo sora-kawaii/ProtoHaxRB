@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.collections.ArraysKt
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -35,15 +33,15 @@ extends Command {
 
     public CommandModule(CheatModule cheatModule) {
         Intrinsics.checkNotNullParameter((Object)cheatModule, (String)"module");
-        String string = cheatModule.getName().toLowerCase(Locale.ROOT);
-        Intrinsics.checkNotNullExpressionValue((Object)string, (String)"this as java.lang.String).toLowerCase(Locale.ROOT)");
-        super(string);
+        String string2 = cheatModule.getName().toLowerCase(Locale.ROOT);
+        Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"this as java.lang.String).toLowerCase(Locale.ROOT)");
+        super(string2);
         this.module = cheatModule;
         this.values = cheatModule.getValues();
     }
 
-    private final void chatSyntax(String string) {
-        this.chat("Syntax: -" + (String)ArraysKt.first((Object[])this.getAlias()) + ' ' + string);
+    private final void chatSyntax(String string2) {
+        this.chat("Syntax: -" + (String)ArraysKt.first((Object[])this.getAlias()) + ' ' + string2);
     }
 
     /*
@@ -163,10 +161,10 @@ lbl81:
 
                 if (var2_2 instanceof ListValue) {
                     if (!((ListValue)var2_2).contains((String)var1_1[1])) {
-                        var7_9 = new StringBuilder();
-                        var9_12 = var1_1[0].toLowerCase(Locale.ROOT);
-                        Intrinsics.checkNotNullExpressionValue((Object)var9_12, (String)var4_5);
-                        var6_7 = var7_9.append(var9_12).append((String)var6_7);
+                        var9_12 = new StringBuilder();
+                        var7_9 = var1_1[0].toLowerCase(Locale.ROOT);
+                        Intrinsics.checkNotNullExpressionValue((Object)var7_9, (String)var4_5);
+                        var6_7 = var9_12.append(var7_9).append((String)var6_7);
                         var2_2 = ArraysKt.joinToString$default((Object[])((ListValue)var2_2).getValues(), (CharSequence)var3_4, null, null, (int)0, null, null, (int)62, null).toLowerCase(Locale.ROOT);
                         Intrinsics.checkNotNullExpressionValue((Object)var2_2, (String)var4_5);
                         this.chatSyntax(var6_7.append((String)var2_2).append('>').toString());

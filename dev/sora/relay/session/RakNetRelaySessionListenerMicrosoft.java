@@ -2,17 +2,10 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Pair
- *  kotlin.TuplesKt
- *  kotlin.Unit
- *  kotlin.collections.CollectionsKt
  *  kotlin.collections.MapsKt
  *  kotlin.io.TextStreamsKt
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.session;
 
@@ -88,19 +81,19 @@ implements RakNetRelaySessionListener.PacketListener {
     private final KeyPair keyPair;
     public RakNetRelaySession session;
 
-    public RakNetRelaySessionListenerMicrosoft(String string, DeviceInfo deviceInfo) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"accessToken");
+    public RakNetRelaySessionListenerMicrosoft(String string2, DeviceInfo deviceInfo) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"accessToken");
         Intrinsics.checkNotNullParameter((Object)deviceInfo, (String)"deviceInfo");
-        this.accessToken = string;
+        this.accessToken = string2;
         this.deviceInfo = deviceInfo;
         this.keyPair = EncryptionUtils.createKeyPair();
     }
 
-    public RakNetRelaySessionListenerMicrosoft(String string, DeviceInfo deviceInfo, RakNetRelaySession rakNetRelaySession) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"accessToken");
+    public RakNetRelaySessionListenerMicrosoft(String string2, DeviceInfo deviceInfo, RakNetRelaySession rakNetRelaySession) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"accessToken");
         Intrinsics.checkNotNullParameter((Object)deviceInfo, (String)"deviceInfo");
         Intrinsics.checkNotNullParameter((Object)rakNetRelaySession, (String)"session");
-        this(string, deviceInfo);
+        this(string2, deviceInfo);
         this.setSession(rakNetRelaySession);
     }
 
@@ -112,10 +105,10 @@ implements RakNetRelaySessionListener.PacketListener {
         object = HttpUtils.INSTANCE;
         object3 = ((JSONObject)object3).toJSONString();
         Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"data.toJSONString()");
-        Pair pair = TuplesKt.to((Object)"Content-Type", (Object)"application/json");
-        object2 = TuplesKt.to((Object)"Authorization", (Object)object2);
-        Pair pair2 = TuplesKt.to((Object)"User-Agent", (Object)"MCPE/UWP");
-        object2 = MapsKt.mapOf((Pair[])new Pair[]{pair, object2, pair2, TuplesKt.to((Object)"Client-Version", (Object)"1.19.50")});
+        Pair<String, String> pair = TuplesKt.to("Content-Type", "application/json");
+        Pair<String, String> pair2 = TuplesKt.to("Authorization", object2);
+        object2 = TuplesKt.to("User-Agent", "MCPE/UWP");
+        object2 = MapsKt.mapOf((Pair[])new Pair[]{pair, pair2, object2, TuplesKt.to("Client-Version", "1.19.50")});
         object = HttpUtils.make$default((HttpUtils)object, "https://multiplayer.minecraft.net/authentication", "POST", (String)object3, (Map)object2, null, 16, null).getInputStream();
         Intrinsics.checkNotNullExpressionValue((Object)object, (String)"connection.inputStream");
         object = TextStreamsKt.readText((Reader)new InputStreamReader((InputStream)object, Charsets.UTF_8));
@@ -129,30 +122,30 @@ implements RakNetRelaySessionListener.PacketListener {
         if (this.identityToken == null) {
             Object object2 = new XboxDeviceKey();
             Object object3 = new StringBuilder();
-            String string = "t=";
-            object3 = ((StringBuilder)object3).append(string).append((String)object).toString();
-            object3 = (XboxToken)new XboxUserAuthRequest("http://auth.xboxlive.com", "JWT", "RPS", "user.auth.xboxlive.com", (String)object3).request();
-            Object object4 = this.deviceInfo.getDeviceType();
-            object4 = (XboxDeviceToken)new XboxDeviceAuthRequest("http://auth.xboxlive.com", "JWT", (String)object4, "0.0.0.0", (XboxDeviceKey)object2).request();
+            String string2 = "t=";
+            object3 = ((StringBuilder)object3).append(string2).append((String)object).toString();
+            Object object4 = (XboxToken)new XboxUserAuthRequest("http://auth.xboxlive.com", "JWT", "RPS", "user.auth.xboxlive.com", (String)object3).request();
+            object3 = this.deviceInfo.getDeviceType();
+            object3 = (XboxDeviceToken)new XboxDeviceAuthRequest("http://auth.xboxlive.com", "JWT", (String)object3, "0.0.0.0", (XboxDeviceKey)object2).request();
             if (this.deviceInfo.getAllowDirectTitleTokenFetch()) {
-                string = string + (String)object;
-                object = ((XboxToken)object4).getToken();
-                object = (XboxToken)new XboxTitleAuthRequest("http://auth.xboxlive.com", "JWT", "RPS", "user.auth.xboxlive.com", string, (String)object, (XboxDeviceKey)object2).request();
+                object = string2 + (String)object;
+                string2 = ((XboxToken)object3).getToken();
+                object = (XboxToken)new XboxTitleAuthRequest("http://auth.xboxlive.com", "JWT", "RPS", "user.auth.xboxlive.com", (String)object, string2, (XboxDeviceKey)object2).request();
             } else {
-                XboxDevice xboxDevice = new XboxDevice((XboxDeviceKey)object2, (XboxDeviceToken)object4);
-                Object object5 = this.deviceInfo.getAppId();
-                XboxSISUAuthenticateRequest.Query query = new XboxSISUAuthenticateRequest.Query("phone");
-                String string2 = "ms-xal-" + this.deviceInfo.getAppId() + "://auth";
-                object5 = (XboxSISUAuthenticate)new XboxSISUAuthenticateRequest((String)object5, xboxDevice, "service::user.auth.xboxlive.com::MBI_SSL", query, string2, "RETAIL").request();
-                string = string + (String)object;
+                XboxDevice xboxDevice = new XboxDevice((XboxDeviceKey)object2, (XboxDeviceToken)object3);
+                String string3 = this.deviceInfo.getAppId();
+                Object object5 = new XboxSISUAuthenticateRequest.Query("phone");
+                String string4 = "ms-xal-" + this.deviceInfo.getAppId() + "://auth";
+                object5 = (XboxSISUAuthenticate)new XboxSISUAuthenticateRequest(string3, xboxDevice, "service::user.auth.xboxlive.com::MBI_SSL", (XboxSISUAuthenticateRequest.Query)object5, string4, "RETAIL").request();
+                string2 = string2 + (String)object;
                 object = this.deviceInfo.getAppId();
                 object5 = ((XboxSISUAuthenticate)object5).getSessionId();
-                object = (XboxSISUAuthorize)new XboxSISUAuthorizeRequest(string, (String)object, xboxDevice, "RETAIL", (String)object5, "user.auth.xboxlive.com", "http://xboxlive.com").request();
+                object = (XboxSISUAuthorize)new XboxSISUAuthorizeRequest(string2, (String)object, xboxDevice, "RETAIL", (String)object5, "user.auth.xboxlive.com", "http://xboxlive.com").request();
                 object = ((XboxSISUAuthorize)object).getTitleToken();
             }
-            object3 = CollectionsKt.listOf((Object)object3);
-            object2 = new XboxDevice((XboxDeviceKey)object2, (XboxDeviceToken)object4);
-            object = (XboxToken)new XboxXSTSAuthRequest("https://multiplayer.minecraft.net/", "JWT", "RETAIL", (List<XboxToken>)object3, (XboxToken)object, (XboxDevice)object2).request();
+            object4 = CollectionsKt.listOf((Object)object4);
+            object2 = new XboxDevice((XboxDeviceKey)object2, (XboxDeviceToken)object3);
+            object = (XboxToken)new XboxXSTSAuthRequest("https://multiplayer.minecraft.net/", "JWT", "RETAIL", (List<XboxToken>)object4, (XboxToken)object, (XboxDevice)object2).request();
             this.identityToken = ((XboxToken)object).toIdentityToken();
         }
         object = this.identityToken;
@@ -162,50 +155,50 @@ implements RakNetRelaySessionListener.PacketListener {
 
     private final AsciiString getChain() {
         if (this.chain == null || this.chainExpires < Instant.now().getEpochSecond()) {
-            String string = this.getChain(this.accessToken);
-            Object object = JsonParser.parseString(string).getAsJsonObject().getAsJsonArray("chain").get(0).getAsString();
+            String string2 = this.getChain(this.accessToken);
+            Object object = JsonParser.parseString(string2).getAsJsonObject().getAsJsonArray("chain").get(0).getAsString();
             Intrinsics.checkNotNullExpressionValue((Object)object, (String)"parseString(it).asJsonOb\u2026(\"chain\").get(0).asString");
             object = JsonParser.parseReader(new InputStreamReader((InputStream)new ByteArrayInputStream(StringUtilsKt.base64Decode((String)StringsKt.split$default((CharSequence)((CharSequence)object), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1))), Charsets.UTF_8)).getAsJsonObject();
             this.chainExpires = ((JsonObject)object).get("exp").getAsLong();
-            this.chain = new AsciiString(string);
+            this.chain = new AsciiString(string2);
         }
         return this.chain;
     }
 
-    private final String getChain(String string) {
-        JsonObject jsonObject = JsonParser.parseReader(this.fetchChain(string)).getAsJsonObject();
-        string = "chain";
-        JsonArray jsonArray = jsonObject.get(string).getAsJsonArray();
-        Object object = jsonArray.get(0).getAsString();
-        Intrinsics.checkNotNullExpressionValue((Object)object, (String)"chains.get(0).asString");
-        Object object2 = JsonParser.parseString(new String(StringUtilsKt.base64Decode((String)StringsKt.split$default((CharSequence)((CharSequence)object), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(0)), Charsets.UTF_8)).getAsJsonObject();
-        object = Base64.getEncoder();
-        Object object3 = new JSONObject();
-        ((HashMap)object3).put("certificateAuthority", true);
+    private final String getChain(String object) {
+        object = JsonParser.parseReader(this.fetchChain((String)object)).getAsJsonObject();
+        String string2 = "chain";
+        Object object2 = ((JsonObject)object).get(string2).getAsJsonArray();
+        Object object3 = ((JsonArray)object2).get(0).getAsString();
+        Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"chains.get(0).asString");
+        Object object4 = JsonParser.parseString(new String(StringUtilsKt.base64Decode((String)StringsKt.split$default((CharSequence)((CharSequence)object3), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(0)), Charsets.UTF_8)).getAsJsonObject();
+        object3 = Base64.getEncoder();
+        Object object5 = new JSONObject();
+        ((HashMap)object5).put("certificateAuthority", true);
         int n = (int)(Instant.now().getEpochSecond() + TimeUnit.HOURS.toSeconds(6L));
-        ((HashMap)object3).put("exp", n);
+        ((HashMap)object5).put("exp", n);
         n = (int)(Instant.now().getEpochSecond() - TimeUnit.HOURS.toSeconds(6L));
-        ((HashMap)object3).put("nbf", n);
-        object2 = ((JsonObject)object2).get("x5u").getAsString();
-        ((HashMap)object3).put("identityPublicKey", object2);
-        object2 = Unit.INSTANCE;
-        object3 = ((JSONObject)object3).toJSONString();
-        Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"JSONObject().apply {\n   \u2026\n        }.toJSONString()");
-        object3 = ((String)object3).getBytes(Charsets.UTF_8);
-        Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"this as java.lang.String).getBytes(charset)");
-        object = ((Base64.Encoder)object).encodeToString((byte[])object3);
-        Intrinsics.checkNotNullExpressionValue((Object)object, (String)"getEncoder().encodeToStr\u2026yteArray(Charsets.UTF_8))");
+        ((HashMap)object5).put("nbf", n);
+        object4 = ((JsonObject)object4).get("x5u").getAsString();
+        ((HashMap)object5).put("identityPublicKey", object4);
+        object4 = Unit.INSTANCE;
+        object5 = ((JSONObject)object5).toJSONString();
+        Intrinsics.checkNotNullExpressionValue((Object)object5, (String)"JSONObject().apply {\n   \u2026\n        }.toJSONString()");
+        object5 = ((String)object5).getBytes(Charsets.UTF_8);
+        Intrinsics.checkNotNullExpressionValue((Object)object5, (String)"this as java.lang.String).getBytes(charset)");
+        object5 = ((Base64.Encoder)object3).encodeToString((byte[])object5);
+        Intrinsics.checkNotNullExpressionValue((Object)object5, (String)"getEncoder().encodeToStr\u2026yteArray(Charsets.UTF_8))");
         object3 = this.keyPair;
         Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"keyPair");
-        object3 = this.toJWTRaw((String)object, (KeyPair)object3);
-        object = new JsonArray();
-        ((JsonArray)object).add((String)object3);
-        ((JsonArray)object).addAll(jsonArray);
-        jsonArray = Unit.INSTANCE;
-        jsonObject.add(string, (JsonElement)object);
-        string = new Gson().toJson(jsonObject);
-        Intrinsics.checkNotNullExpressionValue((Object)string, (String)"Gson().toJson(rawChain)");
-        return string;
+        object5 = this.toJWTRaw((String)object5, (KeyPair)object3);
+        object3 = new JsonArray();
+        ((JsonArray)object3).add((String)object5);
+        ((JsonArray)object3).addAll((JsonArray)object2);
+        object2 = Unit.INSTANCE;
+        ((JsonObject)object).add(string2, (JsonElement)object3);
+        object = new Gson().toJson((JsonElement)object);
+        Intrinsics.checkNotNullExpressionValue((Object)object, (String)"Gson().toJson(rawChain)");
+        return object;
     }
 
     private final String signBytes(byte[] object, KeyPair keyPair) {
@@ -218,7 +211,7 @@ implements RakNetRelaySessionListener.PacketListener {
         return object;
     }
 
-    private final String toJWTRaw(String string, KeyPair object) {
+    private final String toJWTRaw(String string2, KeyPair object) {
         Object object2 = new JSONObject();
         ((HashMap)object2).put("alg", "ES384");
         Object object3 = Base64.getEncoder().encodeToString(((KeyPair)object).getPublic().getEncoded());
@@ -230,10 +223,10 @@ implements RakNetRelaySessionListener.PacketListener {
         object2 = "this as java.lang.String).getBytes(charset)";
         Intrinsics.checkNotNullExpressionValue((Object)byArray, (String)object2);
         object3 = ((Base64.Encoder)object3).encodeToString(byArray);
-        byArray = ((String)object3 + '.' + string).getBytes(Charsets.UTF_8);
+        byArray = ((String)object3 + '.' + string2).getBytes(Charsets.UTF_8);
         Intrinsics.checkNotNullExpressionValue((Object)byArray, (String)object2);
         object = this.signBytes(byArray, (KeyPair)object);
-        return (String)object3 + '.' + string + '.' + (String)object;
+        return (String)object3 + '.' + string2 + '.' + (String)object;
     }
 
     public final void forceFetchChain() {
@@ -282,17 +275,17 @@ implements RakNetRelaySessionListener.PacketListener {
     }
 
     @Override
-    public boolean onPacketOutbound(BedrockPacket object) {
-        Intrinsics.checkNotNullParameter((Object)object, (String)"packet");
-        if (object instanceof LoginPacket) {
-            ((LoginPacket)object).setChainData(new AsciiString(this.getChain()));
-            String string = ((LoginPacket)object).getSkinData().toString();
-            Intrinsics.checkNotNullExpressionValue((Object)string, (String)"packet.skinData.toString()");
-            string = (String)StringsKt.split$default((CharSequence)string, (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1);
-            LoginPacket loginPacket = (LoginPacket)object;
-            object = this.keyPair;
-            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"keyPair");
-            loginPacket.setSkinData(new AsciiString(this.toJWTRaw(string, (KeyPair)object)));
+    public boolean onPacketOutbound(BedrockPacket bedrockPacket) {
+        Intrinsics.checkNotNullParameter((Object)bedrockPacket, (String)"packet");
+        if (bedrockPacket instanceof LoginPacket) {
+            ((LoginPacket)bedrockPacket).setChainData(new AsciiString(this.getChain()));
+            String string2 = ((LoginPacket)bedrockPacket).getSkinData().toString();
+            Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"packet.skinData.toString()");
+            string2 = (String)StringsKt.split$default((CharSequence)string2, (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1);
+            bedrockPacket = (LoginPacket)bedrockPacket;
+            KeyPair keyPair = this.keyPair;
+            Intrinsics.checkNotNullExpressionValue((Object)keyPair, (String)"keyPair");
+            ((LoginPacket)bedrockPacket).setSkinData(new AsciiString(this.toJWTRaw(string2, keyPair)));
             LoggerKt.logInfo("login success");
         }
         return true;
@@ -327,32 +320,32 @@ implements RakNetRelaySessionListener.PacketListener {
         private final String appId;
         private final String deviceType;
 
-        public DeviceInfo(String string, String string2, boolean bl) {
-            Intrinsics.checkNotNullParameter((Object)string, (String)"appId");
-            Intrinsics.checkNotNullParameter((Object)string2, (String)"deviceType");
-            this.appId = string;
-            this.deviceType = string2;
+        public DeviceInfo(String string2, String string3, boolean bl) {
+            Intrinsics.checkNotNullParameter((Object)string2, (String)"appId");
+            Intrinsics.checkNotNullParameter((Object)string3, (String)"deviceType");
+            this.appId = string2;
+            this.deviceType = string3;
             this.allowDirectTitleTokenFetch = bl;
         }
 
-        public /* synthetic */ DeviceInfo(String string, String string2, boolean bl, int n, DefaultConstructorMarker defaultConstructorMarker) {
+        public /* synthetic */ DeviceInfo(String string2, String string3, boolean bl, int n, DefaultConstructorMarker defaultConstructorMarker) {
             if ((n & 4) != 0) {
                 bl = false;
             }
-            this(string, string2, bl);
+            this(string2, string3, bl);
         }
 
-        public static /* synthetic */ DeviceInfo copy$default(DeviceInfo deviceInfo, String string, String string2, boolean bl, int n, Object object) {
+        public static /* synthetic */ DeviceInfo copy$default(DeviceInfo deviceInfo, String string2, String string3, boolean bl, int n, Object object) {
             if ((n & 1) != 0) {
-                string = deviceInfo.appId;
+                string2 = deviceInfo.appId;
             }
             if ((n & 2) != 0) {
-                string2 = deviceInfo.deviceType;
+                string3 = deviceInfo.deviceType;
             }
             if ((n & 4) != 0) {
                 bl = deviceInfo.allowDirectTitleTokenFetch;
             }
-            return deviceInfo.copy(string, string2, bl);
+            return deviceInfo.copy(string2, string3, bl);
         }
 
         public final String component1() {
@@ -367,10 +360,10 @@ implements RakNetRelaySessionListener.PacketListener {
             return this.allowDirectTitleTokenFetch;
         }
 
-        public final DeviceInfo copy(String string, String string2, boolean bl) {
-            Intrinsics.checkNotNullParameter((Object)string, (String)"appId");
-            Intrinsics.checkNotNullParameter((Object)string2, (String)"deviceType");
-            return new DeviceInfo(string, string2, bl);
+        public final DeviceInfo copy(String string2, String string3, boolean bl) {
+            Intrinsics.checkNotNullParameter((Object)string2, (String)"appId");
+            Intrinsics.checkNotNullParameter((Object)string3, (String)"deviceType");
+            return new DeviceInfo(string2, string3, bl);
         }
 
         public boolean equals(Object object) {

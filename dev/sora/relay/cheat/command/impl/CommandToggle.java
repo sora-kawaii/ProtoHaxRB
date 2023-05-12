@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.command.impl;
 

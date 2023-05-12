@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.visual;
@@ -33,10 +32,10 @@ extends CheatModule {
             Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.entries");
             for (PlayerListPacket.Entry entry : (Iterable)object) {
                 if (entry.getSkin() == null) continue;
-                object2 = new GenerateSkin();
+                object = new GenerateSkin();
                 SerializedSkin serializedSkin = entry.getSkin();
                 Intrinsics.checkNotNullExpressionValue((Object)serializedSkin, (String)"it.skin");
-                entry.setSkin(((GenerateSkin)object2).generateSkin(serializedSkin));
+                entry.setSkin(((GenerateSkin)object).generateSkin(serializedSkin));
             }
         } else if (object2 instanceof PlayerSkinPacket && ((PlayerSkinPacket)object2).getSkin() != null) {
             PlayerSkinPacket playerSkinPacket = (PlayerSkinPacket)object2;

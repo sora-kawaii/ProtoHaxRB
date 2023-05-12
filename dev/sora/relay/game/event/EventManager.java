@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Unit
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -31,8 +29,8 @@ public final class EventManager {
     private final Map<Class<? extends GameEvent>, List<Handler>> handlers = new LinkedHashMap();
 
     public final void emit(GameEvent gameEvent) {
-        String string = "event";
-        Intrinsics.checkNotNullParameter((Object)gameEvent, (String)string);
+        String string2 = "event";
+        Intrinsics.checkNotNullParameter((Object)gameEvent, (String)string2);
         Object object = this.handlers.get(gameEvent.getClass());
         if (object == null) {
             return;
@@ -44,7 +42,7 @@ public final class EventManager {
                 handler.invoke(gameEvent);
             }
             catch (Throwable throwable) {
-                LoggerKt.logError(string, throwable);
+                LoggerKt.logError(string2, throwable);
             }
         }
     }

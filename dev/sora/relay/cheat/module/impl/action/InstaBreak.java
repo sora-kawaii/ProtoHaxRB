@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.action;
@@ -38,9 +37,9 @@ extends CheatModule {
 
     public InstaBreak() {
         super("InstaBreak", false, false, 6, null);
-        String string = "Effect";
-        String string2 = "ClickBreak";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2}, string2);
+        String string2 = "Effect";
+        String string3 = "ClickBreak";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3}, string3);
         this.amplifierValue = new IntValue("levels", 5, 1, 128);
         this.forceValue = new IntValue("Force", 30, 10, 200);
     }
@@ -106,10 +105,10 @@ extends CheatModule {
         BedrockPacket bedrockPacket = ((EventPacketOutbound)object).getPacket();
         if (Intrinsics.areEqual(this.modeValue.get(), (Object)"ClickBreak") && bedrockPacket instanceof InventoryTransactionPacket && ((InventoryTransactionPacket)bedrockPacket).getTransactionType() == TransactionType.ITEM_USE && ((InventoryTransactionPacket)bedrockPacket).getActionType() == 0 && !Intrinsics.areEqual((Object)((InventoryTransactionPacket)bedrockPacket).getBlockPosition(), (Object)Vector3i.ZERO)) {
             ((GameEventCancelable)object).cancel();
-            GameSession gameSession = ((GameEvent)object).getSession();
-            object = ((InventoryTransactionPacket)bedrockPacket).getBlockPosition();
-            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.blockPosition");
-            this.breakBlock(gameSession, (Vector3i)object, ((InventoryTransactionPacket)bedrockPacket).getBlockFace());
+            object = ((GameEvent)object).getSession();
+            Vector3i vector3i = ((InventoryTransactionPacket)bedrockPacket).getBlockPosition();
+            Intrinsics.checkNotNullExpressionValue((Object)vector3i, (String)"packet.blockPosition");
+            this.breakBlock((GameSession)object, vector3i, ((InventoryTransactionPacket)bedrockPacket).getBlockFace());
         }
     }
 

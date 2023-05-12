@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -36,11 +35,11 @@ extends CheatModule {
             if (((Boolean)this.lagBackCheckValue.get()).booleanValue()) {
                 MovePlayerPacket.Mode mode = ((MovePlayerPacket)bedrockPacket).getMode();
                 MovePlayerPacket.Mode mode2 = MovePlayerPacket.Mode.TELEPORT;
-                String string = "LagBack Position";
+                String string2 = "LagBack Position";
                 if (mode == mode2) {
-                    this.chat(string + ((MovePlayerPacket)bedrockPacket).getPosition() + " Rotation" + ((MovePlayerPacket)bedrockPacket).getRotation());
+                    this.chat(string2 + ((MovePlayerPacket)bedrockPacket).getPosition() + " Rotation" + ((MovePlayerPacket)bedrockPacket).getRotation());
                 } else {
-                    this.chat(string + ((MovePlayerPacket)bedrockPacket).getPosition());
+                    this.chat(string2 + ((MovePlayerPacket)bedrockPacket).getPosition());
                 }
             }
             if (((Boolean)this.noSetRotateValue.get()).booleanValue() && ((MovePlayerPacket)bedrockPacket).getMode() == MovePlayerPacket.Mode.TELEPORT) {

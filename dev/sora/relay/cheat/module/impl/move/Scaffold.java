@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -123,20 +122,20 @@ extends CheatModule {
                 ((InventoryTransactionPacket)object2).setUsingNetIds(false);
                 ((InventoryTransactionPacket)object2).setBlockRuntimeId(115);
                 ((GameSession)object).sendPacket((BedrockPacket)object2);
-                object = this.getSession();
-                object2 = new InventoryTransactionPacket();
-                ((InventoryTransactionPacket)object2).setLegacyRequestId(0);
-                ((InventoryTransactionPacket)object2).setTransactionType(TransactionType.ITEM_USE);
-                ((InventoryTransactionPacket)object2).setActionType(1);
-                ((InventoryTransactionPacket)object2).setRuntimeEntityId(0L);
-                ((InventoryTransactionPacket)object2).setBlockPosition(Vector3i.from(0, 0, 0));
-                ((InventoryTransactionPacket)object2).setBlockFace(255);
-                ((InventoryTransactionPacket)object2).setHotbarSlot(this.getSession().getThePlayer().getHeldItemSlot());
-                ((InventoryTransactionPacket)object2).setPlayerPosition(this.getSession().getThePlayer().getVec3Position());
-                ((InventoryTransactionPacket)object2).setClickPosition(Vector3f.from(0.0f, 0.0f, 0.0f));
-                ((InventoryTransactionPacket)object2).setUsingNetIds(false);
-                ((InventoryTransactionPacket)object2).setBlockRuntimeId(0);
-                ((GameSession)object).sendPacket((BedrockPacket)object2);
+                object2 = this.getSession();
+                object = new InventoryTransactionPacket();
+                ((InventoryTransactionPacket)object).setLegacyRequestId(0);
+                ((InventoryTransactionPacket)object).setTransactionType(TransactionType.ITEM_USE);
+                ((InventoryTransactionPacket)object).setActionType(1);
+                ((InventoryTransactionPacket)object).setRuntimeEntityId(0L);
+                ((InventoryTransactionPacket)object).setBlockPosition(Vector3i.from(0, 0, 0));
+                ((InventoryTransactionPacket)object).setBlockFace(255);
+                ((InventoryTransactionPacket)object).setHotbarSlot(this.getSession().getThePlayer().getHeldItemSlot());
+                ((InventoryTransactionPacket)object).setPlayerPosition(this.getSession().getThePlayer().getVec3Position());
+                ((InventoryTransactionPacket)object).setClickPosition(Vector3f.from(0.0f, 0.0f, 0.0f));
+                ((InventoryTransactionPacket)object).setUsingNetIds(false);
+                ((InventoryTransactionPacket)object).setBlockRuntimeId(0);
+                ((GameSession)object2).sendPacket((BedrockPacket)object);
                 object2 = this.getSession();
                 object = new PlayerActionPacket();
                 ((PlayerActionPacket)object).setAction(PlayerActionType.ITEM_USE_ON_STOP);
@@ -151,18 +150,18 @@ extends CheatModule {
                 ((PlayerActionPacket)object2).setBlockPosition(Vector3i.from((int)Math.floor(this.getSession().getThePlayer().getPosX() + (double)this.getOffsetX(this.getSession().getThePlayer().getRotationYaw(), n)), (int)Math.floor(this.getSession().getThePlayer().getPosY() - 2.62), (int)Math.floor(this.getSession().getThePlayer().getPosZ() + (double)this.getOffsetZ(this.getSession().getThePlayer().getRotationYaw(), n))));
                 ((PlayerActionPacket)object2).setResultPosition(Vector3i.from(0, 0, 0));
                 ((GameSession)object).sendPacket((BedrockPacket)object2);
-                object = this.getSession().getNetSession();
-                object2 = new UpdateBlockPacket();
-                ((UpdateBlockPacket)object2).getFlags().add(UpdateBlockPacket.Flag.NETWORK);
-                ((UpdateBlockPacket)object2).setDataLayer(0);
-                ((UpdateBlockPacket)object2).setBlockPosition(Vector3i.from((int)Math.floor(this.getSession().getThePlayer().getPosX() + (double)this.getOffsetX(this.getSession().getThePlayer().getRotationYaw(), n)), (int)Math.floor(this.getSession().getThePlayer().getPosY() - 2.62), (int)Math.floor(this.getSession().getThePlayer().getPosZ() + (double)this.getOffsetZ(this.getSession().getThePlayer().getRotationYaw(), n))));
-                ((RakNetRelaySession)object).inboundPacket((BedrockPacket)object2);
-                object = this.getSession().getNetSession();
-                object2 = new UpdateBlockPacket();
-                ((UpdateBlockPacket)object2).getFlags().add(UpdateBlockPacket.Flag.NETWORK);
-                ((UpdateBlockPacket)object2).setDataLayer(0);
-                ((UpdateBlockPacket)object2).setBlockPosition(Vector3i.from((int)Math.floor(this.getSession().getThePlayer().getPosX() + (double)this.getOffsetX(this.getSession().getThePlayer().getRotationYaw(), n)), (int)Math.floor(this.getSession().getThePlayer().getPosY() - 2.62), (int)Math.floor(this.getSession().getThePlayer().getPosZ() + (double)this.getOffsetZ(this.getSession().getThePlayer().getRotationYaw(), n))));
-                ((RakNetRelaySession)object).inboundPacket((BedrockPacket)object2);
+                object2 = this.getSession().getNetSession();
+                object = new UpdateBlockPacket();
+                ((UpdateBlockPacket)object).getFlags().add(UpdateBlockPacket.Flag.NETWORK);
+                ((UpdateBlockPacket)object).setDataLayer(0);
+                ((UpdateBlockPacket)object).setBlockPosition(Vector3i.from((int)Math.floor(this.getSession().getThePlayer().getPosX() + (double)this.getOffsetX(this.getSession().getThePlayer().getRotationYaw(), n)), (int)Math.floor(this.getSession().getThePlayer().getPosY() - 2.62), (int)Math.floor(this.getSession().getThePlayer().getPosZ() + (double)this.getOffsetZ(this.getSession().getThePlayer().getRotationYaw(), n))));
+                ((RakNetRelaySession)object2).inboundPacket((BedrockPacket)object);
+                object2 = this.getSession().getNetSession();
+                object = new UpdateBlockPacket();
+                ((UpdateBlockPacket)object).getFlags().add(UpdateBlockPacket.Flag.NETWORK);
+                ((UpdateBlockPacket)object).setDataLayer(0);
+                ((UpdateBlockPacket)object).setBlockPosition(Vector3i.from((int)Math.floor(this.getSession().getThePlayer().getPosX() + (double)this.getOffsetX(this.getSession().getThePlayer().getRotationYaw(), n)), (int)Math.floor(this.getSession().getThePlayer().getPosY() - 2.62), (int)Math.floor(this.getSession().getThePlayer().getPosZ() + (double)this.getOffsetZ(this.getSession().getThePlayer().getRotationYaw(), n))));
+                ((RakNetRelaySession)object2).inboundPacket((BedrockPacket)object);
             }
             return;
         }

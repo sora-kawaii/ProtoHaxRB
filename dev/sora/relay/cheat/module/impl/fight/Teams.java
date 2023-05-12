@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.fight;
 
@@ -32,15 +30,15 @@ extends CheatModule {
         Intrinsics.checkNotNullParameter((Object)object2, (String)"session");
         if (!(object instanceof EntityPlayerSP) && this.getState()) {
             object2 = ((GameSession)object2).getThePlayer().getMetadata().getString(EntityData.NAMETAG);
-            String string = ((Entity)object).getMetadata().getString(EntityData.NAMETAG);
-            if (((String)object2).length() > 2 && string.length() > 2) {
+            object = ((Entity)object).getMetadata().getString(EntityData.NAMETAG);
+            if (((String)object2).length() > 2 && ((String)object).length() > 2) {
                 Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"thePlayerNameTag");
-                object = (CharSequence)object2;
+                CharSequence charSequence = (CharSequence)object2;
                 String string2 = "\u00a7";
-                if (StringsKt.contains$default((CharSequence)object, (CharSequence)string2, (boolean)false, (int)2, null)) {
-                    Intrinsics.checkNotNullExpressionValue((Object)string, (String)"targetNameTag");
-                    if (StringsKt.contains$default((CharSequence)string, (CharSequence)string2, (boolean)false, (int)2, null)) {
-                        return Intrinsics.areEqual((Object)((String)object2).subSequence(0, 2), (Object)string.subSequence(0, 2));
+                if (StringsKt.contains$default((CharSequence)charSequence, (CharSequence)string2, (boolean)false, (int)2, null)) {
+                    Intrinsics.checkNotNullExpressionValue((Object)object, (String)"targetNameTag");
+                    if (StringsKt.contains$default((CharSequence)((CharSequence)object), (CharSequence)string2, (boolean)false, (int)2, null)) {
+                        return Intrinsics.areEqual((Object)((String)object2).subSequence(0, 2), (Object)((String)object).subSequence(0, 2));
                     }
                 }
                 return false;

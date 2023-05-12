@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.fight;
 
@@ -38,14 +36,14 @@ extends CheatModule {
             if (((Entity)object).getMetadata().getFlags().getFlag(EntityFlag.CAN_SHOW_NAME) != ((GameSession)object2).getThePlayer().getMetadata().getFlags().getFlag(EntityFlag.CAN_SHOW_NAME)) {
                 return true;
             }
-            String string = ((GameSession)object2).getThePlayer().getMetadata().getString(EntityData.NAMETAG);
+            String string2 = ((GameSession)object2).getThePlayer().getMetadata().getString(EntityData.NAMETAG);
             CharSequence charSequence = "session.thePlayer.metada\u2026tring(EntityData.NAMETAG)";
-            Intrinsics.checkNotNullExpressionValue((Object)string, (String)charSequence);
-            boolean bl = StringsKt.isBlank((CharSequence)string);
-            String string2 = ((Entity)object).getMetadata().getString(EntityData.NAMETAG);
-            string = "this.metadata.getString(EntityData.NAMETAG)";
-            Intrinsics.checkNotNullExpressionValue((Object)string2, (String)string);
-            if (bl != StringsKt.isBlank((CharSequence)string2)) {
+            Intrinsics.checkNotNullExpressionValue((Object)string2, (String)charSequence);
+            boolean bl = StringsKt.isBlank((CharSequence)string2);
+            String string3 = ((Entity)object).getMetadata().getString(EntityData.NAMETAG);
+            string2 = "this.metadata.getString(EntityData.NAMETAG)";
+            Intrinsics.checkNotNullExpressionValue((Object)string3, (String)string2);
+            if (bl != StringsKt.isBlank((CharSequence)string3)) {
                 return true;
             }
             object2 = ((GameSession)object2).getThePlayer().getMetadata().getString(EntityData.NAMETAG);
@@ -54,7 +52,7 @@ extends CheatModule {
             object2 = "\n";
             bl = StringsKt.contains$default((CharSequence)charSequence, (CharSequence)((CharSequence)object2), (boolean)false, (int)2, null);
             object = ((Entity)object).getMetadata().getString(EntityData.NAMETAG);
-            Intrinsics.checkNotNullExpressionValue((Object)object, (String)string);
+            Intrinsics.checkNotNullExpressionValue((Object)object, (String)string2);
             return bl != StringsKt.contains$default((CharSequence)((CharSequence)object), (CharSequence)((CharSequence)object2), (boolean)false, (int)2, null);
         }
         return false;

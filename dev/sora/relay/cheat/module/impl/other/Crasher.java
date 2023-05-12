@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.other;
@@ -22,8 +21,8 @@ extends CheatModule {
 
     public Crasher() {
         super("Crasher", false, false, 6, null);
-        String string = "Critical hit";
-        this.modeValue = new ListValue("Mode", new String[]{string}, string);
+        String string2 = "Critical hit";
+        this.modeValue = new ListValue("Mode", new String[]{string2}, string2);
     }
 
     @Listen

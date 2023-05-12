@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -32,11 +31,11 @@ extends CheatModule {
 
     public NoFall() {
         super("NoFall", false, false, 6, null);
-        String string = "OnGround";
-        String string2 = "AwayNoGround";
-        String string3 = "Nukkit";
-        String string4 = "CubeCraft";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2, string3, string4}, string);
+        String string2 = "OnGround";
+        String string3 = "AwayNoGround";
+        String string4 = "Nukkit";
+        String string5 = "CubeCraft";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3, string4, string5}, string2);
         this.delayTimer = new TimerUtil();
     }
 
@@ -60,12 +59,12 @@ extends CheatModule {
     @Listen
     public final void onTick(EventTick object) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
-        GameSession gameSession = ((GameEvent)object).getSession();
-        if (gameSession.getThePlayer().getMotionY() < -0.1 && this.delayTimer.isDelayComplete(200.0) && Intrinsics.areEqual(this.modeValue.get(), (Object)"Nukkit")) {
-            object = new PlayerActionPacket();
-            ((PlayerActionPacket)object).setRuntimeEntityId(gameSession.getThePlayer().getRuntimeId());
-            ((PlayerActionPacket)object).setAction(PlayerActionType.START_GLIDE);
-            gameSession.sendPacket((BedrockPacket)object);
+        object = ((GameEvent)object).getSession();
+        if (((GameSession)object).getThePlayer().getMotionY() < -0.1 && this.delayTimer.isDelayComplete(200.0) && Intrinsics.areEqual(this.modeValue.get(), (Object)"Nukkit")) {
+            PlayerActionPacket playerActionPacket = new PlayerActionPacket();
+            playerActionPacket.setRuntimeEntityId(((GameSession)object).getThePlayer().getRuntimeId());
+            playerActionPacket.setAction(PlayerActionType.START_GLIDE);
+            ((GameSession)object).sendPacket(playerActionPacket);
             this.delayTimer.reset();
         }
     }

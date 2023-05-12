@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move.flys;
@@ -80,12 +79,12 @@ extends FlyMode {
         double d3 = ((EntityPlayerSP)object).getInputData().contains((Object)PlayerAuthInputData.JUMPING) ? (double)((Number)new Fly().getVerticalSpeedValue().get()).floatValue() : (((EntityPlayerSP)object).getInputData().contains((Object)PlayerAuthInputData.SNEAKING) ? -((double)((Number)new Fly().getVerticalSpeedValue().get()).floatValue()) : 0.0391998291015625);
         if (((EntityPlayerSP)object).isHorizontallyMove()) {
             d2 = ((EntityPlayerSP)object).getDirection();
-            d = -Math.sin(d2);
-            double d4 = ((Number)new Fly().getHorizontalSpeedValue().get()).doubleValue();
-            d2 = Math.cos(d2);
-            double d5 = ((Number)new Fly().getHorizontalSpeedValue().get()).doubleValue();
-            d *= d4;
-            d2 *= d5;
+            double d4 = -Math.sin(d2);
+            d = ((Number)new Fly().getHorizontalSpeedValue().get()).doubleValue();
+            double d5 = Math.cos(d2);
+            d2 = ((Number)new Fly().getHorizontalSpeedValue().get()).doubleValue();
+            d = d4 * d;
+            d2 = d5 * d2;
         } else {
             d = 0.0;
             d2 = 0.0;

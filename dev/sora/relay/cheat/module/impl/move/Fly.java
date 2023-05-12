@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -38,15 +36,15 @@ extends CheatModule {
 
     public Fly() {
         super("Fly", false, false, 6, null);
-        String string = "Vanilla";
-        String string2 = "HYT";
-        String string3 = "Jetpack";
-        String string4 = "Motion";
-        String string5 = "Damage Boost";
-        String string6 = "Flag Teleport";
-        String string7 = "Mode";
-        String string8 = "HYT";
-        this.modeValue = new ListValue(string7, new String[]{string, string2, string3, string4, string5, string6}, string8);
+        String string2 = "Vanilla";
+        String string3 = "HYT";
+        String string4 = "Jetpack";
+        String string5 = "Motion";
+        String string6 = "Damage Boost";
+        String string7 = "Flag Teleport";
+        String string8 = "Mode";
+        String string9 = "HYT";
+        this.modeValue = new ListValue(string8, new String[]{string2, string3, string4, string5, string6, string7}, string9);
         this.mode = CollectionsKt.listOf((Object[])new FlyMode[]{new Vanilla(), new Jetpack(), new Motion(), new HYT(), new DamageBoost(), new FlagTeleport()});
         this.boostSpeedValue = new FloatValue("Boost Speed", 100.0f, 10.0f, 100.0f);
         this.horizontalSpeedValue = new FloatValue("Horizontal Speed", 2.0f, 0.1f, 10.0f);

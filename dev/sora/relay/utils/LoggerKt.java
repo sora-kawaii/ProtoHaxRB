@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.utils;
@@ -17,25 +16,25 @@ import kotlin.jvm.internal.Intrinsics;
 public final class LoggerKt {
     private static final InternalLogger logger = InternalLoggerFactory.getInstance(GameSession.class);
 
-    public static final void logError(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"msg");
-        logger.error(string);
+    public static final void logError(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"msg");
+        logger.error(string2);
     }
 
-    public static final void logError(String string, Throwable throwable) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"msg");
+    public static final void logError(String string2, Throwable throwable) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"msg");
         Intrinsics.checkNotNullParameter((Object)throwable, (String)"t");
-        logger.error(string, throwable);
+        logger.error(string2, throwable);
     }
 
-    public static final void logInfo(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"msg");
-        logger.info(string);
+    public static final void logInfo(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"msg");
+        logger.info(string2);
     }
 
-    public static final void logWarn(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"msg");
-        logger.warn(string);
+    public static final void logWarn(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"msg");
+        logger.warn(string2);
     }
 }
 

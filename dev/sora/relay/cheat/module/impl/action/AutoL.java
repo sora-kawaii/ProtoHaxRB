@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.action;
@@ -40,12 +39,12 @@ extends CheatModule {
 
     public AutoL() {
         super("AutoL", false, false, 6, null);
-        String string = "Loser,you are killed by ProtoHaxRB.";
-        String string2 = "\u5931\u8d25\u8005\uff0c\u4f60\u88abProtoHaxRB\u79fb\u51fa\u4e86\u6e38\u620f\u3002";
-        String string3 = "Loser,you need to buy ProtoHaxRB in bilibili-SRYuYing369";
-        String string4 = "Message";
-        String string5 = "Loser,You are killed by ProtoHaxRB.";
-        this.messageValue = new ListValue(string4, new String[]{string, string2, string3}, string5);
+        String string2 = "Loser,you are killed by ProtoHaxRB.";
+        String string3 = "\u5931\u8d25\u8005\uff0c\u4f60\u88abProtoHaxRB\u79fb\u51fa\u4e86\u6e38\u620f\u3002";
+        String string4 = "Loser,you need to buy ProtoHaxRB in bilibili-SRYuYing369";
+        String string5 = "Message";
+        String string6 = "Loser,You are killed by ProtoHaxRB.";
+        this.messageValue = new ListValue(string5, new String[]{string2, string3, string4}, string6);
         this.delayValue = new FloatValue("Delay", 500.0f, 0.0f, 3000.0f);
         this.mentionValue = new BoolValue("Mention", true);
         this.attackList = new LinkedHashMap();

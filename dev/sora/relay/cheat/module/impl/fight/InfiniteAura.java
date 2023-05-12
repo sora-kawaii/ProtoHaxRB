@@ -2,14 +2,11 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.fight;
 
 import com.nukkitx.math.vector.Vector3f;
-import com.nukkitx.protocol.bedrock.BedrockPacket;
 import com.nukkitx.protocol.bedrock.packet.MovePlayerPacket;
 import dev.sora.relay.RakNetRelaySession;
 import dev.sora.relay.cheat.module.CheatModule;
@@ -45,9 +42,9 @@ extends CheatModule {
 
     public InfiniteAura() {
         super("InfiniteAura", false, false, 6, null);
-        String string = "Single";
-        String string2 = "Multi";
-        this.attackModeValue = new ListValue("AttackMode", new String[]{string, string2}, string);
+        String string2 = "Single";
+        String string3 = "Multi";
+        this.attackModeValue = new ListValue("AttackMode", new String[]{string2, string3}, string2);
         this.cpsValue = new IntValue("CPS", 3, 1, 20);
         this.rangeValue = new FloatValue("Range", 10.0f, 10.0f, 128.0f);
         this.tpDistanceValue = new FloatValue("TPDistance", 6.0f, 2.0f, 20.0f);
@@ -55,37 +52,37 @@ extends CheatModule {
     }
 
     private final void teleport(Entity object, boolean bl) {
-        object = ((Entity)object).getVec3Position();
-        Vector3f vector3f = this.getSession().getThePlayer().getVec3Position();
-        float f = vector3f.distance((Vector3f)object) / ((Number)this.tpDistanceValue.get()).floatValue();
+        Vector3f vector3f = ((Entity)object).getVec3Position();
+        object = this.getSession().getThePlayer().getVec3Position();
+        float f = ((Vector3f)object).distance(vector3f) / ((Number)this.tpDistanceValue.get()).floatValue();
         int n = (int)f;
         for (int i = 1; i < n + 1; ++i) {
+            MovePlayerPacket movePlayerPacket;
             Object object2;
-            RakNetRelaySession rakNetRelaySession;
             Object object3;
             if (bl) {
-                object3 = vector3f.add(((Vector3f)object).sub(vector3f).div(f).mul(i));
+                object3 = ((Vector3f)object).add(vector3f.sub((Vector3f)object).div(f).mul(i));
                 Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"playerPos.add(entityPos.\u2026(times).mul(i.toFloat()))");
-                rakNetRelaySession = this.getSession().getNetSession();
-                object2 = new MovePlayerPacket();
-                ((MovePlayerPacket)object2).setRuntimeEntityId(this.getSession().getThePlayer().getRuntimeId());
-                ((MovePlayerPacket)object2).setPosition((Vector3f)object3);
-                ((MovePlayerPacket)object2).setRotation(this.getSession().getThePlayer().getVec3Rotation());
-                ((MovePlayerPacket)object2).setOnGround(false);
-                ((MovePlayerPacket)object2).setMode(MovePlayerPacket.Mode.NORMAL);
-                rakNetRelaySession.outboundPacket((BedrockPacket)object2);
+                object2 = this.getSession().getNetSession();
+                movePlayerPacket = new MovePlayerPacket();
+                movePlayerPacket.setRuntimeEntityId(this.getSession().getThePlayer().getRuntimeId());
+                movePlayerPacket.setPosition((Vector3f)object3);
+                movePlayerPacket.setRotation(this.getSession().getThePlayer().getVec3Rotation());
+                movePlayerPacket.setOnGround(false);
+                movePlayerPacket.setMode(MovePlayerPacket.Mode.NORMAL);
+                ((RakNetRelaySession)object2).outboundPacket(movePlayerPacket);
                 continue;
             }
-            object2 = ((Vector3f)object).add(vector3f.sub((Vector3f)object).div(f).mul(i));
+            object2 = vector3f.add(((Vector3f)object).sub(vector3f).div(f).mul(i));
             Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"entityPos.add(playerPos.\u2026(times).mul(i.toFloat()))");
-            rakNetRelaySession = this.getSession().getNetSession();
-            object3 = new MovePlayerPacket();
-            ((MovePlayerPacket)object3).setRuntimeEntityId(this.getSession().getThePlayer().getRuntimeId());
-            ((MovePlayerPacket)object3).setPosition((Vector3f)object2);
-            ((MovePlayerPacket)object3).setRotation(this.getSession().getThePlayer().getVec3Rotation());
-            ((MovePlayerPacket)object3).setOnGround(false);
-            ((MovePlayerPacket)object3).setMode(MovePlayerPacket.Mode.NORMAL);
-            rakNetRelaySession.outboundPacket((BedrockPacket)object3);
+            object3 = this.getSession().getNetSession();
+            movePlayerPacket = new MovePlayerPacket();
+            movePlayerPacket.setRuntimeEntityId(this.getSession().getThePlayer().getRuntimeId());
+            movePlayerPacket.setPosition((Vector3f)object2);
+            movePlayerPacket.setRotation(this.getSession().getThePlayer().getVec3Rotation());
+            movePlayerPacket.setOnGround(false);
+            movePlayerPacket.setMode(MovePlayerPacket.Mode.NORMAL);
+            ((RakNetRelaySession)object3).outboundPacket(movePlayerPacket);
         }
     }
 

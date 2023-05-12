@@ -18,12 +18,12 @@ implements BitArray {
         this.size = n;
         this.version = bitArrayVersion;
         this.words = nArray;
-        n = BitArray.ceil((float)n / (float)bitArrayVersion.entriesPerWord);
-        if (nArray.length == n) {
+        int n2 = BitArray.ceil((float)n / (float)bitArrayVersion.entriesPerWord);
+        if (nArray.length == n2) {
             return;
         }
-        int n2 = nArray.length;
-        throw new IllegalArgumentException("Invalid length given for storage, got: " + n2 + " but expected: " + n);
+        n = nArray.length;
+        throw new IllegalArgumentException("Invalid length given for storage, got: " + n + " but expected: " + n2);
     }
 
     @Override

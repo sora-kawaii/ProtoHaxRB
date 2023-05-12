@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.other.disablers;
@@ -32,9 +31,9 @@ extends DisablerMode {
     @Override
     public void onPacketInbound(EventPacketInbound eventPacketInbound) {
         Intrinsics.checkNotNullParameter((Object)eventPacketInbound, (String)"event");
-        BedrockPacket bedrockPacket2 = eventPacketInbound.getPacket();
-        if (bedrockPacket2 instanceof NetworkStackLatencyPacket) {
-            this.latencyPacketList.add(bedrockPacket2);
+        BedrockPacket bedrockPacket = eventPacketInbound.getPacket();
+        if (bedrockPacket instanceof NetworkStackLatencyPacket) {
+            this.latencyPacketList.add(bedrockPacket);
             eventPacketInbound.cancel();
         }
         if (this.boundTimer.isDelayComplete(((Number)new Disabler().getStackLatencyValue().get()).floatValue())) {

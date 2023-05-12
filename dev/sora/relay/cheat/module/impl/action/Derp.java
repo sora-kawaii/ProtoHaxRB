@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.action;
@@ -38,11 +37,11 @@ extends CheatModule {
 
     public Derp() {
         super("Derp", false, false, 6, null);
-        String string = "Random";
-        String string2 = "Pitch Spin";
-        Object object = "Yaw Spin";
-        String string3 = "Custom";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2, object, string3}, string);
+        String string2 = "Random";
+        String string3 = "Pitch Spin";
+        String string4 = "Yaw Spin";
+        Object object = "Custom";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3, string4, object}, string2);
         this.customPitch = new FloatValue("Custom Pitch", 90.0f, -180.0f, 180.0f);
         this.customYaw = new FloatValue("Custom Yaw", 90.0f, -180.0f, 180.0f);
         this.spinSpeed = new FloatValue("Spin Speed", 1.0f, 1.0f, 20.0f);

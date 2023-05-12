@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -21,21 +20,21 @@ extends Value<Float> {
     private final float maximum;
     private final float minimum;
 
-    public FloatValue(String string, float f, float f2, float f3) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
-        super(string, Float.valueOf(f));
+    public FloatValue(String string2, float f, float f2, float f3) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
+        super(string2, Float.valueOf(f));
         this.minimum = f2;
         this.maximum = f3;
     }
 
-    public /* synthetic */ FloatValue(String string, float f, float f2, float f3, int n, DefaultConstructorMarker defaultConstructorMarker) {
+    public /* synthetic */ FloatValue(String string2, float f, float f2, float f3, int n, DefaultConstructorMarker defaultConstructorMarker) {
         if ((n & 4) != 0) {
             f2 = 0.0f;
         }
         if ((n & 8) != 0) {
             f3 = Float.MAX_VALUE;
         }
-        this(string, f, f2, f3);
+        this(string2, f, f2, f3);
     }
 
     @Override

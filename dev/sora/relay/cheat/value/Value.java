@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -23,9 +22,9 @@ public abstract class Value<T> {
     private final String name;
     private T value;
 
-    public Value(String string, T t) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
-        this.name = string;
+    public Value(String string2, T t) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
+        this.name = string2;
         this.value = t;
         this.listeners = new ArrayList();
         this.defaultValue = this.value;

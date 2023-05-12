@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.jvm.internal.StringCompanionObject
  */
 package dev.sora.relay.cheat.module.impl.visual;
 
@@ -63,9 +61,9 @@ extends CheatModule {
         this.bps = Math.sqrt(((Entity)object).getMotionX() * ((Entity)object).getMotionX() + ((Entity)object).getMotionZ() * ((Entity)object).getMotionZ()) * (double)20;
     }
 
-    public final void setBpsText(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"<set-?>");
-        this.bpsText = string;
+    public final void setBpsText(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"<set-?>");
+        this.bpsText = string2;
     }
 }
 

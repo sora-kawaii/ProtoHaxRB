@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -110,10 +108,10 @@ public final class RakNetRelaySession {
         Object object;
         Object object2 = bl ? this.clientCipher : this.serverCipher;
         if (object2 != null) {
-            object = byteBuf.internalNioBuffer(byteBuf.readerIndex(), byteBuf.readableBytes());
-            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"buffer.internalNioBuffer\u2026, buffer.readableBytes())");
-            ByteBuffer byteBuffer = ((ByteBuffer)object).duplicate();
-            ((CipherPair)object2).getDecryptionCipher().update((ByteBuffer)object, byteBuffer);
+            ByteBuffer byteBuffer = byteBuf.internalNioBuffer(byteBuf.readerIndex(), byteBuf.readableBytes());
+            Intrinsics.checkNotNullExpressionValue((Object)byteBuffer, (String)"buffer.internalNioBuffer\u2026, buffer.readableBytes())");
+            object = byteBuffer.duplicate();
+            ((CipherPair)object2).getDecryptionCipher().update(byteBuffer, (ByteBuffer)object);
             byteBuf.writerIndex(byteBuf.writerIndex() - 8);
         }
         byteBuf.markReaderIndex();
@@ -216,11 +214,11 @@ lbl10:
         CompressionSerializer compressionSerializer;
         ByteBuf byteBuf;
         BedrockWrapperSerializer bedrockWrapperSerializer;
-        String string;
+        String string2;
         block11: {
             block13: {
                 block14: {
-                    string = "null cannot be cast to non-null type com.nukkitx.protocol.bedrock.wrapper.BedrockWrapperSerializerV11";
+                    string2 = "null cannot be cast to non-null type com.nukkitx.protocol.bedrock.wrapper.BedrockWrapperSerializerV11";
                     bedrockWrapperSerializer = bl ? this.clientSerializer : this.serverSerializer;
                     byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
                     if (bedrockPacket.getClass().isAnnotationPresent(Incompressible.class) && bedrockWrapperSerializer instanceof BedrockWrapperSerializerV11) {
@@ -250,7 +248,7 @@ lbl10:
                     byteBuf.release();
                     if (compressionSerializer == null) break block13;
                 }
-                Intrinsics.checkNotNull((Object)bedrockWrapperSerializer, (String)string);
+                Intrinsics.checkNotNull((Object)bedrockWrapperSerializer, (String)string2);
                 ((BedrockWrapperSerializerV11)bedrockWrapperSerializer).setCompressionSerializer(compressionSerializer);
             }
             return;
@@ -259,7 +257,7 @@ lbl10:
             byteBuf.release();
         }
         if (compressionSerializer != null) {
-            Intrinsics.checkNotNull((Object)bedrockWrapperSerializer, (String)string);
+            Intrinsics.checkNotNull((Object)bedrockWrapperSerializer, (String)string2);
             ((BedrockWrapperSerializerV11)bedrockWrapperSerializer).setCompressionSerializer(compressionSerializer);
         }
         throw throwable2222222;

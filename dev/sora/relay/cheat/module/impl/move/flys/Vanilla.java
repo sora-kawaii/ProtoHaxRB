@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move.flys;
@@ -49,15 +47,15 @@ extends FlyMode {
         Intrinsics.checkNotNullExpressionValue(object, (String)"abilityValues");
         Collection collection = object;
         Ability ability = Ability.BUILD;
-        Ability ability2 = Ability.MINE;
-        Ability ability3 = Ability.DOORS_AND_SWITCHES;
-        Ability ability4 = Ability.OPEN_CONTAINERS;
-        Ability ability5 = Ability.ATTACK_PLAYERS;
-        Ability ability6 = Ability.ATTACK_MOBS;
-        Ability ability7 = Ability.OPERATOR_COMMANDS;
-        Ability ability8 = Ability.FLY_SPEED;
-        object = Ability.WALK_SPEED;
-        CollectionsKt.addAll((Collection)collection, (Object[])new Ability[]{ability, ability2, ability3, ability4, ability5, ability6, ability7, ability8, object});
+        object = Ability.MINE;
+        Ability ability2 = Ability.DOORS_AND_SWITCHES;
+        Ability ability3 = Ability.OPEN_CONTAINERS;
+        Ability ability4 = Ability.ATTACK_PLAYERS;
+        Ability ability5 = Ability.ATTACK_MOBS;
+        Ability ability6 = Ability.OPERATOR_COMMANDS;
+        Ability ability7 = Ability.FLY_SPEED;
+        Ability ability8 = Ability.WALK_SPEED;
+        CollectionsKt.addAll((Collection)collection, (Object[])new Ability[]{ability, object, ability2, ability3, ability4, ability5, ability6, ability7, ability8});
         abilityLayer.setWalkSpeed(0.1f);
         abilityLayer.setFlySpeed(0.15f);
         list.add(abilityLayer);
@@ -73,14 +71,14 @@ extends FlyMode {
     @Override
     public void onPacketInbound(EventPacketInbound eventPacketInbound) {
         Intrinsics.checkNotNullParameter((Object)eventPacketInbound, (String)"event");
-        BedrockPacket bedrockPacket = eventPacketInbound.getPacket();
-        if (bedrockPacket instanceof UpdateAbilitiesPacket) {
+        Object object = eventPacketInbound.getPacket();
+        if (object instanceof UpdateAbilitiesPacket) {
             eventPacketInbound.cancel();
-        } else if (bedrockPacket instanceof StartGamePacket) {
-            RakNetRelaySession rakNetRelaySession = eventPacketInbound.getSession().getNetSession();
-            bedrockPacket = this.mayflyAbilityPacket;
-            ((UpdateAbilitiesPacket)bedrockPacket).setUniqueEntityId(eventPacketInbound.getSession().getThePlayer().getUniqueId());
-            rakNetRelaySession.inboundPacket(bedrockPacket);
+        } else if (object instanceof StartGamePacket) {
+            object = eventPacketInbound.getSession().getNetSession();
+            UpdateAbilitiesPacket updateAbilitiesPacket = this.mayflyAbilityPacket;
+            updateAbilitiesPacket.setUniqueEntityId(eventPacketInbound.getSession().getThePlayer().getUniqueId());
+            ((RakNetRelaySession)object).inboundPacket(updateAbilitiesPacket);
         }
     }
 

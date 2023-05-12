@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.entity;
@@ -67,10 +66,10 @@ extends EntityPlayer {
         Intrinsics.checkNotNullParameter((Object)gameSession, (String)"session");
         UUID uUID = UUID.randomUUID();
         Intrinsics.checkNotNullExpressionValue((Object)uUID, (String)"randomUUID()");
-        String string = "";
-        super(0L, uUID, string);
+        String string2 = "";
+        super(0L, uUID, string2);
         this.session = gameSession;
-        this.xuid = string;
+        this.xuid = string2;
         this.onGround = true;
         this.inputData = EnumSet.noneOf(PlayerAuthInputData.class);
         this.pendingInputData = new LinkedHashSet();
@@ -108,25 +107,25 @@ extends EntityPlayer {
     public final void attack(Entity entity, Vector3f vector3f) {
         Intrinsics.checkNotNullParameter((Object)entity, (String)"entity");
         Intrinsics.checkNotNullParameter((Object)vector3f, (String)"pos");
-        Object object = this.session;
-        Object object2 = new LevelSoundEventPacket();
-        ((LevelSoundEvent2Packet)object2).setSound(SoundEvent.ATTACK_STRONG);
-        ((LevelSoundEvent2Packet)object2).setPosition(this.getVec3Position());
-        ((LevelSoundEvent2Packet)object2).setExtraData(-1);
-        ((LevelSoundEvent2Packet)object2).setIdentifier("minecraft:player");
-        ((LevelSoundEvent2Packet)object2).setBabySound(false);
-        ((LevelSoundEvent2Packet)object2).setRelativeVolumeDisabled(false);
-        ((GameSession)object).sendPacket((BedrockPacket)object2);
-        object2 = this.session;
-        object = new InventoryTransactionPacket();
-        ((InventoryTransactionPacket)object).setTransactionType(TransactionType.ITEM_USE_ON_ENTITY);
-        ((InventoryTransactionPacket)object).setActionType(1);
-        ((InventoryTransactionPacket)object).setRuntimeEntityId(entity.getRuntimeId());
-        ((InventoryTransactionPacket)object).setHotbarSlot(this.getHeldItemSlot());
-        ((InventoryTransactionPacket)object).setItemInHand(this.getHeldItemData());
-        ((InventoryTransactionPacket)object).setPlayerPosition(vector3f);
-        ((InventoryTransactionPacket)object).setClickPosition(Vector3f.ZERO);
-        ((GameSession)object2).sendPacket((BedrockPacket)object);
+        GameSession gameSession = this.session;
+        BedrockPacket bedrockPacket = new LevelSoundEventPacket();
+        ((LevelSoundEvent2Packet)bedrockPacket).setSound(SoundEvent.ATTACK_STRONG);
+        ((LevelSoundEvent2Packet)bedrockPacket).setPosition(this.getVec3Position());
+        ((LevelSoundEvent2Packet)bedrockPacket).setExtraData(-1);
+        ((LevelSoundEvent2Packet)bedrockPacket).setIdentifier("minecraft:player");
+        ((LevelSoundEvent2Packet)bedrockPacket).setBabySound(false);
+        ((LevelSoundEvent2Packet)bedrockPacket).setRelativeVolumeDisabled(false);
+        gameSession.sendPacket(bedrockPacket);
+        gameSession = this.session;
+        bedrockPacket = new InventoryTransactionPacket();
+        ((InventoryTransactionPacket)bedrockPacket).setTransactionType(TransactionType.ITEM_USE_ON_ENTITY);
+        ((InventoryTransactionPacket)bedrockPacket).setActionType(1);
+        ((InventoryTransactionPacket)bedrockPacket).setRuntimeEntityId(entity.getRuntimeId());
+        ((InventoryTransactionPacket)bedrockPacket).setHotbarSlot(this.getHeldItemSlot());
+        ((InventoryTransactionPacket)bedrockPacket).setItemInHand(this.getHeldItemData());
+        ((InventoryTransactionPacket)bedrockPacket).setPlayerPosition(vector3f);
+        ((InventoryTransactionPacket)bedrockPacket).setClickPosition(Vector3f.ZERO);
+        gameSession.sendPacket(bedrockPacket);
     }
 
     public final void click(Vector3i vector3i, int n) {
@@ -327,14 +326,14 @@ extends EntityPlayer {
                     }
                 }
                 if (((PlayerAuthInputPacket)object).getInputData().contains((Object)PlayerAuthInputData.START_SPRINTING)) {
-                    object = this.session;
-                    object2 = new PlayerActionPacket();
-                    ((PlayerActionPacket)object2).setRuntimeEntityId(this.getRuntimeId());
-                    ((PlayerActionPacket)object2).setAction(PlayerActionType.START_SPRINT);
-                    ((PlayerActionPacket)object2).setBlockPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object2).setResultPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object2).setFace(0);
-                    ((GameSession)object).sendPacket((BedrockPacket)object2);
+                    object2 = this.session;
+                    object = new PlayerActionPacket();
+                    ((PlayerActionPacket)object).setRuntimeEntityId(this.getRuntimeId());
+                    ((PlayerActionPacket)object).setAction(PlayerActionType.START_SPRINT);
+                    ((PlayerActionPacket)object).setBlockPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object).setResultPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object).setFace(0);
+                    ((GameSession)object2).sendPacket((BedrockPacket)object);
                 } else if (((PlayerAuthInputPacket)object).getInputData().contains((Object)PlayerAuthInputData.STOP_SPRINTING)) {
                     object = this.session;
                     object2 = new PlayerActionPacket();
@@ -345,32 +344,32 @@ extends EntityPlayer {
                     ((PlayerActionPacket)object2).setFace(0);
                     ((GameSession)object).sendPacket((BedrockPacket)object2);
                 } else if (((PlayerAuthInputPacket)object).getInputData().contains((Object)PlayerAuthInputData.START_SNEAKING)) {
-                    object2 = this.session;
-                    object = new PlayerActionPacket();
-                    ((PlayerActionPacket)object).setRuntimeEntityId(this.getRuntimeId());
-                    ((PlayerActionPacket)object).setAction(PlayerActionType.START_SNEAK);
-                    ((PlayerActionPacket)object).setBlockPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object).setResultPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object).setFace(0);
-                    ((GameSession)object2).sendPacket((BedrockPacket)object);
+                    object = this.session;
+                    object2 = new PlayerActionPacket();
+                    ((PlayerActionPacket)object2).setRuntimeEntityId(this.getRuntimeId());
+                    ((PlayerActionPacket)object2).setAction(PlayerActionType.START_SNEAK);
+                    ((PlayerActionPacket)object2).setBlockPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object2).setResultPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object2).setFace(0);
+                    ((GameSession)object).sendPacket((BedrockPacket)object2);
                 } else if (((PlayerAuthInputPacket)object).getInputData().contains((Object)PlayerAuthInputData.STOP_SNEAKING)) {
-                    object2 = this.session;
-                    object = new PlayerActionPacket();
-                    ((PlayerActionPacket)object).setRuntimeEntityId(this.getRuntimeId());
-                    ((PlayerActionPacket)object).setAction(PlayerActionType.STOP_SNEAK);
-                    ((PlayerActionPacket)object).setBlockPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object).setResultPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object).setFace(0);
-                    ((GameSession)object2).sendPacket((BedrockPacket)object);
+                    object = this.session;
+                    object2 = new PlayerActionPacket();
+                    ((PlayerActionPacket)object2).setRuntimeEntityId(this.getRuntimeId());
+                    ((PlayerActionPacket)object2).setAction(PlayerActionType.STOP_SNEAK);
+                    ((PlayerActionPacket)object2).setBlockPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object2).setResultPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object2).setFace(0);
+                    ((GameSession)object).sendPacket((BedrockPacket)object2);
                 } else if (((PlayerAuthInputPacket)object).getInputData().contains((Object)PlayerAuthInputData.START_JUMPING)) {
-                    object2 = this.session;
-                    object = new PlayerActionPacket();
-                    ((PlayerActionPacket)object).setRuntimeEntityId(this.getRuntimeId());
-                    ((PlayerActionPacket)object).setAction(PlayerActionType.JUMP);
-                    ((PlayerActionPacket)object).setBlockPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object).setResultPosition(Vector3i.ZERO);
-                    ((PlayerActionPacket)object).setFace(0);
-                    ((GameSession)object2).sendPacket((BedrockPacket)object);
+                    object = this.session;
+                    object2 = new PlayerActionPacket();
+                    ((PlayerActionPacket)object2).setRuntimeEntityId(this.getRuntimeId());
+                    ((PlayerActionPacket)object2).setAction(PlayerActionType.JUMP);
+                    ((PlayerActionPacket)object2).setBlockPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object2).setResultPosition(Vector3i.ZERO);
+                    ((PlayerActionPacket)object2).setFace(0);
+                    ((GameSession)object).sendPacket((BedrockPacket)object2);
                 }
             }
         } else if (object instanceof PlayerHotbarPacket && ((PlayerHotbarPacket)object).getContainerId() == 0) {
@@ -402,18 +401,18 @@ extends EntityPlayer {
             Intrinsics.checkNotNullExpressionValue(object, (String)"packet.attributes");
             for (AttributeData attributeData : (Iterable)object) {
                 object = this.getAttributes();
-                String string = attributeData.getName();
-                Intrinsics.checkNotNullExpressionValue((Object)string, (String)"it.name");
+                String string2 = attributeData.getName();
+                Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"it.name");
                 Intrinsics.checkNotNullExpressionValue((Object)attributeData, (String)"it");
-                object.put(string, attributeData);
+                object.put(string2, attributeData);
             }
         } else if (object instanceof EntityEventPacket && ((EntityEventPacket)object).getRuntimeEntityId() == this.getRuntimeId() && ((EntityEventPacket)object).getType() == EntityEventType.HURT) {
             this.setHurtTime(10);
         }
     }
 
-    public final void say(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"text");
+    public final void say(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"text");
         GameSession gameSession = this.session;
         TextPacket textPacket = new TextPacket();
         textPacket.setType(TextPacket.Type.CHAT);
@@ -421,7 +420,7 @@ extends EntityPlayer {
         textPacket.setXuid(this.xuid);
         textPacket.setSourceName(this.getUsername());
         textPacket.setPlatformChatId("");
-        textPacket.setMessage(string);
+        textPacket.setMessage(string2);
         gameSession.sendPacket(textPacket);
     }
 
@@ -458,9 +457,9 @@ extends EntityPlayer {
         this.runtimeId = l;
     }
 
-    public final void setXuid(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"<set-?>");
-        this.xuid = string;
+    public final void setXuid(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"<set-?>");
+        this.xuid = string2;
     }
 
     public final void swing(boolean bl) {

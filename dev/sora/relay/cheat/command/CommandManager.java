@@ -2,15 +2,12 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.collections.ArraysKt
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.command;
 
-import com.nukkitx.protocol.bedrock.BedrockPacket;
 import com.nukkitx.protocol.bedrock.packet.TextPacket;
 import dev.sora.relay.cheat.BasicThing;
 import dev.sora.relay.cheat.command.Command;
@@ -47,19 +44,19 @@ implements Listener {
         this.commandMap = new LinkedHashMap();
     }
 
-    public final void exec(String objectArray) {
-        Intrinsics.checkNotNullParameter((Object)objectArray, (String)"msg");
-        objectArray = ((Collection)StringsKt.split$default((CharSequence)((CharSequence)objectArray), (String[])new String[]{" "}, (boolean)false, (int)0, (int)6, null)).toArray(new String[0]);
-        Map<String, Command> map = this.commandMap;
-        Object object = objectArray[0].toLowerCase(Locale.ROOT);
-        Intrinsics.checkNotNullExpressionValue((Object)object, (String)"this as java.lang.String).toLowerCase(Locale.ROOT)");
-        object = map.get(object);
-        if (object == null) {
+    public final void exec(String object) {
+        Intrinsics.checkNotNullParameter((Object)object, (String)"msg");
+        object = ((Collection)StringsKt.split$default((CharSequence)((CharSequence)object), (String[])new String[]{" "}, (boolean)false, (int)0, (int)6, null)).toArray(new String[0]);
+        Object object2 = this.commandMap;
+        String string2 = object[0].toLowerCase(Locale.ROOT);
+        Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"this as java.lang.String).toLowerCase(Locale.ROOT)");
+        object2 = object2.get(string2);
+        if (object2 == null) {
             BasicThing.Companion.chat(this.session, "Command not found");
             return;
         }
         try {
-            ((Command)object).exec((String[])ArraysKt.copyOfRange((Object[])objectArray, (int)1, (int)objectArray.length));
+            ((Command)object2).exec((String[])ArraysKt.copyOfRange((Object[])object, (int)1, (int)((String[])object).length));
         }
         catch (Exception exception) {
             object = exception;
@@ -89,17 +86,17 @@ implements Listener {
     @Listen
     public final void onPacketOutbound(EventPacketOutbound eventPacketOutbound) {
         Intrinsics.checkNotNullParameter((Object)eventPacketOutbound, (String)"event");
-        BedrockPacket bedrockPacket = eventPacketOutbound.getPacket();
-        if (bedrockPacket instanceof TextPacket) {
-            String string = ((TextPacket)bedrockPacket).getMessage();
-            String string2 = "packet.message";
-            Intrinsics.checkNotNullExpressionValue((Object)string, (String)string2);
-            if (StringsKt.startsWith$default((String)string, (String)PREFIX, (boolean)false, (int)2, null)) {
-                string = ((TextPacket)bedrockPacket).getMessage();
-                Intrinsics.checkNotNullExpressionValue((Object)string, (String)string2);
-                string2 = string.substring(1);
-                Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"this as java.lang.String).substring(startIndex)");
-                this.exec(string2);
+        Object object = eventPacketOutbound.getPacket();
+        if (object instanceof TextPacket) {
+            String string2 = ((TextPacket)object).getMessage();
+            String string3 = "packet.message";
+            Intrinsics.checkNotNullExpressionValue((Object)string2, (String)string3);
+            if (StringsKt.startsWith$default((String)string2, (String)PREFIX, (boolean)false, (int)2, null)) {
+                object = ((TextPacket)object).getMessage();
+                Intrinsics.checkNotNullExpressionValue((Object)object, (String)string3);
+                string3 = ((String)object).substring(1);
+                Intrinsics.checkNotNullExpressionValue((Object)string3, (String)"this as java.lang.String).substring(startIndex)");
+                this.exec(string3);
                 eventPacketOutbound.cancel();
             }
         }
@@ -107,8 +104,8 @@ implements Listener {
 
     public final void registerCommand(Command command) {
         Intrinsics.checkNotNullParameter((Object)command, (String)"command");
-        for (String string : command.getAlias()) {
-            this.commandMap.put(string, command);
+        for (String string2 : command.getAlias()) {
+            this.commandMap.put(string2, command);
         }
         command.setSession(this.session);
     }

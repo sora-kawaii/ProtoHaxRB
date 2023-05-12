@@ -2,9 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Unit
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -63,11 +60,11 @@ public final class BlobCacheManager {
     public final void onClientPacket(BedrockPacket bedrockPacket) {
         Intrinsics.checkNotNullParameter((Object)bedrockPacket, (String)"packet");
         if (bedrockPacket instanceof ClientCacheBlobStatusPacket) {
-            Object object = this.clientAcknowledgements;
-            ArrayList<Long> arrayList = ((ClientCacheBlobStatusPacket)bedrockPacket).getAcks();
+            List<Long> list = this.clientAcknowledgements;
+            Object object = ((ClientCacheBlobStatusPacket)bedrockPacket).getAcks();
             Object object2 = "packet.acks";
-            Intrinsics.checkNotNullExpressionValue(arrayList, (String)object2);
-            object.addAll((Collection<Long>)arrayList);
+            Intrinsics.checkNotNullExpressionValue(object, (String)object2);
+            list.addAll((Collection)object);
             this.clientAcknowledgements.removeIf(new BlobCacheManager$$ExternalSyntheticLambda0((Function1)new Function1<Long, Boolean>(bedrockPacket){
                 final /* synthetic */ BedrockPacket $packet;
                 {
@@ -80,20 +77,20 @@ public final class BlobCacheManager {
                     return ((ClientCacheBlobStatusPacket)this.$packet).getNaks().contains(l);
                 }
             }));
-            arrayList = ((ClientCacheBlobStatusPacket)bedrockPacket).getNaks();
+            list = ((ClientCacheBlobStatusPacket)bedrockPacket).getNaks();
             object = ((ClientCacheBlobStatusPacket)bedrockPacket).getAcks();
             Intrinsics.checkNotNullExpressionValue(object, (String)object2);
             object = (Iterable)object;
             object2 = new ArrayList();
             Iterator<Long> iterator = object.iterator();
             while (iterator.hasNext()) {
-                object = iterator.next();
-                Long l = (Long)object;
-                if (!this.cacheCallbacks.containsKey(l)) continue;
-                object2.add(object);
+                Long l = iterator.next();
+                object = l;
+                if (!this.cacheCallbacks.containsKey(object)) continue;
+                object2.add(l);
             }
             object2 = (List)object2;
-            arrayList.addAll((Collection)object2);
+            ((ArrayList)list).addAll((Collection)object2);
             ((ClientCacheBlobStatusPacket)bedrockPacket).getAcks().removeIf(new BlobCacheManager$$ExternalSyntheticLambda1((Function1)new Function1<Long, Boolean>(bedrockPacket){
                 final /* synthetic */ BedrockPacket $packet;
                 {

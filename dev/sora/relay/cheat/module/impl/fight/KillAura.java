@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.comparisons.ComparisonsKt
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -33,6 +31,7 @@ import dev.sora.relay.game.event.impl.EventTick;
 import dev.sora.relay.utils.TimerUtil;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import kotlin.Metadata;
 import kotlin.collections.CollectionsKt;
@@ -57,20 +56,20 @@ extends CheatModule {
 
     public KillAura() {
         super("KillAura", false, false, 6, null);
-        String string = "Single";
-        String string2 = "Multi";
-        String string3 = "Switch";
-        this.attackModeValue = new ListValue("AttackMode", new String[]{string, string2, string3}, string3);
+        String string2 = "Single";
+        String string3 = "Multi";
+        String string4 = "Switch";
+        this.attackModeValue = new ListValue("AttackMode", new String[]{string2, string3, string4}, string4);
         string2 = "Client";
-        string = "Server";
-        string3 = "None";
-        this.rotationModeValue = new ListValue("RotationMode", new String[]{string2, string, string3}, string);
+        string3 = "Server";
+        string4 = "None";
+        this.rotationModeValue = new ListValue("RotationMode", new String[]{string2, string3, string4}, string3);
         string2 = "Range";
-        String string4 = "Angle";
-        String string5 = "HurtTime";
-        this.priorityValue = new ListValue("Priority", new String[]{string2, string4, string5}, string2);
-        string5 = "Normal";
-        this.swingValue = new ListValue("SwingMode", new String[]{string5, string, string3}, string5);
+        String string5 = "Angle";
+        String string6 = "HurtTime";
+        this.priorityValue = new ListValue("Priority", new String[]{string2, string5, string6}, string2);
+        string6 = "Normal";
+        this.swingValue = new ListValue("SwingMode", new String[]{string6, string3, string4}, string6);
         this.cpsValue = new IntValue("CPS", 7, 1, 20);
         this.rangeValue = new FloatValue(string2, 4.5f, 2.0f, 7.0f);
         this.switchDelayValue = new FloatValue("SwitchDelay", 100.0f, 50.0f, 1000.0f);
@@ -81,10 +80,10 @@ extends CheatModule {
     }
 
     private final void swing() {
-        String string = (String)this.swingValue.get();
-        if (Intrinsics.areEqual((Object)string, (Object)"Normal")) {
+        String string2 = (String)this.swingValue.get();
+        if (Intrinsics.areEqual((Object)string2, (Object)"Normal")) {
             EntityPlayerSP.swing$default(this.getSession().getThePlayer(), false, 1, null);
-        } else if (Intrinsics.areEqual((Object)string, (Object)"Server")) {
+        } else if (Intrinsics.areEqual((Object)string2, (Object)"Server")) {
             this.getSession().getThePlayer().swing(true);
         }
     }
@@ -112,21 +111,22 @@ extends CheatModule {
      */
     @Listen
     public final void onTick(EventTick object) {
+        Object object22;
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
         if (((Number)this.cpsValue.get()).intValue() < 20 && !this.attackTimer.isDelayComplete(1000.0 / (double)((Number)this.cpsValue.get()).intValue())) {
             return;
         }
         GameSession gameSession = ((GameEvent)object).getSession();
         float f = (float)Math.pow(((Number)this.rangeValue.get()).floatValue(), 2);
-        Object object22 = gameSession.getTheWorld().getEntityMap().values();
+        Object object3 = gameSession.getTheWorld().getEntityMap().values();
         object = new ArrayList();
-        Object object3 = object22.iterator();
-        while (object3.hasNext()) {
-            Object t = object3.next();
-            object22 = (Entity)t;
-            boolean bl = object22 instanceof EntityPlayer && ((Entity)object22).distanceSq(gameSession.getThePlayer()) < (double)f && !AntiBot.INSTANCE.isBot((EntityPlayer)object22, gameSession) && !Teams.INSTANCE.isTeammate((EntityPlayer)object22, gameSession) && !Friend.INSTANCE.isFriend((EntityPlayer)object22);
+        Iterator iterator = object3.iterator();
+        while (iterator.hasNext()) {
+            object22 = iterator.next();
+            object3 = (Entity)object22;
+            boolean bl = object3 instanceof EntityPlayer && ((Entity)object3).distanceSq(gameSession.getThePlayer()) < (double)f && !AntiBot.INSTANCE.isBot((EntityPlayer)object3, gameSession) && !Teams.INSTANCE.isTeammate((EntityPlayer)object3, gameSession) && !Friend.INSTANCE.isFriend((EntityPlayer)object3);
             if (!bl) continue;
-            object.add(t);
+            object.add(object22);
         }
         if ((object = (List)object).isEmpty()) {
             return;
@@ -134,7 +134,7 @@ extends CheatModule {
         if (this.switchTarget >= object.size()) {
             this.switchTarget = 0;
         }
-        if (!Intrinsics.areEqual(object3 = this.attackModeValue.get(), (Object)(object22 = "Multi"))) {
+        if (!Intrinsics.areEqual(object22 = this.attackModeValue.get(), (Object)(object3 = "Multi"))) {
             switch ((String)this.priorityValue.get()) {
                 default: {
                     break;
@@ -182,14 +182,14 @@ extends CheatModule {
             this.swing();
             object = (Entity)CollectionsKt.first((List)object);
         } else {
-            object3 = (String)this.attackModeValue.get();
-            if (Intrinsics.areEqual((Object)object3, (Object)"Single")) {
-                object22 = CollectionsKt.first((List)object);
-                object = (Entity)object22;
+            object22 = (String)this.attackModeValue.get();
+            if (Intrinsics.areEqual((Object)object22, (Object)"Single")) {
+                object3 = CollectionsKt.first((List)object);
+                object = (Entity)object3;
                 this.swing();
                 gameSession.getThePlayer().attack((Entity)object, gameSession.getThePlayer().getVec3Position());
-                object = (Entity)object22;
-            } else if (Intrinsics.areEqual((Object)object3, (Object)object22)) {
+                object = (Entity)object3;
+            } else if (Intrinsics.areEqual((Object)object22, (Object)object3)) {
                 for (Object object22 : (Iterable)object) {
                     this.swing();
                     gameSession.getThePlayer().attack((Entity)object22, gameSession.getThePlayer().getVec3Position());
@@ -210,13 +210,13 @@ extends CheatModule {
         }
         if (Intrinsics.areEqual(this.rotationModeValue.get(), (Object)"Client")) {
             if (!Intrinsics.areEqual((Object)this.rotationAngle, (Object)Vector2f.ZERO)) {
-                object22 = gameSession.getNetSession();
-                object = new MovePlayerPacket();
-                ((MovePlayerPacket)object).setRuntimeEntityId(gameSession.getThePlayer().getRuntimeId());
-                ((MovePlayerPacket)object).setPosition(gameSession.getThePlayer().getVec3Position());
-                ((MovePlayerPacket)object).setRotation(Vector3f.from(((MovePlayerPacket)object).getRotation().getX(), ((MovePlayerPacket)object).getRotation().getY(), ((MovePlayerPacket)object).getRotation().getY()));
-                ((MovePlayerPacket)object).setMode(MovePlayerPacket.Mode.HEAD_ROTATION);
-                ((RakNetRelaySession)object22).inboundPacket((BedrockPacket)object);
+                object = gameSession.getNetSession();
+                object3 = new MovePlayerPacket();
+                ((MovePlayerPacket)object3).setRuntimeEntityId(gameSession.getThePlayer().getRuntimeId());
+                ((MovePlayerPacket)object3).setPosition(gameSession.getThePlayer().getVec3Position());
+                ((MovePlayerPacket)object3).setRotation(Vector3f.from(((MovePlayerPacket)object3).getRotation().getX(), ((MovePlayerPacket)object3).getRotation().getY(), ((MovePlayerPacket)object3).getRotation().getY()));
+                ((MovePlayerPacket)object3).setMode(MovePlayerPacket.Mode.HEAD_ROTATION);
+                ((RakNetRelaySession)object).inboundPacket((BedrockPacket)object3);
             }
         } else if (Intrinsics.areEqual(this.rotationModeValue.get(), (Object)"Server") && Intrinsics.areEqual((Object)gameSession.getThePlayer().getVec3PrevPosition(), (Object)gameSession.getThePlayer().getVec3Position()) && Intrinsics.areEqual((Object)gameSession.getThePlayer().getVec3PrevRotation(), (Object)gameSession.getThePlayer().getVec3Rotation())) {
             object = new MovePlayerPacket();

@@ -2,10 +2,8 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module;
 
@@ -29,22 +27,22 @@ implements Listener {
     private final String name;
     private boolean state;
 
-    public CheatModule(String string, boolean bl, boolean bl2) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
-        this.name = string;
+    public CheatModule(String string2, boolean bl, boolean bl2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
+        this.name = string2;
         this.defaultOn = bl;
         this.canToggle = bl2;
         this.state = bl;
     }
 
-    public /* synthetic */ CheatModule(String string, boolean bl, boolean bl2, int n, DefaultConstructorMarker defaultConstructorMarker) {
+    public /* synthetic */ CheatModule(String string2, boolean bl, boolean bl2, int n, DefaultConstructorMarker defaultConstructorMarker) {
         if ((n & 2) != 0) {
             bl = false;
         }
         if ((n & 4) != 0) {
             bl2 = true;
         }
-        this(string, bl, bl2);
+        this(string2, bl, bl2);
     }
 
     public final boolean getCanToggle() {
@@ -63,36 +61,36 @@ implements Listener {
         return this.state;
     }
 
-    public final Value<?> getValue(String string) {
+    public final Value<?> getValue(String string2) {
         block1: {
-            Intrinsics.checkNotNullParameter((Object)string, (String)"valueName");
+            Intrinsics.checkNotNullParameter((Object)string2, (String)"valueName");
             for (Object t : (Iterable)this.getValues()) {
-                if (!StringsKt.equals((String)((Value)t).getName(), (String)string, (boolean)true)) continue;
-                string = t;
+                if (!StringsKt.equals((String)((Value)t).getName(), (String)string2, (boolean)true)) continue;
+                string2 = t;
                 break block1;
             }
-            string = null;
+            string2 = null;
         }
-        return (Value)((Object)string);
+        return (Value)((Object)string2);
     }
 
     public final List<Value<?>> getValues() {
         Object object = this.getClass().getDeclaredFields();
         Intrinsics.checkNotNullExpressionValue((Object)object, (String)"javaClass.declaredFields");
-        Object[] objectArray = (Object[])object;
-        Iterable iterable2 = new ArrayList(objectArray.length);
-        int n = objectArray.length;
+        Object[] object22 = (Object[])object;
+        object = new ArrayList(object22.length);
+        int n = object22.length;
         for (int i = 0; i < n; ++i) {
-            object = (Field)objectArray[i];
-            ((Field)object).setAccessible(true);
-            iterable2.add(((Field)object).get(this));
+            Field field = (Field)object22[i];
+            field.setAccessible(true);
+            object.add(field.get(this));
         }
-        object = (List)iterable2;
-        iterable2 = (Iterable)object;
+        object = (List)object;
+        Iterable iterable = (Iterable)object;
         object = new ArrayList();
-        for (Iterable iterable2 : iterable2) {
-            if (!(iterable2 instanceof Value)) continue;
-            object.add(iterable2);
+        for (Object e : iterable) {
+            if (!(e instanceof Value)) continue;
+            object.add(e);
         }
         object = (List)object;
         return object;

@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.utils.constants;
@@ -15,22 +14,22 @@ public final class DeviceKt {
     /*
      * Enabled aggressive block sorting
      */
-    public static final String titleIdToDevice(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"titleId");
+    public static final String titleIdToDevice(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"titleId");
         int n = -1;
-        switch (string.hashCode()) {
+        switch (string2.hashCode()) {
             case 2048683431: {
-                if (!string.equals("1739947436")) break;
+                if (!string2.equals("1739947436")) break;
                 n = 1;
                 break;
             }
             case 1412768191: {
-                if (!string.equals("2047319603")) break;
+                if (!string2.equals("2047319603")) break;
                 n = 2;
                 break;
             }
             case 483058251: {
-                if (!string.equals("896928775")) break;
+                if (!string2.equals("896928775")) break;
                 n = 3;
                 break;
             }

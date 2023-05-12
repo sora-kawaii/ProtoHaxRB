@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.other;
@@ -37,17 +35,17 @@ extends CheatModule {
 
     public Disabler() {
         super("Disabler", false, false, 6, null);
-        String string = "CPSCancel";
-        String string2 = "Lifeboat";
-        String string3 = "Mineplex";
-        String string4 = "CubeCraft";
-        String string5 = "HYT";
-        String string6 = "HYTFly_Old";
-        String string7 = "StackLatency Spoof";
-        String string8 = "GlideSpoof";
-        String string9 = "Mode";
-        String string10 = "Lifeboat";
-        this.modeValue = new ListValue(string9, new String[]{string, string2, string3, string4, string5, string6, string7, string8}, string10);
+        String string2 = "CPSCancel";
+        String string3 = "Lifeboat";
+        String string4 = "Mineplex";
+        String string5 = "CubeCraft";
+        String string6 = "HYT";
+        String string7 = "HYTFly_Old";
+        String string8 = "StackLatency Spoof";
+        String string9 = "GlideSpoof";
+        String string10 = "Mode";
+        String string11 = "Lifeboat";
+        this.modeValue = new ListValue(string10, new String[]{string2, string3, string4, string5, string6, string7, string8, string9}, string11);
         this.mode = CollectionsKt.listOf((Object[])new DisablerMode[]{new CPSCancel(), new Lifeboat(), new Mineplex(), new CubeCraft(), new HYT(), new StackLatencySpoof(), new GlideSpoof()});
         this.stackLatencyValue = new FloatValue("StackLatency", 500.0f, 500.0f, 5000.0f);
     }

@@ -2,11 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.random.Random
- *  kotlin.text.Charsets
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.other;
 
@@ -37,26 +33,26 @@ extends CheatModule {
     @Listen
     public final void onPacketOutbound(EventPacketOutbound object) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
-        object = ((EventPacketOutbound)object).getPacket();
-        if (object instanceof LoginPacket) {
-            Object object2 = Base64.getDecoder();
-            Object object3 = ((LoginPacket)object).getSkinData().toString();
-            Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"packet.skinData.toString()");
-            object2 = ((Base64.Decoder)object2).decode((String)StringsKt.split$default((CharSequence)((CharSequence)object3), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1));
-            Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"getDecoder().decode(pack\u2026toString().split(\".\")[1])");
-            object2 = JsonParser.parseString(new String((byte[])object2, Charsets.UTF_8)).getAsJsonObject();
+        Object object2 = ((EventPacketOutbound)object).getPacket();
+        if (object2 instanceof LoginPacket) {
+            Object object3 = Base64.getDecoder();
+            object = ((LoginPacket)object2).getSkinData().toString();
+            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.skinData.toString()");
+            object = ((Base64.Decoder)object3).decode((String)StringsKt.split$default((CharSequence)((CharSequence)object), (String[])new String[]{"."}, (boolean)false, (int)0, (int)6, null).get(1));
+            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"getDecoder().decode(pack\u2026toString().split(\".\")[1])");
+            object = JsonParser.parseString(new String((byte[])object, Charsets.UTF_8)).getAsJsonObject();
             object3 = Random.Default.nextLong();
-            ((JsonObject)object2).addProperty("ClientRandomId", (Number)object3);
+            ((JsonObject)object).addProperty("ClientRandomId", (Number)object3);
             object3 = StringUtilsKt.toHexString$default(Random.Default.nextBytes(new byte[16]), null, 1, null);
-            ((JsonObject)object2).addProperty("DeviceId", (String)object3);
-            object = (LoginPacket)object;
-            StringBuilder stringBuilder = new StringBuilder().append('.');
+            ((JsonObject)object).addProperty("DeviceId", (String)object3);
+            LoginPacket loginPacket = (LoginPacket)object2;
+            object2 = new StringBuilder().append('.');
             object3 = Base64.getEncoder();
-            object2 = new Gson().toJson((JsonElement)object2);
-            Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"Gson().toJson(body)");
-            object2 = ((String)object2).getBytes(Charsets.UTF_8);
-            Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"this as java.lang.String).getBytes(charset)");
-            ((LoginPacket)object).setSkinData(new AsciiString(stringBuilder.append(((Base64.Encoder)object3).encodeToString((byte[])object2)).append('.').toString()));
+            object = new Gson().toJson((JsonElement)object);
+            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"Gson().toJson(body)");
+            object = ((String)object).getBytes(Charsets.UTF_8);
+            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"this as java.lang.String).getBytes(charset)");
+            loginPacket.setSkinData(new AsciiString(((StringBuilder)object2).append(((Base64.Encoder)object3).encodeToString((byte[])object)).append('.').toString()));
         }
     }
 }

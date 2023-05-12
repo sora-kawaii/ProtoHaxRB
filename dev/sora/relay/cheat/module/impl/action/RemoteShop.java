@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.action;
@@ -23,15 +22,15 @@ extends CheatModule {
 
     public RemoteShop() {
         super("RemoteShop", false, false, 6, null);
-        String string = "HYT";
-        String string2 = "EaseCation";
-        String string3 = "Custom";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2, string3}, string3);
+        String string2 = "HYT";
+        String string3 = "EaseCation";
+        String string4 = "Custom";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3, string4}, string4);
     }
 
     @Override
     public void onEnable() {
-        Iterator<Object> iterator = (String)this.modeValue.get();
+        Iterator iterator = (String)this.modeValue.get();
         int n = ((String)((Object)iterator)).hashCode();
         Iterator iterator2 = null;
         Iterator iterator3 = null;
@@ -84,26 +83,27 @@ extends CheatModule {
                 break;
             }
             case 72035: {
+                Object object;
                 if (!((String)((Object)iterator)).equals("HYT")) break;
                 iterator = this.getSession().getTheWorld().getEntityMap().values();
                 iterator3 = new ArrayList();
-                Iterator iterator4 = iterator.iterator();
-                while (iterator4.hasNext()) {
-                    iterator = iterator4.next();
-                    if (!Intrinsics.areEqual((Object)((Entity)((Object)iterator)).getIdentifier(), (Object)"minecraft:villager")) continue;
-                    iterator3.add(iterator);
+                iterator = iterator.iterator();
+                while (iterator.hasNext()) {
+                    object = iterator.next();
+                    if (!Intrinsics.areEqual((Object)((Entity)object).getIdentifier(), (Object)"minecraft:villager")) continue;
+                    iterator3.add(object);
                 }
                 if (!((iterator3 = (List)((Object)iterator3)).isEmpty() ^ true)) break;
-                iterator4 = ((Iterable)((Object)iterator3)).iterator();
-                if (!iterator4.hasNext()) {
+                object = ((Iterable)((Object)iterator3)).iterator();
+                if (!object.hasNext()) {
                     iterator3 = iterator2;
                 } else {
-                    iterator3 = iterator4.next();
-                    if (iterator4.hasNext()) {
+                    iterator3 = object.next();
+                    if (object.hasNext()) {
                         double d = ((Entity)((Object)iterator3)).distanceSq(this.getSession().getThePlayer());
                         iterator2 = iterator3;
                         do {
-                            iterator = iterator4.next();
+                            iterator = object.next();
                             double d4 = ((Entity)((Object)iterator)).distanceSq(this.getSession().getThePlayer());
                             iterator3 = iterator2;
                             double d5 = d;
@@ -113,7 +113,7 @@ extends CheatModule {
                             }
                             iterator2 = iterator3;
                             d = d5;
-                        } while (iterator4.hasNext());
+                        } while (object.hasNext());
                     }
                 }
                 iterator3 = (Entity)((Object)iterator3);

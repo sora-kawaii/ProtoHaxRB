@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -103,10 +101,10 @@ extends CheatModule {
             object2 = abilityLayer.getAbilityValues();
             Intrinsics.checkNotNullExpressionValue(object2, (String)"abilityValues");
             Collection collection = object2;
-            Ability ability = Ability.BUILD;
-            Ability ability2 = Ability.MINE;
-            Ability ability3 = Ability.DOORS_AND_SWITCHES;
-            object2 = Ability.OPEN_CONTAINERS;
+            object2 = Ability.BUILD;
+            Ability ability = Ability.MINE;
+            Ability ability2 = Ability.DOORS_AND_SWITCHES;
+            Ability ability3 = Ability.OPEN_CONTAINERS;
             Ability ability4 = Ability.ATTACK_PLAYERS;
             Ability ability5 = Ability.ATTACK_MOBS;
             Ability ability6 = Ability.OPERATOR_COMMANDS;
@@ -114,7 +112,7 @@ extends CheatModule {
             Ability ability8 = Ability.NO_CLIP;
             Ability ability9 = Ability.FLY_SPEED;
             Ability ability10 = Ability.WALK_SPEED;
-            CollectionsKt.addAll((Collection)collection, (Object[])new Ability[]{ability, ability2, ability3, object2, ability4, ability5, ability6, ability7, ability8, ability9, ability10});
+            CollectionsKt.addAll((Collection)collection, (Object[])new Ability[]{object2, ability, ability2, ability3, ability4, ability5, ability6, ability7, ability8, ability9, ability10});
             abilityLayer.setWalkSpeed(0.1f);
             abilityLayer.setFlySpeed(0.15f);
             object.add(abilityLayer);

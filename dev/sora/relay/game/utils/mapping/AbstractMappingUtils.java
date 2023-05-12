@@ -2,11 +2,8 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.comparisons.ComparisonsKt
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
  */
 package dev.sora.relay.game.utils.mapping;
 

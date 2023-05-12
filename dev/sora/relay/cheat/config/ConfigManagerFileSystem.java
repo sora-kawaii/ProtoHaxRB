@@ -2,12 +2,8 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.io.FilesKt
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.config;
 
@@ -20,8 +16,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import kotlin.Metadata;
 import kotlin.collections.CollectionsKt;
@@ -36,13 +30,13 @@ extends AbstractConfigManager {
     private final File dir;
     private final String suffix;
 
-    public ConfigManagerFileSystem(File file, String string, ModuleManager moduleManager) {
+    public ConfigManagerFileSystem(File file, String string2, ModuleManager moduleManager) {
         Intrinsics.checkNotNullParameter((Object)file, (String)"dir");
-        Intrinsics.checkNotNullParameter((Object)string, (String)"suffix");
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"suffix");
         Intrinsics.checkNotNullParameter((Object)moduleManager, (String)"moduleManager");
         super(moduleManager);
         this.dir = file;
-        this.suffix = string;
+        this.suffix = string2;
         if (!file.exists()) {
             file.mkdirs();
         }
@@ -59,32 +53,31 @@ extends AbstractConfigManager {
 
     @Override
     public List<String> listConfig() {
-        Iterator iterator;
-        Object object3;
+        Object object4;
         Object object2 = this.dir.listFiles();
         if (object2 == null) {
             return CollectionsKt.emptyList();
         }
-        Collection collection = new ArrayList();
-        for (Object object3 : object2) {
-            iterator = ((File)object3).getName();
-            Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)"it.name");
-            if (!StringsKt.endsWith$default((String)((Object)iterator), (String)this.suffix, (boolean)false, (int)2, null)) continue;
-            collection.add(object3);
+        Object object3 = new ArrayList();
+        for (Object object4 : object2) {
+            String string2 = ((File)object4).getName();
+            Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"it.name");
+            if (!StringsKt.endsWith$default((String)string2, (String)this.suffix, (boolean)false, (int)2, null)) continue;
+            object3.add(object4);
         }
-        object3 = (List)collection;
-        iterator = (Iterable)object3;
-        object3 = new ArrayList(CollectionsKt.collectionSizeOrDefault((Iterable)((Object)iterator), (int)10));
-        iterator = iterator.iterator();
-        while (iterator.hasNext()) {
-            object2 = ((File)iterator.next()).getName();
-            Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"it");
-            object2 = ((String)object2).substring(0, ((String)object2).length() - this.suffix.length());
-            Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"this as java.lang.String\u2026ing(startIndex, endIndex)");
-            object3.add(object2);
+        object4 = (List)object3;
+        object2 = (Iterable)object4;
+        object4 = new ArrayList(CollectionsKt.collectionSizeOrDefault((Iterable)object2, (int)10));
+        object2 = object2.iterator();
+        while (object2.hasNext()) {
+            object3 = ((File)object2.next()).getName();
+            Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"it");
+            object3 = ((String)object3).substring(0, ((String)object3).length() - this.suffix.length());
+            Intrinsics.checkNotNullExpressionValue((Object)object3, (String)"this as java.lang.String\u2026ing(startIndex, endIndex)");
+            object4.add(object3);
         }
-        object3 = (List)object3;
-        return object3;
+        object4 = (List)object4;
+        return object4;
     }
 
     @Override
@@ -99,10 +92,10 @@ extends AbstractConfigManager {
     }
 
     @Override
-    protected void saveConfigData(String string, byte[] byArray) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
+    protected void saveConfigData(String string2, byte[] byArray) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
         Intrinsics.checkNotNullParameter((Object)byArray, (String)"data");
-        FilesKt.writeBytes((File)new File(this.dir, string + ".json"), (byte[])byArray);
+        FilesKt.writeBytes((File)new File(this.dir, string2 + ".json"), (byte[])byArray);
     }
 }
 

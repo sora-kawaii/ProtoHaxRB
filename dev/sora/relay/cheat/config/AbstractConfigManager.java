@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
  */
 package dev.sora.relay.cheat.config;
 
@@ -94,18 +92,18 @@ public abstract class AbstractConfigManager {
             while (true) {
                 if (var4_4.hasNext()) ** break;
                 continue block2;
-                var6_6 = (Value)var4_4.next();
-                if (!var3_3.has(var6_6.getName())) continue;
-                var7_8 = var3_3.get(var6_6.getName());
-                Intrinsics.checkNotNullExpressionValue((Object)var7_8, (String)"valuesJson.get(v.name)");
-                var6_6.fromJson(var7_8);
+                var7_8 = (Value)var4_4.next();
+                if (!var3_3.has(var7_8.getName())) continue;
+                var6_6 = var3_3.get(var7_8.getName());
+                Intrinsics.checkNotNullExpressionValue((Object)var6_6, (String)"valuesJson.get(v.name)");
+                var7_8.fromJson((JsonElement)var6_6);
             }
             break;
         }
     }
 
-    public final void saveConfig(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
+    public final void saveConfig(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
         try {
             Object object = new JsonObject();
             ((JsonObject)object).add("modules", this.saveConfigSectionModule());
@@ -113,7 +111,7 @@ public abstract class AbstractConfigManager {
             Intrinsics.checkNotNullExpressionValue((Object)object, (String)"DEFAULT_GSON.toJson(json)");
             object = ((String)object).getBytes(Charsets.UTF_8);
             Intrinsics.checkNotNullExpressionValue((Object)object, (String)"this as java.lang.String).getBytes(charset)");
-            this.saveConfigData(string, (byte[])object);
+            this.saveConfigData(string2, (byte[])object);
         }
         catch (Throwable throwable) {
             LoggerKt.logError("failed to save config", throwable);

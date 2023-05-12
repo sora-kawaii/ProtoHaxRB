@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -17,7 +15,6 @@ import dev.sora.relay.game.entity.Entity;
 import dev.sora.relay.game.entity.EntityPlayer;
 import dev.sora.relay.game.event.impl.EventPacketOutbound;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import kotlin.Metadata;
 import kotlin.collections.CollectionsKt;
@@ -32,11 +29,11 @@ extends CheatModule {
     public LockBack() {
         super("TPAura", false, false, 6, null);
         Vector3f vector3f = Vector3f.from(0.0, 0.0, 0.0);
-        String string = "from(0.0, 0.0, 0.0)";
-        Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string);
+        String string2 = "from(0.0, 0.0, 0.0)";
+        Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string2);
         this.targetPos = vector3f;
         vector3f = Vector3f.from(0.0, 0.0, 0.0);
-        Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string);
+        Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string2);
         this.targetRot = vector3f;
     }
 
@@ -44,13 +41,13 @@ extends CheatModule {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
         Object object2 = this.getSession().getTheWorld().getEntityMap().values();
         object = new ArrayList();
-        Iterator iterator = object2.iterator();
-        while (iterator.hasNext()) {
-            object2 = iterator.next();
-            Entity entity = (Entity)object2;
+        object2 = object2.iterator();
+        while (object2.hasNext()) {
+            Object e = object2.next();
+            Entity entity = (Entity)e;
             boolean bl = entity instanceof EntityPlayer && entity.distanceSq(this.getSession().getThePlayer()) < 6.0 && !AntiBot.INSTANCE.isBot((EntityPlayer)entity, this.getSession()) && !Teams.INSTANCE.isTeammate((EntityPlayer)entity, this.getSession()) && !Friend.INSTANCE.isFriend((EntityPlayer)entity);
             if (!bl) continue;
-            object.add(object2);
+            object.add(e);
         }
         object = (List)object;
         object = (Entity)CollectionsKt.first((List)object);
@@ -61,10 +58,10 @@ extends CheatModule {
         double d2 = 2;
         double d3 = f;
         double d4 = 180;
-        d3 = Math.cos(d3 * 3.1415926 / d4);
-        double d5 = this.targetPos.getZ();
+        double d5 = Math.cos(d3 * 3.1415926 / d4);
+        d3 = this.targetPos.getZ();
         d4 = Math.sin((double)f * 3.1415926 / d4);
-        object = Vector3f.from(d + d3 * d2, (double)this.targetPos.getY(), d5 + d2 * d4);
+        object = Vector3f.from(d + d5 * d2, (double)this.targetPos.getY(), d3 + d2 * d4);
         Intrinsics.checkNotNullExpressionValue((Object)object, (String)"from(nePos_x, targetPos.y.toDouble(), nePos_z)");
         object = Vector3f.from(((double)((Vector3f)object).getX() - this.getSession().getThePlayer().getPosX()) * 0.496, ((double)((Vector3f)object).getY() - this.getSession().getThePlayer().getPosY() + 1.0) * 0.496, 0.496 * ((double)((Vector3f)object).getZ() - this.getSession().getThePlayer().getPosZ()));
         Intrinsics.checkNotNullExpressionValue((Object)object, (String)"from(Pc_x, Pc_y, Pc_z)");

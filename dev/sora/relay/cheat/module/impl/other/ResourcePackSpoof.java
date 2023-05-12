@@ -2,15 +2,10 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Pair
- *  kotlin.TuplesKt
- *  kotlin.collections.CollectionsKt
  *  kotlin.collections.MapsKt
  *  kotlin.io.FilesKt
  *  kotlin.jvm.internal.Intrinsics
  *  kotlin.ranges.RangesKt
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.other;
 
@@ -103,28 +98,28 @@ extends CheatModule {
                 Intrinsics.checkNotNullExpressionValue(iterable, (String)"packet.packIds");
                 Iterator<String> iterator = iterable;
                 iterable = new ArrayList(CollectionsKt.collectionSizeOrDefault((Iterable)((Object)iterator), (int)10));
-                Iterator object2 = iterator.iterator();
-                while (object2.hasNext()) {
-                    iterator = (String)object2.next();
-                    iterable.add((String)((Object)iterator));
+                iterator = iterator.iterator();
+                while (iterator.hasNext()) {
+                    String string2 = (String)iterator.next();
+                    iterable.add((String)string2);
                 }
                 iterable = iterable;
-                for (String string : iterable) {
+                for (String string2 : iterable) {
                     Object object = resourcePackProvider;
-                    Intrinsics.checkNotNullExpressionValue((Object)string, (String)"it");
-                    Pair<ResourcePacksInfoPacket.Entry, byte[]> pair = object.getPackById(string);
+                    Intrinsics.checkNotNullExpressionValue((Object)string2, (String)"it");
+                    Pair<ResourcePacksInfoPacket.Entry, byte[]> pair = object.getPackById(string2);
                     if (pair == null) continue;
                     RakNetRelaySession rakNetRelaySession = eventPacketOutbound.getSession().getNetSession();
                     object = new ResourcePackDataInfoPacket();
-                    ((ResourcePackDataInfoPacket)object).setPackId(UUID.fromString(((ResourcePacksInfoPacket.Entry)pair.getFirst()).getPackId()));
-                    ((ResourcePackDataInfoPacket)object).setPackVersion(((ResourcePacksInfoPacket.Entry)pair.getFirst()).getPackVersion());
+                    ((ResourcePackDataInfoPacket)object).setPackId(UUID.fromString(pair.getFirst().getPackId()));
+                    ((ResourcePackDataInfoPacket)object).setPackVersion(pair.getFirst().getPackVersion());
                     ((ResourcePackDataInfoPacket)object).setMaxChunkSize(8192L);
-                    ((ResourcePackDataInfoPacket)object).setChunkCount(((ResourcePacksInfoPacket.Entry)pair.getFirst()).getPackSize() / (long)8192);
-                    ((ResourcePackDataInfoPacket)object).setCompressedPackSize(((ResourcePacksInfoPacket.Entry)pair.getFirst()).getPackSize());
-                    ((ResourcePackDataInfoPacket)object).setHash(MessageDigest.getInstance("SHA-256").digest((byte[])pair.getSecond()));
+                    ((ResourcePackDataInfoPacket)object).setChunkCount(pair.getFirst().getPackSize() / (long)8192);
+                    ((ResourcePackDataInfoPacket)object).setCompressedPackSize(pair.getFirst().getPackSize());
+                    ((ResourcePackDataInfoPacket)object).setHash(MessageDigest.getInstance("SHA-256").digest(pair.getSecond()));
                     ((ResourcePackDataInfoPacket)object).setType(ResourcePackType.RESOURCE);
                     rakNetRelaySession.inboundPacket((BedrockPacket)object);
-                    ((ResourcePackClientResponsePacket)bedrockPacket).getPackIds().remove(string);
+                    ((ResourcePackClientResponsePacket)bedrockPacket).getPackIds().remove(string2);
                 }
                 if (((ResourcePackClientResponsePacket)bedrockPacket).getPackIds().isEmpty()) {
                     eventPacketOutbound.cancel();
@@ -132,20 +127,20 @@ extends CheatModule {
             }
         } else if (bedrockPacket instanceof ResourcePackChunkRequestPacket) {
             Object object = resourcePackProvider;
-            Object object4 = ((ResourcePackChunkRequestPacket)bedrockPacket).getPackId().toString();
-            Intrinsics.checkNotNullExpressionValue((Object)object4, (String)"packet.packId.toString()");
-            Pair<ResourcePacksInfoPacket.Entry, byte[]> pair = object.getPackById((String)object4);
-            if (pair == null) {
+            Object object2 = ((ResourcePackChunkRequestPacket)bedrockPacket).getPackId().toString();
+            Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"packet.packId.toString()");
+            object = object.getPackById((String)object2);
+            if (object == null) {
                 return;
             }
-            object4 = eventPacketOutbound.getSession().getNetSession();
-            object = new ResourcePackChunkDataPacket();
-            ((ResourcePackChunkDataPacket)object).setPackId(((ResourcePackChunkRequestPacket)bedrockPacket).getPackId());
-            ((ResourcePackChunkDataPacket)object).setPackVersion(((ResourcePackChunkRequestPacket)bedrockPacket).getPackVersion());
-            ((ResourcePackChunkDataPacket)object).setChunkIndex(((ResourcePackChunkRequestPacket)bedrockPacket).getChunkIndex());
-            ((ResourcePackChunkDataPacket)object).setProgress(((ResourcePackChunkDataPacket)object).getChunkIndex() * 8192);
-            ((ResourcePackChunkDataPacket)object).setData(INSTANCE.getPackChunk((byte[])pair.getSecond(), (int)((ResourcePackChunkDataPacket)object).getProgress(), 8192));
-            ((RakNetRelaySession)object4).inboundPacket((BedrockPacket)object);
+            object2 = eventPacketOutbound.getSession().getNetSession();
+            ResourcePackChunkDataPacket resourcePackChunkDataPacket = new ResourcePackChunkDataPacket();
+            resourcePackChunkDataPacket.setPackId(((ResourcePackChunkRequestPacket)bedrockPacket).getPackId());
+            resourcePackChunkDataPacket.setPackVersion(((ResourcePackChunkRequestPacket)bedrockPacket).getPackVersion());
+            resourcePackChunkDataPacket.setChunkIndex(((ResourcePackChunkRequestPacket)bedrockPacket).getChunkIndex());
+            resourcePackChunkDataPacket.setProgress(resourcePackChunkDataPacket.getChunkIndex() * 8192);
+            resourcePackChunkDataPacket.setData(INSTANCE.getPackChunk((byte[])((Pair)object).getSecond(), (int)resourcePackChunkDataPacket.getProgress(), 8192));
+            ((RakNetRelaySession)object2).inboundPacket(resourcePackChunkDataPacket);
             eventPacketOutbound.cancel();
         }
     }
@@ -164,8 +159,8 @@ extends CheatModule {
         }
 
         @Override
-        public Pair<ResourcePacksInfoPacket.Entry, byte[]> getPackById(String string) {
-            Intrinsics.checkNotNullParameter((Object)string, (String)"id");
+        public Pair<ResourcePacksInfoPacket.Entry, byte[]> getPackById(String string2) {
+            Intrinsics.checkNotNullParameter((Object)string2, (String)"id");
             return null;
         }
     }
@@ -177,6 +172,7 @@ extends CheatModule {
 
         /*
          * Unable to fully structure code
+         * Could not resolve type clashes
          */
         public FileSystemResourcePackProvider(File var1_1) {
             block6: {
@@ -192,9 +188,9 @@ extends CheatModule {
                     while (true) {
                         var6_6 = "it";
                         if (var5_5 >= var4_4) break;
-                        var7_7 = var2_2[var5_5];
-                        if (!var7_7.isFile()) ** GOTO lbl-1000
-                        var8_8 = var7_7.getCanonicalPath();
+                        var7_7 /* !! */  = var2_2[var5_5];
+                        if (!var7_7 /* !! */ .isFile()) ** GOTO lbl-1000
+                        var8_8 = var7_7 /* !! */ .getCanonicalPath();
                         Intrinsics.checkNotNullExpressionValue((Object)var8_8, (String)var6_6);
                         var9_9 = StringsKt.endsWith$default((String)var8_8, (String)".zip", (boolean)false, (int)2, null) || StringsKt.endsWith$default((String)var8_8, (String)".mcpack", (boolean)false, (int)2, null);
                         if (var9_9) {
@@ -206,7 +202,7 @@ extends CheatModule {
                             var9_9 = false;
                         }
                         if (var9_9) {
-                            var3_3.add(var7_7);
+                            var3_3.add(var7_7 /* !! */ );
                         }
                         ++var5_5;
                     }
@@ -217,10 +213,10 @@ extends CheatModule {
                     while (var3_3.hasNext()) {
                         var8_8 = (File)var3_3.next();
                         Intrinsics.checkNotNullExpressionValue((Object)var8_8, (String)var6_6);
-                        var7_7 = FilesKt.readBytes((File)var8_8);
+                        var7_7 /* !! */  = (Pair<ResourcePacksInfoPacket.Entry, Object>)FilesKt.readBytes((File)var8_8);
                         var8_8 = this.readManifest((File)var8_8);
-                        var7_7 = TuplesKt.to((Object)new ResourcePacksInfoPacket.Entry((String)var8_8.getFirst(), (String)var8_8.getSecond(), ((Object)var7_7).length, "", "", "", false, false), (Object)var7_7);
-                        var2_2.put(var7_7.getFirst(), var7_7.getSecond());
+                        var7_7 /* !! */  = TuplesKt.to(new ResourcePacksInfoPacket.Entry(var8_8.getFirst(), var8_8.getSecond(), ((Object)var7_7 /* !! */ ).length, "", "", "", false, false), var7_7 /* !! */ );
+                        var2_2.put(var7_7 /* !! */ .getFirst(), var7_7 /* !! */ .getSecond());
                     }
                     var1_1 = var2_2;
                     break block6;
@@ -231,14 +227,14 @@ extends CheatModule {
         }
 
         private final Pair<String, String> readManifest(File object) {
-            ZipFile zipFile = new ZipFile((File)object);
-            Object object2 = zipFile.getEntry("manifest.json");
-            if (object2 != null) {
-                object2 = JsonParser.parseReader(new InputStreamReader(zipFile.getInputStream((ZipEntry)object2))).getAsJsonObject().getAsJsonObject("header");
+            Object object2 = new ZipFile((File)object);
+            ZipEntry zipEntry = ((ZipFile)object2).getEntry("manifest.json");
+            if (zipEntry != null) {
+                object2 = JsonParser.parseReader(new InputStreamReader(((ZipFile)object2).getInputStream(zipEntry))).getAsJsonObject().getAsJsonObject("header");
                 object = ((JsonObject)object2).get("uuid").getAsString();
                 object2 = ((JsonObject)object2).getAsJsonArray("version");
                 Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"manifest.getAsJsonArray(\"version\")");
-                return TuplesKt.to((Object)object, (Object)CollectionsKt.joinToString$default((Iterable)((Iterable)object2), (CharSequence)".", null, null, (int)0, null, null, (int)62, null));
+                return TuplesKt.to(object, CollectionsKt.joinToString$default((Iterable)((Iterable)object2), (CharSequence)".", null, null, (int)0, null, null, (int)62, null));
             }
             throw new IllegalStateException(("no manifest found in resource pack file: " + ((File)object).getCanonicalPath()).toString());
         }
@@ -249,12 +245,12 @@ extends CheatModule {
         }
 
         @Override
-        public Pair<ResourcePacksInfoPacket.Entry, byte[]> getPackById(String string) {
-            Intrinsics.checkNotNullParameter((Object)string, (String)"idRaw");
-            string = (String)StringsKt.split$default((CharSequence)string, (String[])new String[]{"_"}, (boolean)false, (int)0, (int)6, null).get(0);
+        public Pair<ResourcePacksInfoPacket.Entry, byte[]> getPackById(String object) {
+            Intrinsics.checkNotNullParameter((Object)object, (String)"idRaw");
+            String string2 = (String)StringsKt.split$default((CharSequence)((CharSequence)((Object)object)), (String[])new String[]{"_"}, (boolean)false, (int)0, (int)6, null).get(0);
             for (Map.Entry<ResourcePacksInfoPacket.Entry, byte[]> entry : this.files.entrySet()) {
-                if (!Intrinsics.areEqual((Object)entry.getKey().getPackId(), (Object)string)) continue;
-                return TuplesKt.to((Object)entry.getKey(), (Object)entry.getValue());
+                if (!Intrinsics.areEqual((Object)entry.getKey().getPackId(), (Object)string2)) continue;
+                return TuplesKt.to(entry.getKey(), entry.getValue());
             }
             return null;
         }

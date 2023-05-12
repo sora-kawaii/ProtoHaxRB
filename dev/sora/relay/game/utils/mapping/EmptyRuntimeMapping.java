@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -23,20 +22,20 @@ implements RuntimeMapping {
         this(null, 0, 3, null);
     }
 
-    public EmptyRuntimeMapping(String string, int n) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"fallbackGame");
-        this.fallbackGame = string;
+    public EmptyRuntimeMapping(String string2, int n) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"fallbackGame");
+        this.fallbackGame = string2;
         this.fallbackRuntime = n;
     }
 
-    public /* synthetic */ EmptyRuntimeMapping(String string, int n, int n2, DefaultConstructorMarker defaultConstructorMarker) {
+    public /* synthetic */ EmptyRuntimeMapping(String string2, int n, int n2, DefaultConstructorMarker defaultConstructorMarker) {
         if ((n2 & 1) != 0) {
-            string = "minecraft:unknown";
+            string2 = "minecraft:unknown";
         }
         if ((n2 & 2) != 0) {
             n = 0;
         }
-        this(string, n);
+        this(string2, n);
     }
 
     @Override
@@ -45,8 +44,8 @@ implements RuntimeMapping {
     }
 
     @Override
-    public int runtime(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"game");
+    public int runtime(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"game");
         return this.fallbackRuntime;
     }
 }

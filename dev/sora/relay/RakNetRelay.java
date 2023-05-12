@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.DefaultConstructorMarker
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -115,11 +114,11 @@ public final class RakNetRelay {
         object2 = new RakNetClient(inetSocketAddress, (Bootstrap)object2, null);
         ((RakNet)object2).setProtocolVersion(((RakNetSession)object).getProtocolVersion());
         ((RakNet)object2).bind().join();
-        object4 = ((RakNetClient)object2).connect((InetSocketAddress)object4);
-        Intrinsics.checkNotNullExpressionValue((Object)object4, (String)"clientSession");
-        object2 = this.eventLoopGroup.next();
-        Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"eventLoopGroup.next()");
-        object4 = new RakNetRelaySession((RakNetServerSession)object, (RakNetClientSession)object4, (EventLoop)object2, this.packetCodec, (RakNetRelaySessionListener)object3);
+        object2 = ((RakNetClient)object2).connect((InetSocketAddress)object4);
+        Intrinsics.checkNotNullExpressionValue((Object)object2, (String)"clientSession");
+        object4 = this.eventLoopGroup.next();
+        Intrinsics.checkNotNullExpressionValue((Object)object4, (String)"eventLoopGroup.next()");
+        object4 = new RakNetRelaySession((RakNetServerSession)object, (RakNetClientSession)object2, (EventLoop)object4, this.packetCodec, (RakNetRelaySessionListener)object3);
         object = this.listener;
         if (object != null) {
             object.onSession((RakNetRelaySession)object4);

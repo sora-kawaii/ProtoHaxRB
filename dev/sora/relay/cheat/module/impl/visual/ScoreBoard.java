@@ -2,10 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.visual;
 
@@ -29,14 +26,14 @@ extends CheatModule {
 
     public ScoreBoard() {
         super("ScoreBoard", true, false, 4, null);
-        String string = "cubecraft.net";
-        String string2 = "nethergames.org";
-        String string3 = "play.venitymc.com";
-        String string4 = "play.hyperlandsmc.net";
-        String string5 = "mc.fapixel.com";
-        String string6 = "prokits.space";
-        String string7 = "mc.mirekits.xyz";
-        this.serverAddressList = CollectionsKt.listOf((Object[])new String[]{string, string2, string3, string4, string5, string6, string7});
+        String string2 = "cubecraft.net";
+        String string3 = "nethergames.org";
+        String string4 = "play.venitymc.com";
+        String string5 = "play.hyperlandsmc.net";
+        String string6 = "mc.fapixel.com";
+        String string7 = "prokits.space";
+        String string8 = "mc.mirekits.xyz";
+        this.serverAddressList = CollectionsKt.listOf((Object[])new String[]{string2, string3, string4, string5, string6, string7, string8});
         this.customServerAddressValue = new StringValue("ServerAddress", "ProtoHaxRB");
     }
 
@@ -48,16 +45,16 @@ extends CheatModule {
             int n = ((SetScorePacket)object).getInfos().size();
             for (int i = 0; i < n; ++i) {
                 ScoreInfo scoreInfo = ((SetScorePacket)object).getInfos().get(i);
-                for (String string : this.serverAddressList) {
-                    String string2 = scoreInfo.getName();
+                for (String string2 : this.serverAddressList) {
                     String string3 = scoreInfo.getName();
-                    String string4 = "scoreInfo.name";
-                    Intrinsics.checkNotNullExpressionValue((Object)string3, (String)string4);
-                    if (Intrinsics.areEqual((Object)string2, (Object)StringsKt.replace$default((String)string3, (String)string, (String)((String)this.customServerAddressValue.get()), (boolean)false, (int)4, null))) continue;
+                    String string4 = scoreInfo.getName();
+                    String string5 = "scoreInfo.name";
+                    Intrinsics.checkNotNullExpressionValue((Object)string4, (String)string5);
+                    if (Intrinsics.areEqual((Object)string3, (Object)StringsKt.replace$default((String)string4, (String)string2, (String)((String)this.customServerAddressValue.get()), (boolean)false, (int)4, null))) continue;
                     string3 = scoreInfo.getName();
-                    Intrinsics.checkNotNullExpressionValue((Object)string3, (String)string4);
-                    string = StringsKt.replace$default((String)string3, (String)string, (String)((String)this.customServerAddressValue.get()), (boolean)false, (int)4, null);
-                    ((SetScorePacket)object).getInfos().set(i, new ScoreInfo(scoreInfo.getScoreboardId(), scoreInfo.getObjectiveId(), scoreInfo.getScore(), string));
+                    Intrinsics.checkNotNullExpressionValue((Object)string3, (String)string5);
+                    string5 = StringsKt.replace$default((String)string3, (String)string2, (String)((String)this.customServerAddressValue.get()), (boolean)false, (int)4, null);
+                    ((SetScorePacket)object).getInfos().set(i, new ScoreInfo(scoreInfo.getScoreboardId(), scoreInfo.getObjectiveId(), scoreInfo.getScore(), string5));
                     return;
                 }
             }

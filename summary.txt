@@ -2,6 +2,22 @@ Summary for out.jar
 Decompiled with CFR 0.152
 
 
+dev.sora.protohax.relay.gui.SelectionMenu
+----------------------------
+
+normalOnClickListener$default(dev.sora.protohax.relay.gui.SelectionMenu android.widget.Button boolean kotlin.jvm.functions.Function1 int java.lang.Object )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Extractable last case doesn't follow previous, and can't clone.
+themedButton$default(dev.sora.protohax.relay.gui.SelectionMenu android.content.Context int int boolean int java.lang.Object )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Extractable last case doesn't follow previous, and can't clone.
+
+
+dev.sora.protohax.relay.gui.SessionSates
+----------------------------
+
+themedButton$default(dev.sora.protohax.relay.gui.SessionSates android.content.Context int int boolean int java.lang.Object )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Extractable last case doesn't follow previous, and can't clone.
+
+
 dev.sora.relay.RakNetRelaySession
 ----------------------------
 
@@ -18,6 +34,43 @@ exec(java.lang.String[] )
   Unable to fully structure code
 
 
+dev.sora.relay.cheat.module.impl.other.ResourcePackSpoof
+----------------------------
+
+<init>(java.io.File )
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+dev.sora.protohax.AppService
+----------------------------
+
+popupWindow$lambda-3(kotlin.jvm.internal.Ref$FloatRef kotlin.jvm.internal.Ref$FloatRef kotlin.jvm.internal.Ref$LongRef android.view.WindowManager$LayoutParams dev.sora.protohax.AppService android.widget.LinearLayout android.view.View android.view.MotionEvent )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Extractable last case doesn't follow previous, and can't clone.
+
+
+dev.sora.protohax.MainActivity
+----------------------------
+
+updateConnStatus$default(dev.sora.protohax.MainActivity boolean int java.lang.Object )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Extractable last case doesn't follow previous, and can't clone.
+
+
+dev.sora.protohax.relay.gui.PopupWindow
+----------------------------
+
+draggable$lambda-5(kotlin.jvm.internal.Ref$FloatRef kotlin.jvm.internal.Ref$FloatRef kotlin.jvm.internal.Ref$LongRef android.view.WindowManager$LayoutParams android.view.WindowManager android.view.View android.view.View android.view.MotionEvent )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Extractable last case doesn't follow previous, and can't clone.
+
+
+dev.sora.protohax.util.Gpw
+----------------------------
+
+<init>()
+  Recovered potentially malformed switches.  Disable with '--allowmalformedswitch false'
+  Unable to fully structure code
+
+
 dev.sora.relay.cheat.config.AbstractConfigManager
 ----------------------------
 
@@ -29,11 +82,4 @@ dev.sora.relay.cheat.module.impl.fight.OPFightBot
 ----------------------------
 
 onTick(dev.sora.relay.game.event.impl.EventTick )
-  Unable to fully structure code
-
-
-dev.sora.relay.cheat.module.impl.other.ResourcePackSpoof
-----------------------------
-
-<init>(java.io.File )
   Unable to fully structure code

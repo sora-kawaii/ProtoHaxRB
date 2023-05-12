@@ -1,8 +1,5 @@
 /*
  * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  kotlin.Metadata
  */
 package dev.sora.relay.game.utils.constants;
 

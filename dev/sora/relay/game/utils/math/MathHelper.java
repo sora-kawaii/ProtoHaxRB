@@ -112,14 +112,14 @@ public class MathHelper {
             d3 = d;
             d4 = d2;
         }
-        d2 = MathHelper.func_181161_i(d5);
-        double d6 = d4 * d2;
+        d = MathHelper.func_181161_i(d5);
         d5 = field_181163_d;
-        d4 = d5 + d6;
-        int n = (int)Double.doubleToRawLongBits(d4);
-        d = field_181164_e[n];
-        d2 = d6 * field_181165_f[n] - d3 * d2 * (d4 - d5);
-        d = d2 = d + (d2 * d2 + 6.0) * d2 * 0.16666666666666666;
+        double d6 = d5 + (d4 *= d);
+        int n = (int)Double.doubleToRawLongBits(d6);
+        d2 = field_181164_e[n];
+        d = d4 * field_181165_f[n] - d3 * d * (d6 - d5);
+        d2 += (d * d + 6.0) * d * 0.16666666666666666;
+        d = d2;
         if (bl) {
             d = 1.5707963267948966 - d2;
         }
@@ -328,8 +328,8 @@ public class MathHelper {
         switch (n) {
             default: {
                 StringBuilder stringBuilder = new StringBuilder().append("Something went wrong when converting from HSV to RGB. Input was ").append(f);
-                String string = ", ";
-                throw new RuntimeException(stringBuilder.append(string).append(f2).append(string).append(f3).toString());
+                String string2 = ", ";
+                throw new RuntimeException(stringBuilder.append(string2).append(f2).append(string2).append(f3).toString());
             }
             case 5: {
                 f = f3;
@@ -377,9 +377,9 @@ public class MathHelper {
         return (n % n2 + n2) % n2;
     }
 
-    public static double parseDoubleWithDefault(String string, double d) {
+    public static double parseDoubleWithDefault(String string2, double d) {
         try {
-            double d2 = Double.parseDouble(string);
+            double d2 = Double.parseDouble(string2);
             return d2;
         }
         catch (Throwable throwable) {
@@ -387,13 +387,13 @@ public class MathHelper {
         }
     }
 
-    public static double parseDoubleWithDefaultAndMax(String string, double d, double d2) {
-        return Math.max(d2, MathHelper.parseDoubleWithDefault(string, d));
+    public static double parseDoubleWithDefaultAndMax(String string2, double d, double d2) {
+        return Math.max(d2, MathHelper.parseDoubleWithDefault(string2, d));
     }
 
-    public static int parseIntWithDefault(String string, int n) {
+    public static int parseIntWithDefault(String string2, int n) {
         try {
-            int n2 = Integer.parseInt(string);
+            int n2 = Integer.parseInt(string2);
             return n2;
         }
         catch (Throwable throwable) {
@@ -401,8 +401,8 @@ public class MathHelper {
         }
     }
 
-    public static int parseIntWithDefaultAndMax(String string, int n, int n2) {
-        return Math.max(n2, MathHelper.parseIntWithDefault(string, n));
+    public static int parseIntWithDefaultAndMax(String string2, int n, int n2) {
+        return Math.max(n2, MathHelper.parseIntWithDefault(string2, n));
     }
 
     public static float randomFloatClamp(Random random, float f, float f2) {

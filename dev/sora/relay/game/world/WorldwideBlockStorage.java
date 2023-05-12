@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Unit
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -96,42 +94,42 @@ public abstract class WorldwideBlockStorage {
         return this.viewDistance;
     }
 
-    public void onServerPacket(BedrockPacket iterator) {
-        Intrinsics.checkNotNullParameter((Object)iterator, (String)"packet");
-        if (iterator instanceof LevelChunkPacket) {
+    public void onServerPacket(BedrockPacket object) {
+        Intrinsics.checkNotNullParameter((Object)object, (String)"packet");
+        if (object instanceof LevelChunkPacket) {
             this.chunkOutOfRangeCheck();
-            int n = ((LevelChunkPacket)((Object)iterator)).getChunkX();
-            int n2 = ((LevelChunkPacket)((Object)iterator)).getChunkZ();
+            int n = ((LevelChunkPacket)object).getChunkX();
+            int n2 = ((LevelChunkPacket)object).getChunkZ();
             boolean bl = this.dimension == 0 && (!this.session.getNetSessionInitialized() || this.session.getNetSession().getPacketCodec().getProtocolVersion() >= 440);
             Chunk chunk = new Chunk(n, n2, bl, this.session.getBlockMapping(), this.session.getLegacyBlockMapping());
-            ByteBuf byteBuf = Unpooled.wrappedBuffer(((LevelChunkPacket)((Object)iterator)).getData());
+            ByteBuf byteBuf = Unpooled.wrappedBuffer(((LevelChunkPacket)object).getData());
             Intrinsics.checkNotNullExpressionValue((Object)byteBuf, (String)"wrappedBuffer(packet.data)");
-            chunk.read(byteBuf, ((LevelChunkPacket)((Object)iterator)).getSubChunksLength());
+            chunk.read(byteBuf, ((LevelChunkPacket)object).getSubChunksLength());
             this.chunks.put(chunk.getHash(), chunk);
-        } else if (iterator instanceof ChunkRadiusUpdatedPacket) {
-            this.viewDistance = ((ChunkRadiusUpdatedPacket)((Object)iterator)).getRadius();
+        } else if (object instanceof ChunkRadiusUpdatedPacket) {
+            this.viewDistance = ((ChunkRadiusUpdatedPacket)object).getRadius();
             this.chunkOutOfRangeCheck();
-        } else if (iterator instanceof ChangeDimensionPacket) {
-            this.dimension = ((ChangeDimensionPacket)((Object)iterator)).getDimension();
+        } else if (object instanceof ChangeDimensionPacket) {
+            this.dimension = ((ChangeDimensionPacket)object).getDimension();
             this.chunks.clear();
-        } else if (iterator instanceof UpdateBlockPacket && ((UpdateBlockPacket)((Object)iterator)).getDataLayer() == 0) {
-            this.setBlockIdAt(((UpdateBlockPacket)((Object)iterator)).getBlockPosition().getX(), ((UpdateBlockPacket)((Object)iterator)).getBlockPosition().getY(), ((UpdateBlockPacket)((Object)iterator)).getBlockPosition().getZ(), ((UpdateBlockPacket)((Object)iterator)).getRuntimeId());
-        } else if (iterator instanceof SubChunkPacket && ((SubChunkPacket)((Object)iterator)).getDimension() == this.dimension) {
-            Vector3i vector3i = ((SubChunkPacket)((Object)iterator)).getCenterPosition();
-            iterator = ((SubChunkPacket)((Object)iterator)).getSubChunks();
-            Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)"packet.subChunks");
-            for (SubChunkData subChunkData : (Iterable)((Object)iterator)) {
-                if (subChunkData.getResult() != SubChunkRequestResult.SUCCESS) continue;
-                Object object = subChunkData.getPosition().add(vector3i).add(0, 4, 0);
-                Intrinsics.checkNotNullExpressionValue((Object)object, (String)"it.position.add(centerPos).add(0, 4, 0)");
-                Chunk chunk = this.getChunk(((Vector3i)object).getX(), ((Vector3i)object).getZ());
-                if (chunk == null) continue;
-                byte[] byArray = subChunkData.getData();
-                String string = "it.data";
-                Intrinsics.checkNotNullExpressionValue((Object)byArray, (String)string);
+        } else if (object instanceof UpdateBlockPacket && ((UpdateBlockPacket)object).getDataLayer() == 0) {
+            this.setBlockIdAt(((UpdateBlockPacket)object).getBlockPosition().getX(), ((UpdateBlockPacket)object).getBlockPosition().getY(), ((UpdateBlockPacket)object).getBlockPosition().getZ(), ((UpdateBlockPacket)object).getRuntimeId());
+        } else if (object instanceof SubChunkPacket && ((SubChunkPacket)object).getDimension() == this.dimension) {
+            Vector3i vector3i = ((SubChunkPacket)object).getCenterPosition();
+            object = ((SubChunkPacket)object).getSubChunks();
+            Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.subChunks");
+            for (Object object2 : (Iterable)object) {
+                if (((SubChunkData)object2).getResult() != SubChunkRequestResult.SUCCESS) continue;
+                Vector3i vector3i2 = ((SubChunkData)object2).getPosition().add(vector3i).add(0, 4, 0);
+                Intrinsics.checkNotNullExpressionValue((Object)vector3i2, (String)"it.position.add(centerPos).add(0, 4, 0)");
+                object = this.getChunk(vector3i2.getX(), vector3i2.getZ());
+                if (object == null) continue;
+                byte[] byArray = ((SubChunkData)object2).getData();
+                String string2 = "it.data";
+                Intrinsics.checkNotNullExpressionValue((Object)byArray, (String)string2);
                 int n = byArray.length == 0 ? 1 : 0;
                 if (n != 0) {
-                    this.session.getCacheManager().registerCacheCallback(subChunkData.getBlobId(), (Function1<? super byte[], Unit>)((Function1)new Function1<byte[], Unit>(chunk, (Vector3i)object){
+                    this.session.getCacheManager().registerCacheCallback(((SubChunkData)object2).getBlobId(), (Function1<? super byte[], Unit>)((Function1)new Function1<byte[], Unit>((Chunk)object, vector3i2){
                         final /* synthetic */ Chunk $chunk;
                         final /* synthetic */ Vector3i $position;
                         {
@@ -147,17 +145,17 @@ public abstract class WorldwideBlockStorage {
                     }));
                     continue;
                 }
-                n = ((Vector3i)object).getY();
-                object = subChunkData.getData();
-                Intrinsics.checkNotNullExpressionValue((Object)object, (String)string);
-                chunk.readSubChunk(n, (byte[])object);
+                n = vector3i2.getY();
+                object2 = ((SubChunkData)object2).getData();
+                Intrinsics.checkNotNullExpressionValue((Object)object2, (String)string2);
+                ((Chunk)object).readSubChunk(n, (byte[])object2);
             }
         }
     }
 
-    public final void setBlockAt(int n, int n2, int n3, String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
-        this.setBlockIdAt(n, n2, n3, this.session.getBlockMapping().runtime(string));
+    public final void setBlockAt(int n, int n2, int n3, String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
+        this.setBlockIdAt(n, n2, n3, this.session.getBlockMapping().runtime(string2));
     }
 
     public final void setBlockIdAt(int n, int n2, int n3, int n4) {

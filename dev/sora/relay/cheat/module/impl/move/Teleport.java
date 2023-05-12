@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.move;
@@ -29,9 +28,9 @@ extends CheatModule {
 
     public Teleport() {
         super("Teleport", false, false, 6, null);
-        String string = "Teleport";
-        String string2 = "ClickTP";
-        this.modeValue = new ListValue("Mode", new String[]{string, string2}, string);
+        String string2 = "Teleport";
+        String string3 = "ClickTP";
+        this.modeValue = new ListValue("Mode", new String[]{string2, string3}, string2);
         this.distanceValue = new FloatValue("Distance", 20.0f, 0.0f, 50.0f);
         this.tpHighValue = new IntValue("YHigh", 0, 0, 400);
     }

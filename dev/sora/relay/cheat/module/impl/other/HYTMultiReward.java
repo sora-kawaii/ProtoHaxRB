@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.other;
@@ -58,20 +57,20 @@ extends CheatModule {
     @Listen
     public final void onPacketOutbound(EventPacketOutbound object) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"event");
-        object = ((EventPacketOutbound)object).getPacket();
-        if (object instanceof InventoryTransactionPacket) {
-            if (((InventoryTransactionPacket)object).getTransactionType() == TransactionType.ITEM_USE_ON_ENTITY && ((InventoryTransactionPacket)object).getActionType() == 1) {
-                this.attackPacket = (InventoryTransactionPacket)object;
+        BedrockPacket bedrockPacket = ((EventPacketOutbound)object).getPacket();
+        if (bedrockPacket instanceof InventoryTransactionPacket) {
+            if (((InventoryTransactionPacket)bedrockPacket).getTransactionType() == TransactionType.ITEM_USE_ON_ENTITY && ((InventoryTransactionPacket)bedrockPacket).getActionType() == 1) {
+                this.attackPacket = (InventoryTransactionPacket)bedrockPacket;
             }
-        } else if (object instanceof ModalFormResponsePacket && this.isOpenModalForm) {
+        } else if (bedrockPacket instanceof ModalFormResponsePacket && this.isOpenModalForm) {
             Iterator<Integer> iterator = this.packetFormIdList.iterator();
             while (iterator.hasNext()) {
                 int n = ((Number)iterator.next()).intValue();
-                RakNetRelaySession rakNetRelaySession = this.getSession().getNetSession();
+                object = this.getSession().getNetSession();
                 ModalFormResponsePacket modalFormResponsePacket = new ModalFormResponsePacket();
                 modalFormResponsePacket.setFormId(n);
-                modalFormResponsePacket.setFormData(((ModalFormResponsePacket)object).getFormData());
-                rakNetRelaySession.outboundPacket(modalFormResponsePacket);
+                modalFormResponsePacket.setFormData(((ModalFormResponsePacket)bedrockPacket).getFormData());
+                ((RakNetRelaySession)object).outboundPacket(modalFormResponsePacket);
             }
             this.packetFormIdList.clear();
             this.isOpenModalForm = false;

@@ -2,16 +2,10 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.collections.ArraysKt
- *  kotlin.collections.CollectionsKt
- *  kotlin.collections.IntIterator
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.random.Random
- *  kotlin.ranges.CharRange
  *  kotlin.ranges.IntRange
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.utils;
 
@@ -41,29 +35,29 @@ public final class StringUtilsKt {
     }
 
     public static final String getRandomString(int n) {
-        List list = CollectionsKt.plus((Collection)CollectionsKt.plus((Iterable)((Iterable)new CharRange('A', 'Z')), (Iterable)((Iterable)new CharRange('a', 'z'))), (Iterable)((Iterable)new CharRange('0', '9')));
+        List list = CollectionsKt.plus((Collection)CollectionsKt.plus((Iterable)((Iterable)((Object)new CharRange('A', 'Z'))), (Iterable)((Iterable)((Object)new CharRange('a', 'z')))), (Iterable)((Iterable)((Object)new CharRange('0', '9'))));
         Object object = (Iterable)new IntRange(1, n);
         Collection collection = new ArrayList(CollectionsKt.collectionSizeOrDefault((Iterable)object, (int)10));
         object = object.iterator();
         while (object.hasNext()) {
             ((IntIterator)object).nextInt();
-            collection.add(Character.valueOf(((Character)CollectionsKt.random((Collection)list, (Random)((Random)Random.Default))).charValue()));
+            collection.add(Character.valueOf(((Character)CollectionsKt.random((Collection)list, (Random)Random.Default)).charValue()));
         }
         collection = (List)collection;
         return CollectionsKt.joinToString$default((Iterable)collection, (CharSequence)"", null, null, (int)0, null, null, (int)62, null);
     }
 
-    public static final String toHexString(byte[] byArray, String string) {
+    public static final String toHexString(byte[] byArray, String string2) {
         Intrinsics.checkNotNullParameter((Object)byArray, (String)"<this>");
-        Intrinsics.checkNotNullParameter((Object)string, (String)"separator");
-        return ArraysKt.joinToString$default((byte[])byArray, (CharSequence)string, null, null, (int)0, null, (Function1)toHexString.1.INSTANCE, (int)30, null);
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"separator");
+        return ArraysKt.joinToString$default((byte[])byArray, (CharSequence)string2, null, null, (int)0, null, (Function1)toHexString.1.INSTANCE, (int)30, null);
     }
 
-    public static /* synthetic */ String toHexString$default(byte[] byArray, String string, int n, Object object) {
+    public static /* synthetic */ String toHexString$default(byte[] byArray, String string2, int n, Object object) {
         if ((n & 1) != 0) {
-            string = "";
+            string2 = "";
         }
-        return StringUtilsKt.toHexString(byArray, string);
+        return StringUtilsKt.toHexString(byArray, string2);
     }
 }
 

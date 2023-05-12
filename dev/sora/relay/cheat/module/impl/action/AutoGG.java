@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.module.impl.action;
 
@@ -28,10 +26,10 @@ extends CheatModule {
 
     public AutoGG() {
         super("AutoGG", false, false, 6, null);
-        String string = "GG";
-        String string2 = "ProtoHaxRB user won!";
-        String string3 = "You are loser.";
-        this.messageValue = new ListValue("Message", new String[]{string, string2, string3}, string);
+        String string2 = "GG";
+        String string3 = "ProtoHaxRB user won!";
+        String string4 = "You are loser.";
+        this.messageValue = new ListValue("Message", new String[]{string2, string3, string4}, string2);
     }
 
     @Listen

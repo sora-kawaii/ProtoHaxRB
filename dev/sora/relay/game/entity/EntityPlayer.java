@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.entity;
@@ -21,12 +20,12 @@ extends Entity {
     private String username;
     private UUID uuid;
 
-    public EntityPlayer(long l, UUID uUID, String string) {
+    public EntityPlayer(long l, UUID uUID, String string2) {
         Intrinsics.checkNotNullParameter((Object)uUID, (String)"uuid");
-        Intrinsics.checkNotNullParameter((Object)string, (String)"username");
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"username");
         super(l);
         this.uuid = uUID;
-        this.username = string;
+        this.username = string2;
     }
 
     public final String getUsername() {
@@ -51,9 +50,9 @@ extends Entity {
         }
     }
 
-    public final void setUsername(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"<set-?>");
-        this.username = string;
+    public final void setUsername(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"<set-?>");
+        this.username = string2;
     }
 
     public final void setUuid(UUID uUID) {

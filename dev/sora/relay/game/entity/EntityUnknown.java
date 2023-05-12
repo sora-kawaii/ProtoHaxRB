@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.entity;
@@ -16,10 +15,10 @@ public final class EntityUnknown
 extends Entity {
     private final String type;
 
-    public EntityUnknown(long l, String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"type");
+    public EntityUnknown(long l, String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"type");
         super(l);
-        this.type = string;
+        this.type = string2;
     }
 
     public final String getType() {

@@ -2,13 +2,8 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Pair
- *  kotlin.TuplesKt
  *  kotlin.collections.ArraysKt
- *  kotlin.collections.CollectionsKt
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.Charsets
  */
 package dev.sora.relay.game.utils.mapping;
 
@@ -58,7 +53,7 @@ extends AbstractMappingUtils {
         Iterator iterator = object2.iterator();
         while (iterator.hasNext()) {
             object2 = ((JsonElement)iterator.next()).getAsJsonObject();
-            object.add(TuplesKt.to((Object)((JsonObject)object2).get("name").getAsString(), (Object)((JsonObject)object2).get("id").getAsInt()));
+            object.add(TuplesKt.to(((JsonObject)object2).get("name").getAsString(), ((JsonObject)object2).get("id").getAsInt()));
         }
         object = (List)object;
         return new RuntimeMappingImpl((List<Pair<String, Integer>>)object);

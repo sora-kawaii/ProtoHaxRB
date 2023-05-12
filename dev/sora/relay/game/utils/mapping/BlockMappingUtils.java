@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.collections.ArraysKt
- *  kotlin.collections.CollectionsKt
  *  kotlin.comparisons.ComparisonsKt
  *  kotlin.jvm.internal.Intrinsics
  */
@@ -21,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,30 +37,30 @@ extends AbstractMappingUtils {
     private BlockMappingUtils() {
     }
 
-    public final String getBlockNameFromNbt(NbtMap object) {
-        Intrinsics.checkNotNullParameter((Object)object, (String)"nbt");
+    public final String getBlockNameFromNbt(NbtMap iterator) {
+        Intrinsics.checkNotNullParameter(iterator, (String)"nbt");
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(((NbtMap)object).getString("name"));
-        Iterator iterator = ((NbtMap)object).getCompound("states");
-        object = iterator;
-        if (iterator == null) {
-            object = NbtMap.builder().build();
+        stringBuilder.append(((NbtMap)((Object)iterator)).getString("name"));
+        Object object = ((NbtMap)((Object)iterator)).getCompound("states");
+        iterator = object;
+        if (object == null) {
+            iterator = NbtMap.builder().build();
         }
-        Intrinsics.checkNotNullExpressionValue((Object)object, (String)"nbt.getCompound(\"states\"\u2026 NbtMap.builder().build()");
-        iterator = (Map)object;
-        object = new ArrayList(iterator.size());
-        for (Map.Entry entry : iterator.entrySet()) {
-            object.add(entry);
+        Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)"nbt.getCompound(\"states\"\u2026 NbtMap.builder().build()");
+        object = (Map)((Object)iterator);
+        iterator = new ArrayList(object.size());
+        for (Map.Entry entry : object.entrySet()) {
+            iterator.add(entry);
         }
-        object = (List)object;
-        if (((Collection)(object = CollectionsKt.sortedWith((Iterable)((Iterable)object), (Comparator)new Comparator(){
+        iterator = (List)((Object)iterator);
+        if (((Collection)((Object)(iterator = CollectionsKt.sortedWith((Iterable)((Iterable)((Object)iterator)), (Comparator)new Comparator(){
 
             public final int compare(T t, T t2) {
                 return ComparisonsKt.compareValues((Comparable)((Comparable)((Object)((String)((Map.Entry)t).getKey()))), (Comparable)((Comparable)((Object)((String)((Map.Entry)t2).getKey()))));
             }
-        }))).isEmpty() ^ true) {
+        })))).isEmpty() ^ true) {
             stringBuilder.append("[");
-            for (Map.Entry entry : (Iterable)object) {
+            for (Map.Entry entry : (Iterable)((Object)iterator)) {
                 object = (String)entry.getKey();
                 Object v = entry.getValue();
                 stringBuilder.append((String)object);
@@ -74,9 +71,9 @@ extends AbstractMappingUtils {
             stringBuilder.delete(stringBuilder.length() - 1, stringBuilder.length());
             stringBuilder.append("]");
         }
-        object = stringBuilder.toString();
-        Intrinsics.checkNotNullExpressionValue((Object)object, (String)"sb.toString()");
-        return object;
+        iterator = stringBuilder.toString();
+        Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)"sb.toString()");
+        return iterator;
     }
 
     @Override
@@ -98,8 +95,8 @@ extends AbstractMappingUtils {
         Object object2 = new NBTInputStream(new DataInputStream(new GZIPInputStream(AbstractMappingUtils.class.getResourceAsStream(this.getResourcePath() + "/runtime_block_states_" + s + ".dat")))).readTag();
         Intrinsics.checkNotNull((Object)object2, (String)"null cannot be cast to non-null type com.nukkitx.nbt.NbtList<com.nukkitx.nbt.NbtMap>");
         Object object32 = (NbtList)object2;
-        Map map = new LinkedHashMap();
         object2 = new LinkedHashMap();
+        Map map = new LinkedHashMap();
         boolean bl = ArraysKt.contains((Object[])object, (Object)"legacy");
         object = "subtag";
         if (bl) {
@@ -107,7 +104,7 @@ extends AbstractMappingUtils {
                 Object object4 = INSTANCE;
                 Intrinsics.checkNotNullExpressionValue((Object)object32, (String)object);
                 object4 = ((BlockMappingUtils)object4).getBlockNameFromNbt((NbtMap)object32);
-                map.put(((NbtMap)object32).getInt("id") << 6 | ((NbtMap)object32).getShort("data"), object4);
+                object2.put(((NbtMap)object32).getInt("id") << 6 | ((NbtMap)object32).getShort("data"), object4);
             }
         } else {
             for (Object object32 : (Iterable)object32) {
@@ -115,11 +112,11 @@ extends AbstractMappingUtils {
                 Intrinsics.checkNotNullExpressionValue((Object)object32, (String)object);
                 object5 = ((BlockMappingUtils)object5).getBlockNameFromNbt((NbtMap)object32);
                 int n = ((NbtMap)object32).getInt("runtimeId");
-                map.put(n, object5);
-                object2.put(object5, n);
+                object2.put(n, object5);
+                map.put(object5, n);
             }
         }
-        return new RuntimeMappingImpl(map, (Map<String, Integer>)object2);
+        return new RuntimeMappingImpl((Map<Integer, String>)object2, map);
     }
 }
 

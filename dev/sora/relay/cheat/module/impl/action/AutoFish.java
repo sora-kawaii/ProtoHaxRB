@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.cheat.module.impl.action;
@@ -39,41 +38,41 @@ extends CheatModule {
     }
 
     private final void fish(boolean bl) {
-        Object object;
-        Object object2;
+        BedrockPacket bedrockPacket;
+        GameSession gameSession;
         if (bl) {
-            object2 = this.getSession();
-            object = new LevelSoundEvent2Packet();
-            ((LevelSoundEvent2Packet)object).setSound(SoundEvent.THROW);
-            ((LevelSoundEvent2Packet)object).setPosition(this.getSession().getThePlayer().getVec3Position());
-            ((LevelSoundEvent2Packet)object).setExtraData(-1);
-            ((LevelSoundEvent2Packet)object).setIdentifier("minecraft:player");
-            ((LevelSoundEvent2Packet)object).setBabySound(false);
-            ((LevelSoundEvent2Packet)object).setRelativeVolumeDisabled(false);
-            ((GameSession)object2).sendPacket((BedrockPacket)object);
+            gameSession = this.getSession();
+            bedrockPacket = new LevelSoundEvent2Packet();
+            ((LevelSoundEvent2Packet)bedrockPacket).setSound(SoundEvent.THROW);
+            ((LevelSoundEvent2Packet)bedrockPacket).setPosition(this.getSession().getThePlayer().getVec3Position());
+            ((LevelSoundEvent2Packet)bedrockPacket).setExtraData(-1);
+            ((LevelSoundEvent2Packet)bedrockPacket).setIdentifier("minecraft:player");
+            ((LevelSoundEvent2Packet)bedrockPacket).setBabySound(false);
+            ((LevelSoundEvent2Packet)bedrockPacket).setRelativeVolumeDisabled(false);
+            gameSession.sendPacket(bedrockPacket);
         }
         EntityPlayerSP.swing$default(this.getSession().getThePlayer(), false, 1, null);
-        object2 = this.getSession();
-        object = new InventoryTransactionPacket();
-        ((InventoryTransactionPacket)object).setTransactionType(TransactionType.ITEM_USE);
-        ((InventoryTransactionPacket)object).setActionType(1);
-        ((InventoryTransactionPacket)object).setRuntimeEntityId(0L);
-        ((InventoryTransactionPacket)object).setBlockPosition(Vector3i.ZERO);
-        ((InventoryTransactionPacket)object).setBlockFace(255);
-        ((InventoryTransactionPacket)object).setHotbarSlot(this.getSession().getThePlayer().getHeldItemSlot());
-        ((InventoryTransactionPacket)object).setItemInHand(this.getSession().getThePlayer().getHeldItemData());
-        ((InventoryTransactionPacket)object).setPlayerPosition(this.getSession().getThePlayer().getVec3Position());
-        ((InventoryTransactionPacket)object).setClickPosition(Vector3f.ZERO);
-        ((GameSession)object2).sendPacket((BedrockPacket)object);
-        object = this.getSession();
-        object2 = new InventoryTransactionPacket();
-        ((InventoryTransactionPacket)object2).setTransactionType(TransactionType.ITEM_RELEASE);
-        ((InventoryTransactionPacket)object2).setActionType(0);
-        ((InventoryTransactionPacket)object2).setRuntimeEntityId(0L);
-        ((InventoryTransactionPacket)object2).setHotbarSlot(this.getSession().getThePlayer().getHeldItemSlot());
-        ((InventoryTransactionPacket)object2).setItemInHand(this.getSession().getThePlayer().getHeldItemData());
-        ((InventoryTransactionPacket)object2).setHeadPosition(this.getSession().getThePlayer().getVec3Position());
-        ((GameSession)object).sendPacket((BedrockPacket)object2);
+        gameSession = this.getSession();
+        bedrockPacket = new InventoryTransactionPacket();
+        ((InventoryTransactionPacket)bedrockPacket).setTransactionType(TransactionType.ITEM_USE);
+        ((InventoryTransactionPacket)bedrockPacket).setActionType(1);
+        ((InventoryTransactionPacket)bedrockPacket).setRuntimeEntityId(0L);
+        ((InventoryTransactionPacket)bedrockPacket).setBlockPosition(Vector3i.ZERO);
+        ((InventoryTransactionPacket)bedrockPacket).setBlockFace(255);
+        ((InventoryTransactionPacket)bedrockPacket).setHotbarSlot(this.getSession().getThePlayer().getHeldItemSlot());
+        ((InventoryTransactionPacket)bedrockPacket).setItemInHand(this.getSession().getThePlayer().getHeldItemData());
+        ((InventoryTransactionPacket)bedrockPacket).setPlayerPosition(this.getSession().getThePlayer().getVec3Position());
+        ((InventoryTransactionPacket)bedrockPacket).setClickPosition(Vector3f.ZERO);
+        gameSession.sendPacket(bedrockPacket);
+        gameSession = this.getSession();
+        bedrockPacket = new InventoryTransactionPacket();
+        ((InventoryTransactionPacket)bedrockPacket).setTransactionType(TransactionType.ITEM_RELEASE);
+        ((InventoryTransactionPacket)bedrockPacket).setActionType(0);
+        ((InventoryTransactionPacket)bedrockPacket).setRuntimeEntityId(0L);
+        ((InventoryTransactionPacket)bedrockPacket).setHotbarSlot(this.getSession().getThePlayer().getHeldItemSlot());
+        ((InventoryTransactionPacket)bedrockPacket).setItemInHand(this.getSession().getThePlayer().getHeldItemData());
+        ((InventoryTransactionPacket)bedrockPacket).setHeadPosition(this.getSession().getThePlayer().getVec3Position());
+        gameSession.sendPacket(bedrockPacket);
     }
 
     @Override

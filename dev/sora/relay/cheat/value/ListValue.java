@@ -2,10 +2,8 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.functions.Function1
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.text.StringsKt
  */
 package dev.sora.relay.cheat.value;
 
@@ -32,13 +30,13 @@ extends Value<String> {
         return ListValue.contains$lambda$0(function1, object);
     }
 
-    public ListValue(String string, String[] stringArray, String string2) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"name");
+    public ListValue(String string2, String[] stringArray, String string3) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"name");
         Intrinsics.checkNotNullParameter((Object)stringArray, (String)"values");
-        Intrinsics.checkNotNullParameter((Object)string2, (String)"value");
-        super(string, string2);
+        Intrinsics.checkNotNullParameter((Object)string3, (String)"value");
+        super(string2, string3);
         this.values = stringArray;
-        this.setValue(string2);
+        this.setValue(string3);
     }
 
     private static final boolean contains$lambda$0(Function1 function1, Object object) {
@@ -47,26 +45,26 @@ extends Value<String> {
     }
 
     @Override
-    public void changeValue(String string) {
-        Intrinsics.checkNotNullParameter((Object)string, (String)"value");
-        for (String string2 : this.values) {
-            if (!StringsKt.equals((String)string2, (String)string, (boolean)true)) continue;
-            this.setValue(string2);
+    public void changeValue(String string2) {
+        Intrinsics.checkNotNullParameter((Object)string2, (String)"value");
+        for (String string3 : this.values) {
+            if (!StringsKt.equals((String)string3, (String)string2, (boolean)true)) continue;
+            this.setValue(string3);
             break;
         }
     }
 
-    public final boolean contains(String string) {
-        return Arrays.stream(this.values).anyMatch(new ListValue$$ExternalSyntheticLambda0((Function1)new Function1<String, Boolean>(string){
+    public final boolean contains(String string2) {
+        return Arrays.stream(this.values).anyMatch(new ListValue$$ExternalSyntheticLambda0((Function1)new Function1<String, Boolean>(string2){
             final /* synthetic */ String $string;
             {
-                this.$string = string;
+                this.$string = string2;
                 super(1);
             }
 
-            public final Boolean invoke(String string) {
-                Intrinsics.checkNotNullParameter((Object)string, (String)"s");
-                return StringsKt.equals((String)string, (String)this.$string, (boolean)true);
+            public final Boolean invoke(String string2) {
+                Intrinsics.checkNotNullParameter((Object)string2, (String)"s");
+                return StringsKt.equals((String)string2, (String)this.$string, (boolean)true);
             }
         }));
     }

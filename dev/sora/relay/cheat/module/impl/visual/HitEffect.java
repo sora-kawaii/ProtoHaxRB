@@ -2,9 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
- *  kotlin.random.Random
  */
 package dev.sora.relay.cheat.module.impl.visual;
 
@@ -34,10 +32,10 @@ extends CheatModule {
 
     public HitEffect() {
         super("HitEffect", false, false, 6, null);
-        String string = "Criticals";
-        String string2 = "Lightning";
-        String string3 = "Blood";
-        this.effectValue = new ListValue("Effect", new String[]{string, string2, string3}, string);
+        String string2 = "Criticals";
+        String string3 = "Lightning";
+        String string4 = "Blood";
+        this.effectValue = new ListValue("Effect", new String[]{string2, string3, string4}, string2);
     }
 
     /*
@@ -90,11 +88,11 @@ extends CheatModule {
             }
             case "Criticals": 
         }
-        object2 = ((GameEvent)object).getSession().getNetSession();
-        object = new AnimatePacket();
-        ((AnimatePacket)object).setRuntimeEntityId(((InventoryTransactionPacket)object3).getRuntimeEntityId());
-        ((AnimatePacket)object).setAction(AnimatePacket.Action.CRITICAL_HIT);
-        ((RakNetRelaySession)object2).inboundPacket((BedrockPacket)object);
+        object = ((GameEvent)object).getSession().getNetSession();
+        object2 = new AnimatePacket();
+        ((AnimatePacket)object2).setRuntimeEntityId(((InventoryTransactionPacket)object3).getRuntimeEntityId());
+        ((AnimatePacket)object2).setAction(AnimatePacket.Action.CRITICAL_HIT);
+        ((RakNetRelaySession)object).inboundPacket((BedrockPacket)object2);
     }
 }
 

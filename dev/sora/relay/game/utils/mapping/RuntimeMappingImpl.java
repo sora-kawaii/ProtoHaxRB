@@ -2,8 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
- *  kotlin.Pair
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.utils.mapping;
@@ -22,13 +20,13 @@ implements RuntimeMapping {
     private final Map<String, Integer> gameToRuntimeMap;
     private final Map<Integer, String> runtimeToGameMap;
 
-    public RuntimeMappingImpl(List<Pair<String, Integer>> object) {
-        Intrinsics.checkNotNullParameter(object, (String)"data");
+    public RuntimeMappingImpl(List<Pair<String, Integer>> object2) {
+        Intrinsics.checkNotNullParameter(object2, (String)"data");
         Map map = new LinkedHashMap();
         Map map2 = new LinkedHashMap();
-        for (Pair pair : (Iterable)object) {
-            map2.put(pair.getFirst(), pair.getSecond());
-            map.put(pair.getSecond(), pair.getFirst());
+        for (Object object2 : (Iterable)object2) {
+            map2.put(((Pair)object2).getFirst(), ((Pair)object2).getSecond());
+            map.put(((Pair)object2).getSecond(), ((Pair)object2).getFirst());
         }
         this.runtimeToGameMap = map;
         this.gameToRuntimeMap = map2;
@@ -43,12 +41,12 @@ implements RuntimeMapping {
 
     @Override
     public String game(int n) {
-        String string;
-        String string2 = string = this.runtimeToGameMap.get(n);
-        if (string == null) {
-            string2 = "minecraft:unknown";
+        String string2;
+        String string3 = string2 = this.runtimeToGameMap.get(n);
+        if (string2 == null) {
+            string3 = "minecraft:unknown";
         }
-        return string2;
+        return string3;
     }
 
     @Override

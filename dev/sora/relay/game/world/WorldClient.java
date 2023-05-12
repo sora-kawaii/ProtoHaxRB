@@ -2,7 +2,6 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  kotlin.Metadata
  *  kotlin.jvm.internal.Intrinsics
  */
 package dev.sora.relay.game.world;
@@ -68,94 +67,94 @@ extends WorldwideBlockStorage {
     public void onServerPacket(BedrockPacket object) {
         Intrinsics.checkNotNullParameter((Object)object, (String)"packet");
         boolean bl = object instanceof AddEntityPacket;
-        Object object2 = "it";
-        String object32 = "packet.metadata";
-        Object object3 = "packet.rotation";
-        Object object4 = "packet.motion";
-        String string = "packet.position";
+        Iterator iterator = "it";
+        String object22 = "packet.metadata";
+        Object object2 = "packet.rotation";
+        Object object3 = "packet.motion";
+        String string2 = "packet.position";
         if (bl) {
             Map<Long, Entity> map = this.entityMap;
             long l = ((AddEntityPacket)object).getRuntimeEntityId();
             long l2 = ((AddEntityPacket)object).getRuntimeEntityId();
-            Object object5 = ((AddEntityPacket)object).getIdentifier();
-            String string2 = "packet.identifier";
-            Intrinsics.checkNotNullExpressionValue((Object)object5, (String)string2);
-            object5 = new EntityUnknown(l2, (String)object5);
-            ((Entity)object5).setUniqueId(((AddEntityPacket)object).getUniqueEntityId());
+            Object object4 = ((AddEntityPacket)object).getIdentifier();
+            String string3 = "packet.identifier";
+            Intrinsics.checkNotNullExpressionValue((Object)object4, (String)string3);
+            object4 = new EntityUnknown(l2, (String)object4);
+            ((Entity)object4).setUniqueId(((AddEntityPacket)object).getUniqueEntityId());
             Vector3f vector3f = ((AddEntityPacket)object).getPosition();
-            Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string);
-            ((Entity)object5).position(vector3f);
+            Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string2);
+            ((Entity)object4).position(vector3f);
             Vector3f vector3f2 = ((AddEntityPacket)object).getRotation();
-            Intrinsics.checkNotNullExpressionValue((Object)vector3f2, (String)object3);
-            ((Entity)object5).rotate(vector3f2);
+            Intrinsics.checkNotNullExpressionValue((Object)vector3f2, (String)object2);
+            ((Entity)object4).rotate(vector3f2);
             Vector3f vector3f3 = ((AddEntityPacket)object).getMotion();
-            Intrinsics.checkNotNullExpressionValue((Object)vector3f3, (String)object4);
-            ((Entity)object5).motion(vector3f3);
-            object4 = ((AddEntityPacket)object).getIdentifier();
-            Intrinsics.checkNotNullExpressionValue((Object)object4, (String)string2);
-            ((Entity)object5).setIdentifier((String)object4);
-            object4 = ((AddEntityPacket)object).getMetadata();
-            Intrinsics.checkNotNullExpressionValue((Object)object4, (String)object32);
-            for (Map.Entry entry : ((Map)object4).entrySet()) {
+            Intrinsics.checkNotNullExpressionValue((Object)vector3f3, (String)object3);
+            ((Entity)object4).motion(vector3f3);
+            object3 = ((AddEntityPacket)object).getIdentifier();
+            Intrinsics.checkNotNullExpressionValue((Object)object3, (String)string3);
+            ((Entity)object4).setIdentifier((String)object3);
+            object3 = ((AddEntityPacket)object).getMetadata();
+            Intrinsics.checkNotNullExpressionValue((Object)object3, (String)object22);
+            for (Map.Entry entry : ((Map)object3).entrySet()) {
                 EntityData entityData = (EntityData)((Object)entry.getKey());
                 Object v = entry.getValue();
-                ((Map)((Entity)object5).getMetadata()).put(entityData, v);
+                ((Map)((Entity)object4).getMetadata()).put(entityData, v);
             }
             object = ((AddEntityPacket)object).getAttributes();
             Intrinsics.checkNotNullExpressionValue(object, (String)"packet.attributes");
             object = (Iterable)object;
-            object4 = object.iterator();
-            while (object4.hasNext()) {
-                AttributeData attributeData = (AttributeData)object4.next();
-                object3 = ((Entity)object5).getAttributes();
-                String string3 = attributeData.getName();
-                Intrinsics.checkNotNullExpressionValue((Object)string3, (String)"it.name");
-                Intrinsics.checkNotNullExpressionValue((Object)attributeData, (String)object2);
-                object3.put(string3, attributeData);
+            object3 = object.iterator();
+            while (object3.hasNext()) {
+                AttributeData attributeData = (AttributeData)object3.next();
+                object2 = ((Entity)object4).getAttributes();
+                String string4 = attributeData.getName();
+                Intrinsics.checkNotNullExpressionValue((Object)string4, (String)"it.name");
+                Intrinsics.checkNotNullExpressionValue((Object)attributeData, iterator);
+                object2.put(string4, attributeData);
             }
-            map.put(l, (Entity)object5);
+            map.put(l, (Entity)object4);
         } else if (object instanceof AddItemEntityPacket) {
-            object2 = this.entityMap;
+            Map<Long, Entity> map = this.entityMap;
             long l = ((AddItemEntityPacket)object).getRuntimeEntityId();
-            EntityItem entityItem = new EntityItem(((AddItemEntityPacket)object).getRuntimeEntityId());
-            entityItem.setUniqueId(((AddItemEntityPacket)object).getUniqueEntityId());
+            iterator = new EntityItem(((AddItemEntityPacket)object).getRuntimeEntityId());
+            ((Entity)((Object)iterator)).setUniqueId(((AddItemEntityPacket)object).getUniqueEntityId());
             Vector3f vector3f = ((AddItemEntityPacket)object).getPosition();
-            Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string);
-            entityItem.position(vector3f);
+            Intrinsics.checkNotNullExpressionValue((Object)vector3f, (String)string2);
+            ((Entity)((Object)iterator)).position(vector3f);
             object = ((AddItemEntityPacket)object).getMotion();
-            Intrinsics.checkNotNullExpressionValue((Object)object, (String)object4);
-            entityItem.motion((Vector3f)object);
-            object2.put(l, entityItem);
+            Intrinsics.checkNotNullExpressionValue((Object)object, (String)object3);
+            ((Entity)((Object)iterator)).motion((Vector3f)object);
+            map.put(l, (Entity)((Object)iterator));
         } else if (object instanceof AddPlayerPacket) {
-            object2 = this.entityMap;
+            iterator = this.entityMap;
             long l = ((AddPlayerPacket)object).getRuntimeEntityId();
             long l3 = ((AddPlayerPacket)object).getRuntimeEntityId();
-            Object object6 = ((AddPlayerPacket)object).getUuid();
-            Intrinsics.checkNotNullExpressionValue((Object)object6, (String)"packet.uuid");
-            Iterator iterator = ((AddPlayerPacket)object).getUsername();
-            Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)"packet.username");
-            object6 = new EntityPlayer(l3, (UUID)object6, (String)((Object)iterator));
-            ((Entity)object6).setUniqueId(((AddPlayerPacket)object).getUniqueEntityId());
-            iterator = ((AddPlayerPacket)object).getPosition();
-            Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)string);
-            ((Entity)object6).position((Vector3f)((Object)iterator));
-            iterator = ((AddPlayerPacket)object).getRotation();
-            Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)object3);
-            ((Entity)object6).rotate((Vector3f)((Object)iterator));
-            iterator = ((AddPlayerPacket)object).getMotion();
-            Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)object4);
-            ((Entity)object6).motion((Vector3f)((Object)iterator));
-            iterator = ((AddPlayerPacket)object).getMetadata();
-            Intrinsics.checkNotNullExpressionValue((Object)iterator, (String)object32);
-            for (Map.Entry entry : ((Map)((Object)iterator)).entrySet()) {
-                object4 = (EntityData)((Object)entry.getKey());
+            Object object5 = ((AddPlayerPacket)object).getUuid();
+            Intrinsics.checkNotNullExpressionValue((Object)object5, (String)"packet.uuid");
+            Iterator iterator2 = ((AddPlayerPacket)object).getUsername();
+            Intrinsics.checkNotNullExpressionValue((Object)iterator2, (String)"packet.username");
+            object5 = new EntityPlayer(l3, (UUID)object5, (String)((Object)iterator2));
+            ((Entity)object5).setUniqueId(((AddPlayerPacket)object).getUniqueEntityId());
+            iterator2 = ((AddPlayerPacket)object).getPosition();
+            Intrinsics.checkNotNullExpressionValue((Object)iterator2, (String)string2);
+            ((Entity)object5).position((Vector3f)((Object)iterator2));
+            iterator2 = ((AddPlayerPacket)object).getRotation();
+            Intrinsics.checkNotNullExpressionValue((Object)iterator2, (String)object2);
+            ((Entity)object5).rotate((Vector3f)((Object)iterator2));
+            iterator2 = ((AddPlayerPacket)object).getMotion();
+            Intrinsics.checkNotNullExpressionValue((Object)iterator2, (String)object3);
+            ((Entity)object5).motion((Vector3f)((Object)iterator2));
+            iterator2 = ((AddPlayerPacket)object).getMetadata();
+            Intrinsics.checkNotNullExpressionValue((Object)iterator2, (String)object22);
+            for (Map.Entry entry : ((Map)((Object)iterator2)).entrySet()) {
+                object3 = (EntityData)((Object)entry.getKey());
                 Object v = entry.getValue();
-                ((Map)((Entity)object6).getMetadata()).put(object4, v);
+                ((Map)((Entity)object5).getMetadata()).put(object3, v);
             }
             object = ((AddPlayerPacket)object).getHand();
             Intrinsics.checkNotNullExpressionValue((Object)object, (String)"packet.hand");
-            ((Entity)object6).setHeldItemData((ItemData)object);
-            object2.put(l, object6);
+            ((Entity)object5).setHeldItemData((ItemData)object);
+            iterator.put(l, object5);
         } else if (object instanceof RemoveEntityPacket) {
             this.entityMap.remove(((RemoveEntityPacket)object).getUniqueEntityId());
         } else if (object instanceof TakeItemEntityPacket) {
@@ -166,19 +165,19 @@ extends WorldwideBlockStorage {
             Intrinsics.checkNotNullExpressionValue(object, (String)"packet.entries");
             for (PlayerListPacket.Entry entry : (Iterable)object) {
                 if (bl2) {
-                    object4 = this.playerList;
-                    UUID uUID = entry.getUuid();
-                    Intrinsics.checkNotNullExpressionValue((Object)uUID, (String)"it.uuid");
-                    Intrinsics.checkNotNullExpressionValue((Object)entry, (String)object2);
-                    object4.put(uUID, entry);
+                    Map<UUID, PlayerListPacket.Entry> map = this.playerList;
+                    object = entry.getUuid();
+                    Intrinsics.checkNotNullExpressionValue((Object)object, (String)"it.uuid");
+                    Intrinsics.checkNotNullExpressionValue((Object)entry, iterator);
+                    map.put((UUID)object, entry);
                     continue;
                 }
                 this.playerList.remove(entry.getUuid());
             }
         } else {
-            object2 = ((Iterable)this.entityMap.values()).iterator();
-            while (object2.hasNext()) {
-                ((Entity)object2.next()).onServerPacket((BedrockPacket)object);
+            iterator = ((Iterable)this.entityMap.values()).iterator();
+            while (iterator.hasNext()) {
+                ((Entity)iterator.next()).onServerPacket((BedrockPacket)object);
             }
         }
     }
